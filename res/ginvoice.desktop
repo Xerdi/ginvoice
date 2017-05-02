@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=GinVoice
+Icon=GinVoice.png
+Comment=GNU Invoice Creator
+Exec=ginvoice %U
+Type=Application
+Terminal=false
+StartupNotify=true
+Categories=GNOME;GTK;Office;

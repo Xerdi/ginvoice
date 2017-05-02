@@ -1,0 +1,115 @@
+# GinVoice - Creating LaTeX invoices with a GTK GUI
+# Copyright (C) YEAR Erik Nijenhuis <erik@xerdi.com>
+# This file is distributed under the same license as the GinVoice package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GinVoice 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-27 17:41+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ginvoice/app.py:35
+msgid "Invoicing"
+msgstr ""
+
+#: ginvoice/app.py:54 ginvoice/records.py:32 ginvoice/customers.py:104
+#: ginvoice/widgets/table.py:23
+msgid "Client"
+msgstr ""
+
+#: ginvoice/app.py:55 ginvoice/records.py:32 ginvoice/customers.py:105
+#: ginvoice/widgets/table.py:23
+msgid "Date"
+msgstr ""
+
+#: ginvoice/app.py:56 ginvoice/records.py:32 ginvoice/customers.py:106
+#: ginvoice/widgets/table.py:23
+msgid "Description"
+msgstr ""
+
+#: ginvoice/app.py:57 ginvoice/records.py:32 ginvoice/customers.py:108
+#: ginvoice/widgets/table.py:23
+msgid "Value"
+msgstr ""
+
+#: ginvoice/app.py:65 ginvoice/customers.py:131
+msgid "Minutes"
+msgstr ""
+
+#: ginvoice/app.py:106
+msgid "An error occurred when creating the PDF file"
+msgstr ""
+
+#: ginvoice/app.py:117 ginvoice/app.py:122
+msgid "Save"
+msgstr ""
+
+#: ginvoice/app.py:123
+msgid "Cancel"
+msgstr ""
+
+#: ginvoice/app.py:124
+msgid "Invoice"
+msgstr ""
+
+#: ginvoice/app.py:139
+msgid "Verification"
+msgstr ""
+
+#: ginvoice/app.py:145
+msgid "PDF created. Continue?"
+msgstr ""
+
+#: ginvoice/app.py:165 ginvoice/customers.py:47
+msgid "Add Customer"
+msgstr ""
+
+#: ginvoice/app.py:170
+msgid "Remove Customer"
+msgstr ""
+
+#: ginvoice/app.py:175
+msgid "Edit Customer"
+msgstr ""
+
+#: ginvoice/app.py:182
+msgid "Create Invoice"
+msgstr ""
+
+#: ginvoice/records.py:32 ginvoice/widgets/table.py:23
+msgid "Type"
+msgstr ""
+
+#: ginvoice/customers.py:54 ginvoice/customers.py:92
+msgid "Name"
+msgstr ""
+
+#: ginvoice/customers.py:55 ginvoice/customers.py:93
+msgid "Address"
+msgstr ""
+
+#: ginvoice/customers.py:56 ginvoice/customers.py:94
+msgid "Postal Code"
+msgstr ""
+
+#: ginvoice/customers.py:107 ginvoice/customers.py:131
+#: ginvoice/customers.py:141
+msgid "Fixed Price"
+msgstr ""
+
+#: ginvoice/customers.py:181
+msgid "Create Record"
+msgstr ""
+
+#: ginvoice/customers.py:187
+msgid "Remove Record"
+msgstr ""

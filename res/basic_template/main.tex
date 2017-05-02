@@ -1,0 +1,93 @@
+% GinVoice - Creating LaTeX invoices with a GTK GUI
+% Copyright (C) 2021  Erik Nijenhuis <erik@xerdi.com>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+\documentclass[%singlesided,
+    doublesided,
+    paper=a4,
+    fontsize=10pt
+]{invoice}
+
+\usepackage[dutch]{babel}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+
+\usepackage{fontspec}
+\usepackage{xpatch}
+\usepackage{scrlayer-scrpage}
+
+
+\def \tab {\hspace*{3ex}} % Define \tab to create some horizontal white space
+
+\DeclareNewPageStyleByLayers{headermain}{%
+    header.bg
+}
+
+\input{settings}
+
+\DeclareNewLayer[
+    background,
+    topmargin,
+    addheight=4cm,
+    contents={\color{headerbarcolor}\rule{\layerwidth}{\layerheight}}
+]{header.bg}
+
+\input{generated_vars}
+
+\usepackage[pdftex,
+    pdfauthor={\@theauthor},
+    pdftitle={Factuur \today},
+    pdfsubject={Factuur},
+    pdfkeywords={Factuur},
+    pdfproducer={Latex with Python generation},
+    pdfcreator={Latexmk}]{hyperref}
+
+\begin{document}
+    \thispagestyle{headermain}
+    \makeheader
+
+    \vspace{1cm}
+
+    \begin{tabular}{l}
+        \begin{tabular}{l}
+            \addresseename   \\
+            \addresseestreet \\
+            \addresseepostal \\
+        \end{tabular} \\
+        \begin{tabular}{l l}
+            \customerinfo
+            Factuurnr: & \invoicenr \\
+            Factuurdatum: & \today  \\
+        \end{tabular}
+    \end{tabular}
+    \hfill
+    \begin{tabular}{l r}
+        \supplierinfo
+    \end{tabular}\\
+
+    \begin{invoiceTable}
+        \records
+    \end{invoiceTable}
+
+    {\footnotesize \theending{}}
+
+    \vfill
+
+    \begin{center}
+        \images
+    \end{center}
+
+\end{document}

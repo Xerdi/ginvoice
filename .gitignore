@@ -1,0 +1,9 @@
+out
+venv
+__pycache__
+*.pdf
+.idea
+MANIFEST
+dist
+.pybuild
+*.egg-info

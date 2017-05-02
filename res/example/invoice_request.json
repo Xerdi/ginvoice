@@ -1,0 +1,24 @@
+{
+  "addressee": {
+    "name": "Erik Nijenhuis",
+    "street": "Papaverweg 65",
+    "postal": "8042 ED Zwolle"
+  },
+  "invoice_nr": 1,
+  "records": [
+    {
+      "type": "hours",
+      "client": "E. Nijenhuis",
+      "date": "26 oktober",
+      "description": "Kennismakingsgesprek",
+      "duration": "60"
+    },
+    {
+      "type": "fee",
+      "client": "",
+      "date": "30 oktober",
+      "description": "Abscent",
+      "costs": "30"
+    }
+  ]
+}
