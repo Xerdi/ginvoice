@@ -13,9 +13,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import os.path
+import shutil
 
 import gi
 from gi.overrides import GdkPixbuf
+
+from ginvoice.environment import image_dir, get_image
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk
@@ -186,22 +190,27 @@ class Form(Gtk.Box):
         self.add_section(title)
         wrapper = Gtk.Box()
         wrapper.set_orientation(Gtk.Orientation.VERTICAL)
-        model = Gtk.ListStore(GdkPixbuf.Pixbuf)
         button_group = Gtk.ActionBar()
 
-        column = Gtk.TreeViewColumn(title, Gtk.CellRendererPixbuf(), pixbuf=0)
-        entry = Gtk.TreeView(model=model)
+        entry = Gtk.FlowBox()
+        # entry.set_max_children_per_line(3)
+        # entry.set_min_children_per_line(3)
+        entry.set_homogeneous(True)
 
         def handle_select_image(_btn):
             fn = _btn.get_filename()
             _btn.unselect_all()
             pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(fn, 100, 100, True)
-            model.append(row=[pixbuf])
+            img = Gtk.Image()
+            img._file = fn
+            img.set_from_pixbuf(pixbuf)
+            img.show()
+            entry.add(img)
 
         def handle_remove_image(_btn):
-            _model, _iter = entry.get_selection().get_selected()
-            if _iter:
-                _model.remove(_iter)
+            children = entry.get_selected_children()
+            for child in children:
+                entry.remove(child)
 
         add_btn = Gtk.FileChooserButton.new(title, Gtk.FileChooserAction.OPEN)
         add_btn.connect("file-set", handle_select_image)
@@ -210,7 +219,6 @@ class Form(Gtk.Box):
         remove_btn.connect("clicked", handle_remove_image)
         button_group.add(add_btn)
         button_group.add(remove_btn)
-        entry.append_column(column)
         wrapper.set_center_widget(entry)
         wrapper.pack_end(button_group, False, False, 0)
         self.field_list.attach_next_to(wrapper, self.prev_label, Gtk.PositionType.BOTTOM, 4, 4)
@@ -234,6 +242,9 @@ class Form(Gtk.Box):
                 entry.set_rgba(color)
             elif isinstance(entry, Gtk.TreeView):
                 entry.get_model().clear()
+            elif isinstance(entry, Gtk.FlowBox):
+                for c in entry:
+                    entry.remove(c)
             else:
                 if key in self.defaults:
                     entry.set_text(self.defaults[key])
@@ -253,6 +264,14 @@ class Form(Gtk.Box):
                 if title in data:
                     for r in data[title]:
                         model.append(row=r.values())
+            elif isinstance(entry, Gtk.FlowBox):
+                files = data[title]
+                for fn in files:
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(get_image(fn), 100, 100, True)
+                    img = Gtk.Image()
+                    img.set_from_pixbuf(pixbuf)
+                    img.show()
+                    entry.add(img)
             else:
                 entry.set_text(data[title])
 
@@ -303,6 +322,15 @@ class Form(Gtk.Box):
                     for i, k in enumerate(entry.column_names):
                         record[k] = r[i]
                     result[title].append(record)
+            elif isinstance(entry, Gtk.FlowBox):
+                images = []
+                for f in entry:
+                    c = f.get_child()
+                    if '_file' in c:
+                        fname = c._file
+                        shutil.copy(fname, image_dir)
+                        images.append(os.path.basename(fname))
+                result[title] = images
             else:
                 result[title] = entry.get_text()
         return result

@@ -15,8 +15,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import gettext, locale
+from ginvoice.preferences import get_preference
 
-locale.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, get_preference("locale", default=''))
 gettext.bindtextdomain('ginvoice', '/usr/share/locale')
 gettext.textdomain('ginvoice')
 _ = gettext.gettext

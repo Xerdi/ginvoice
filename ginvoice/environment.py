@@ -16,6 +16,7 @@
 import json
 import os
 from xdg import (
+    xdg_runtime_dir,
     xdg_cache_home,
     xdg_config_dirs,
     xdg_config_home,
@@ -36,6 +37,12 @@ template_dirs = [x for x in [os.path.join(data_dir, "templates"),
                              "/usr/lib/ginvoice/templates",
                              "/usr/local/lib/ginvoice/templates"]
                  if os.path.exists(x)]
+
+res_dirs = [
+    "/lib/ginvoice",
+    "/usr/lib/ginvoice",
+    "/usr/local/lib/ginvoice"
+]
 
 invoice_nr_file = os.path.join(config_dir, 'invoice_nr.txt')
 customer_file = os.path.join(config_dir, 'customers.json')
@@ -81,6 +88,13 @@ def get_images():
     return [os.path.basename(x) for x in os.listdir(image_dir)]
 
 
+def get_resource(file):
+    for p in res_dirs:
+        path = os.path.join(p, file)
+        if os.path.exists(path):
+            return path
+
+
 def load_profile(name):
     with open(get_profile(name), 'r') as f:
         return json.load(f)
@@ -98,3 +112,5 @@ if __name__ == '__main__':
     print("Preferences file", preferences_file)
     print("Image dir", image_dir)
     print("Current images", get_images())
+    print("Data dirs", xdg_data_dirs())
+    print("Runtime dir", xdg_runtime_dir())

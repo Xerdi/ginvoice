@@ -30,7 +30,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib
 from ginvoice.widgets.sidebar import Sidebar
 from ginvoice.customers import CustomerController
-from ginvoice.generator import generate
+# from ginvoice.generator import generate
 from ginvoice.environment import invoice_nr_file, setup_environment, get_templates, tex_dir, get_client_template_dir, \
     get_client_templates, get_profile, load_profile
 from ginvoice.i18n import _
@@ -150,27 +150,34 @@ def gen_create_pdf(addressee_func, record_store_provider):
         for record in record_store:
             records.append(parse_record(record))
         generate(profile, addressee, records, working_dir)
-        tex_proc = subprocess.Popen(["latexmk", "-lualatex", "-interaction=nonstopmode", "main"],
+
+        tex_proc = subprocess.Popen(["latexmk", "--shell-escape", "-lualatex", "-interaction=nonstopmode", "main"],
                                     cwd=working_dir,
                                     stdout=subprocess.DEVNULL,
                                     stderr=subprocess.DEVNULL)
         tex_proc.communicate()
         if tex_proc.returncode:
             def close_on_action(widget, response):
+                if response == Gtk.ResponseType.OK:
+                    subprocess.Popen(["xdg-open", "main.log"],
+                                     cwd=working_dir,
+                                     stdout=subprocess.DEVNULL,
+                                     stderr=subprocess.DEVNULL)
                 widget.destroy()
 
             error_dialog = Gtk.MessageDialog(parent=window,
                                              message_type=Gtk.MessageType.ERROR,
-                                             buttons=Gtk.ButtonsType.OK,
-                                             text=_("An error occurred when creating the PDF file"))
+                                             buttons=Gtk.ButtonsType.OK_CANCEL,
+                                             text=_("An error occurred when creating the PDF file. Show the log?"))
             error_dialog.connect("response", close_on_action)
             error_dialog.show()
             return
 
-        evince_proc = subprocess.Popen(["evince", "main.pdf"], cwd=working_dir)
+        # TODO get viewer get_preference("pdf_previewer")
+        viewer_proc = subprocess.Popen(["evince", "main.pdf"], cwd=working_dir)
 
         def handle_confirmation(widget, response):
-            evince_proc.kill()
+            viewer_proc.kill()
             if response == Gtk.ResponseType.OK:
 
                 save_dialog = Gtk.FileChooserDialog(title=_("Save"),

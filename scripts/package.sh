@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+TARGET="${1:-ginvoice}"
 PROJECT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
 set -e
@@ -28,4 +29,4 @@ cd "$PROJECT_DIRECTORY"
 debuild -us -uc
 
 cd debian
-dpkg-deb --build ginvoice
+dpkg-deb --build "$TARGET"

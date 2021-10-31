@@ -17,75 +17,59 @@
 \documentclass[%singlesided,
     doublesided,
     paper=a4,
-    fontsize=10pt
+    fontsize=10pt,
+%    landscape
 ]{invoice}
 
-\usepackage[dutch]{babel}
 \usepackage{tabularx}
 \usepackage{graphicx}
-\graphicspath{ {./img/} }
 
 \usepackage{fontspec}
 \usepackage{xpatch}
 \usepackage{scrlayer-scrpage}
+\usepackage{blindtext}
+\usepackage{booktabs}
 
-
-\def \tab {\hspace*{3ex}} % Define \tab to create some horizontal white space
-
-\DeclareNewPageStyleByLayers{headermain}{%
-    header.bg
-}
-
-\input{settings}
+\DeclareNewPageStyleByLayers{headermain}{header.bg}
 
 \DeclareNewLayer[
     background,
     topmargin,
     addheight=4cm,
-    contents={\color{headerbarcolor}\rule{\layerwidth}{\layerheight}}
+    contents={\color{bgcolor}\rule{\layerwidth}{\layerheight}}
 ]{header.bg}
 
-\input{generated_vars}
+\input{languages}
+\input{header}
+\input{footer}
+\input{style}
 
-\usepackage[pdftex,
-    pdfauthor={\@theauthor},
-    pdftitle={Factuur \today},
-    pdfsubject={Factuur},
-    pdfkeywords={Factuur},
-    pdfproducer={Latex with Python generation},
-    pdfcreator={Latexmk}]{hyperref}
+\setlength{\arrayrulewidth}{1pt}
 
 \begin{document}
     \thispagestyle{headermain}
     \makeheader
-
-    \vspace{1cm}
-
-    \begin{tabular}{l}
-        \begin{tabular}{l}
-            \addresseename   \\
-            \addresseestreet \\
-            \addresseepostal \\
+    \vspace{2cm}
+    \begin{tabular}{@{}l@{}}
+        \begin{tabular}{@{}l@{}}
+            \addressee
         \end{tabular} \\
-        \begin{tabular}{l l}
+        \begin{tabular}{@{}l l@{}}
             \customerinfo
-            Factuurnr: & \invoicenr \\
-            Factuurdatum: & \today  \\
         \end{tabular}
     \end{tabular}
     \hfill
-    \begin{tabular}{l r}
+    \begin{tabular}{@{}l r@{}}
         \supplierinfo
     \end{tabular}\\
 
-    \begin{invoiceTable}
-        \records
-    \end{invoiceTable}
+    \input{table}
+    \begin{invoice}{\columndef}{\tableheader}{\tablefooter}
+        \tablerecords
+    \end{invoice}
 
     {\footnotesize \theending{}}
-
     \vfill
-
     \begin{center}
         \images
     \end{center}

@@ -1,0 +1,158 @@
+{
+  "languages": ["english"],
+  "header": {
+    "title": "Grapefruit Inc.",
+    "subtitle": "for fruits and stuff"
+  },
+  "addressee": [
+    "Juicing Joker",
+    "\\LaTeX{} street 27",
+    "12345 AB, Alaska"
+  ],
+  "customer_info": [
+    {
+      "key": "",
+      "val": ""
+    },
+    {
+      "key": "Invoice nr:",
+      "val": "1"
+    },
+    {
+      "key": "Invoice date:",
+      "val": "\\today"
+    }
+  ],
+  "supplier_info": [
+    {
+      "key": "Email:",
+      "val": "john.doe@example.com"
+    },
+    {
+      "key": "Website:",
+      "val": "https://www.example.com"
+    },
+    {
+      "key": "Account number:",
+      "val": "NL00 0000 0000 0000 0000 00"
+    },
+    {
+      "key": "",
+      "val": ""
+    },
+    {
+      "key": "",
+      "val": ""
+    },
+    {
+      "key": "",
+      "val": ""
+    }
+  ],
+  "table": {
+    "columns": [
+      {
+        "title": "Description",
+        "type": "L",
+        "width": 1
+      },
+      {
+        "title": "Date",
+        "type": "R",
+        "width": " oct. 22 "
+      },
+      {
+        "title": "Quantity",
+        "type": "L",
+        "width": "\\textbf{ Quantity }"
+      },
+      {
+        "title": "Price",
+        "type": "F",
+        "width": "\\textbf{Total (incl.)}~"
+      },
+      {
+        "title": "Total",
+        "type": "F",
+        "width": "\\$ \\financial{1000.00}"
+      }
+    ],
+    "cumulative": [
+      {
+        "key": "Total (ex.)",
+        "val": 1229.05
+      },
+      {
+        "key": "VAT (21\\%)",
+        "val": 258.1
+      },
+      {
+        "key": "Total (incl.)",
+        "val": 1487.15
+      }
+    ],
+    "records": [
+      [
+        "Activities project x",
+        "oct. 18",
+        "1h 30m",
+        65,
+        97.5
+      ],
+      [
+        "",
+        "oct. 19",
+        "6h 15m",
+        65,
+        406.25
+      ],
+      [
+        "Material Costs",
+        "oct. 19",
+        "20x",
+        24.99,
+        499.8
+      ],
+      [
+        "Activities project x",
+        "oct. 21",
+        "2h",
+        65,
+        130
+      ],
+      [
+        "",
+        "oct. 22",
+        "1h 30m",
+        65,
+        97.5
+      ]
+    ]
+  },
+  "footer": {
+    "ending": "Please send us the total of \\currency \\financial{500.00}\nwithin the coming 14 days\nto account number NL00 0000 0000 0000 0000 00\nwith the note of the invoice number 1.\n\nQuestions about this invoice?\nPlease contact us.",
+    "images": [
+      "image1.png",
+      "image2.png",
+      "image3.png"
+    ]
+  },
+  "style": {
+    "main_font": "Ubuntu",
+    "mono_font": "Ubuntu Mono",
+    "background_color": "#360519",
+    "accent_color": "#c4a000",
+    "style_table": true
+  },
+  "misc": {
+    "currency": "\\$",
+    "author": "Erik Nijenhuis",
+    "title": "Grapefruit Inc. Invoice",
+    "subject": "Invoice for Juicing Joker",
+    "keywords": "Invoice Grapefruit Juicing Joker",
+    "producer": "GinVoice Generator",
+    "creator": "gingen",
+    "continuationheader": "\\title{} -- \\subject{}",
+    "continuationfooter": "See next page."
+  }
+}

@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import sys
 
 from setuptools import setup
 from subprocess import call
@@ -28,7 +29,9 @@ def icon_map(res):
 
 data_files = [
     ("share/applications", ["res/ginvoice.desktop"]),
-    ("lib/ginvoice/templates", ["res/basic_template.tar.gz"])
+    ("lib/ginvoice/templates", ["res/basic_template.tar.gz"]),
+    ("lib/ginvoice", ["res/glade/app.glade"]),
+    ("lib/ginvoice", ["res/style.css"])
 ]
 
 for r in icon_resolutions:
@@ -57,5 +60,5 @@ setup(name="GinVoice",
           "xdg"
       ],
       entry_points={
-          'console_scripts': ['ginvoice=ginvoice.app:main']
+          'console_scripts': ['ginvoice=ginvoice.app:main', 'gingen=ginvoice.generator:main']
       })

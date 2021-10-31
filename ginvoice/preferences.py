@@ -18,7 +18,7 @@ import os, json
 from ginvoice.environment import preferences_file
 
 
-preference_keys = ["active_profile"]
+preference_keys = ["locale", "active_profile", "pdf_previewer"]
 preference_cache = None
 
 
@@ -35,13 +35,13 @@ def _save_preference_data(data):
         json.dump(data, f)
 
 
-def get_preference(key):
+def get_preference(key, default=None):
     if key not in preference_keys:
         raise 'No such preference key'
     data = _get_preference_data()
     if key in data:
         return data[key]
-    return None
+    return default
 
 
 def set_preference(key, val):
