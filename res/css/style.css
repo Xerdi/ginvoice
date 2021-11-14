@@ -1,0 +1,26 @@
+
+.titlebar {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.titlebar headerbar {
+  border-width: 0;
+}
+
+.view.frame {
+  padding: 8px 16px;
+}
+
+.main {
+  margin: 32px 64px;
+}
+
+label.header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+stacksidebar.sidebar list {
+  border: none;
+}

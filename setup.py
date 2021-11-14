@@ -31,7 +31,7 @@ data_files = [
     ("share/applications", ["res/ginvoice.desktop"]),
     ("lib/ginvoice/templates", ["res/basic_template.tar.gz"]),
     ("lib/ginvoice", ["res/glade/app.glade"]),
-    ("lib/ginvoice", ["res/style.css"])
+    ("lib/ginvoice", ["res/css/style.css"])
 ]
 
 for r in icon_resolutions:

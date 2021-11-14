@@ -15,10 +15,17 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import gettext, locale
-from ginvoice.preferences import get_preference
+from ginvoice.model.preference import preference_store
 
-locale.setlocale(locale.LC_ALL, get_preference("locale", default=''))
+locale.setlocale(locale.LC_ALL, preference_store['locale'].value + ".UTF-8")
 gettext.bindtextdomain('ginvoice', '/usr/share/locale')
 gettext.textdomain('ginvoice')
 _ = gettext.gettext
 gettext.install('ginvoice', '/usr/share/locale')
+
+
+def update_locale(pref, new_locale):
+    locale.setlocale(locale.LC_ALL, new_locale + ".UTF-8")
+
+
+preference_store['locale'].connect('changed', update_locale)
