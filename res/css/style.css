@@ -21,6 +21,14 @@ label.header {
   font-weight: bold;
 }
 
+.sidebar-search box entry {
+  margin: 0 8px;
+}
+
 stacksidebar.sidebar list {
   border: none;
+}
+
+list row label {
+  margin: 6px 0;
 }

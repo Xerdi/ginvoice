@@ -1,3 +1,4 @@
+import getpass
 import json
 
 import gi
@@ -78,12 +79,35 @@ class PreferenceStore(GObject.GObject):
 
 
 preference_store = PreferenceStore()
+
+# Document
+preference_store += Preference('title', default='')
+preference_store += Preference('subtitle', default='')
+preference_store += Preference('author', default=getpass.getuser())
+preference_store += Preference('keywords', default='')
+
+# Document styling
+preference_store += Preference('main_font', default='Sans')
+preference_store += Preference('mono_font', default='Monospace')
+preference_store += Preference('foreground_color', default='#000000')
+preference_store += Preference('background_color', default='#ffffff')
+
+# Footer images
+preference_store += Preference('footer_image_1')
+preference_store += Preference('footer_image_2')
+preference_store += Preference('footer_image_3')
+
+# Counters
 preference_store += Preference('invoice_counter', default=1)
 preference_store += Preference('customer_counter', default=1)
+
+# Language and currency
 preference_store += Preference('locale', default='')
 preference_store += Preference('babel', default='english')
 preference_store += Preference('currency', default='€')
 preference_store += Preference('active_profile', default='Default')
+
+# Dialog confirmations
 preference_store += Preference('show_profile_removal', default=True)
 preference_store += Preference('show_customer_removal', default=True)
 preference_store += Preference('show_invoice_removal', default=True)

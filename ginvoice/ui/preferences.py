@@ -18,6 +18,16 @@ class PreferencesWindow(Gtk.Window):
 
     __gtype_name__ = "preferences_window"
 
+    title = Gtk.Template.Child('title')
+    subtitle = Gtk.Template.Child('subtitle')
+    author = Gtk.Template.Child('author')
+    keywords = Gtk.Template.Child('keywords')
+
+    main_font = Gtk.Template.Child('main_font')
+    mono_font = Gtk.Template.Child('mono_font')
+    fg_color = Gtk.Template.Child('foreground_color')
+    bg_color = Gtk.Template.Child('background_color')
+
     invoice_counter = Gtk.Template.Child('invoice_counter')
     customer_counter = Gtk.Template.Child('customer_counter')
 
@@ -32,6 +42,25 @@ class PreferencesWindow(Gtk.Window):
 
     def __init__(self):
         Gtk.Window.__init__(self)
+        self.title.set_text(preference_store['title'].value)
+        self.subtitle.set_text(preference_store['subtitle'].value)
+        self.author.set_text(preference_store['author'].value)
+        self.keywords.set_text(preference_store['keywords'].value)
+
+        def filter_mono(family, face, include):
+            return family.is_monospace() == include
+
+        self.main_font.set_filter_func(filter_mono, False)
+        self.main_font.set_font_name(preference_store['main_font'].value)
+        self.mono_font.set_filter_func(filter_mono, True)
+        self.mono_font.set_font_name(preference_store['mono_font'].value)
+        fg_color = Gdk.RGBA()
+        fg_color.parse(preference_store['foreground_color'].value)
+        self.fg_color.set_rgba(fg_color)
+        bg_color = Gdk.RGBA()
+        bg_color.parse(preference_store['background_color'].value)
+        self.bg_color.set_rgba(bg_color)
+
         self.invoice_counter.set_text(str(preference_store['invoice_counter'].value))
         self.customer_counter.set_text(str(preference_store['customer_counter'].value))
 
@@ -51,6 +80,42 @@ class PreferencesWindow(Gtk.Window):
         val = ''.join([c for c in raw if c.isdigit()])
         widget.set_text(val)
         return raw == val
+
+    @Gtk.Template.Callback()
+    def change_title(self, widget):
+        preference_store['title'] = widget.get_text()
+
+    @Gtk.Template.Callback()
+    def change_subtitle(self, widget):
+        preference_store['subtitle'] = widget.get_text()
+
+    @Gtk.Template.Callback()
+    def change_author(self, widget):
+        preference_store['author'] = widget.get_text()
+
+    @Gtk.Template.Callback()
+    def change_keywords(self, widget):
+        preference_store['keywords'] = widget.get_text()
+
+    @Gtk.Template.Callback()
+    def change_main_font(self, widget):
+        preference_store['main_font'] = widget.get_font_family().get_name()
+
+    @Gtk.Template.Callback()
+    def change_mono_font(self, widget):
+        preference_store['mono_font'] = widget.get_font_family().get_name()
+
+    @staticmethod
+    def _rgba_to_hex(rgba):
+        return "#" + "".join(["%02x" % int(c * 255) for c in [rgba.red, rgba.green, rgba.blue]])
+
+    @Gtk.Template.Callback()
+    def change_fg_color(self, widget):
+        preference_store['foreground_color'] = self._rgba_to_hex(widget.get_rgba())
+
+    @Gtk.Template.Callback()
+    def change_bg_color(self, widget):
+        preference_store['background_color'] = self._rgba_to_hex(widget.get_rgba())
 
     @Gtk.Template.Callback()
     def change_invoice_counter(self, widget):

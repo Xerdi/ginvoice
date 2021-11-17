@@ -92,20 +92,6 @@ Author: Erik Nijenhuis
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="text" translatable="yes">Edit Profiles</property>
-            <signal name="clicked" handler="open_profiles" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
             <property name="text" translatable="yes">Preferences</property>
             <signal name="clicked" handler="open_preferences" swapped="no"/>
           </object>
@@ -147,7 +133,7 @@ Author: Erik Nijenhuis
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkRevealer" id="customer_search_revealer1">
+              <object class="GtkRevealer" id="sidebar_search_revealer">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
@@ -156,7 +142,7 @@ Author: Erik Nijenhuis
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkSearchEntry" id="customer_search_entry">
+                      <object class="GtkSearchEntry" id="sidebar_search_entry">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="margin-top">6</property>
@@ -164,6 +150,7 @@ Author: Erik Nijenhuis
                         <property name="primary-icon-name">edit-find-symbolic</property>
                         <property name="primary-icon-activatable">False</property>
                         <property name="primary-icon-sensitive">False</property>
+                        <signal name="focus-out-event" handler="focus_sidebar_search" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -184,6 +171,9 @@ Author: Erik Nijenhuis
                     </child>
                   </object>
                 </child>
+                <style>
+                  <class name="sidebar-search"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -192,7 +182,7 @@ Author: Erik Nijenhuis
               </packing>
             </child>
             <child>
-              <object class="GtkListBox" id="customer_listbox">
+              <object class="GtkListBox" id="sidebar_listbox">
                 <property name="width-request">239</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
@@ -214,6 +204,7 @@ Author: Erik Nijenhuis
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="icon-name">list-add</property>
+                    <signal name="clicked" handler="add_customer" swapped="no"/>
                   </object>
                   <packing>
                     <property name="position">0</property>
@@ -1314,11 +1305,13 @@ Author: Erik Nijenhuis
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkToggleButton" id="find_customer1">
+              <object class="GtkToggleButton" id="sidebar_search_toggle">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="focus-on-click">False</property>
                 <property name="receives-default">True</property>
                 <property name="always-show-image">True</property>
+                <signal name="toggled" handler="toggle_sidebar_search" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
@@ -1374,8 +1367,6 @@ Author: Erik Nijenhuis
                 <property name="can-focus">True</property>
                 <property name="focus-on-click">False</property>
                 <property name="receives-default">True</property>
-                <property name="margin-left">8</property>
-                <property name="margin-start">8</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
