@@ -1,5 +1,9 @@
+import os
+import shutil
+
 import gi
 
+from ginvoice.environment import image_dir
 from ginvoice.util import find_ui_file, find_css_file
 from ginvoice.model.preference import preference_store
 
@@ -27,6 +31,10 @@ class PreferencesWindow(Gtk.Window):
     mono_font = Gtk.Template.Child('mono_font')
     fg_color = Gtk.Template.Child('foreground_color')
     bg_color = Gtk.Template.Child('background_color')
+
+    footer_image_1 = Gtk.Template.Child('footer_image_1')
+    footer_image_2 = Gtk.Template.Child('footer_image_2')
+    footer_image_3 = Gtk.Template.Child('footer_image_3')
 
     invoice_counter = Gtk.Template.Child('invoice_counter')
     customer_counter = Gtk.Template.Child('customer_counter')
@@ -60,6 +68,16 @@ class PreferencesWindow(Gtk.Window):
         bg_color = Gdk.RGBA()
         bg_color.parse(preference_store['background_color'].value)
         self.bg_color.set_rgba(bg_color)
+
+        self.footer_image_1.add_shortcut_folder(image_dir)
+        self.footer_image_2.add_shortcut_folder(image_dir)
+        self.footer_image_3.add_shortcut_folder(image_dir)
+        if preference_store['footer_image_1'].value:
+            self.footer_image_1.set_filename(os.path.join(image_dir, preference_store['footer_image_1'].value))
+        if preference_store['footer_image_2'].value:
+            self.footer_image_2.set_filename(os.path.join(image_dir, preference_store['footer_image_2'].value))
+        if preference_store['footer_image_3'].value:
+            self.footer_image_3.set_filename(os.path.join(image_dir, preference_store['footer_image_3'].value))
 
         self.invoice_counter.set_text(str(preference_store['invoice_counter'].value))
         self.customer_counter.set_text(str(preference_store['customer_counter'].value))
@@ -118,6 +136,18 @@ class PreferencesWindow(Gtk.Window):
         preference_store['background_color'] = self._rgba_to_hex(widget.get_rgba())
 
     @Gtk.Template.Callback()
+    def change_footer_img1(self, widget):
+        preference_store['footer_image_1'] = widget.get_filename()
+
+    @Gtk.Template.Callback()
+    def change_footer_img2(self, widget):
+        preference_store['footer_image_2'] = widget.get_filename()
+
+    @Gtk.Template.Callback()
+    def change_footer_img3(self, widget):
+        preference_store['footer_image_3'] = widget.get_filename()
+
+    @Gtk.Template.Callback()
     def change_invoice_counter(self, widget):
         preference_store['invoice_counter'] = int(widget.get_text())
 
@@ -139,6 +169,11 @@ class PreferencesWindow(Gtk.Window):
 
     @Gtk.Template.Callback()
     def save_changes(self, btn):
+        for k in ['footer_image_1', 'footer_image_2', 'footer_image_3']:
+            val = preference_store[k].value
+            if val and not val.startswith(image_dir):
+                shutil.copy(val, image_dir)
+                preference_store[k] = os.path.basename(val)
         preference_store.commit()
         self.destroy()
 
