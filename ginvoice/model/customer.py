@@ -1,13 +1,17 @@
+import json
+
 import gi
 
+from ginvoice.environment import customer_file
+
 gi.require_version("Gtk", "3.0")
-from gi.repository import GObject
+from gi.repository import GObject, Gio
 
 
 class Customer(GObject.GObject):
-
     __gsignals__ = {
-        'changed': (GObject.SignalFlags.RUN_FIRST, None, (object,))
+        'created': (GObject.SignalFlags.RUN_FIRST, None, ()),
+        'changed': (GObject.SignalFlags.RUN_FIRST, None, ())
     }
 
     id = GObject.Property(type=int)
@@ -17,7 +21,30 @@ class Customer(GObject.GObject):
     def __init__(self):
         GObject.GObject.__init__(self)
 
-    def set_address(self, lines):
-        self.addresslines = lines
-        self.emit('changed', self)
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'addresslines': self.addresslines
+        }
 
+
+class CustomerStore(Gio.ListStore):
+    data_file = GObject.Property(type=str, default=customer_file)
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    def load(self):
+        with open(self.data_file, 'r') as f:
+            data = json.load(f)
+            for raw in data:
+                customer = Customer()
+                customer.id = raw['id']
+                customer.name = raw['name']
+                customer.addresslines = raw['addresslines']
+                self.append(customer)
+
+    def commit(self):
+        with open(self.data_file, 'w') as f:
+            json.dump([c.to_dict() for c in self], f)

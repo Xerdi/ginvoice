@@ -94,6 +94,7 @@
                   <object class="GtkEntry" id="name">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="activates-default">True</property>
                     <signal name="changed" handler="name_changed" swapped="no"/>
                   </object>
                   <packing>

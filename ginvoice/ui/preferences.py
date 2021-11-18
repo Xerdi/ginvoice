@@ -149,11 +149,11 @@ class PreferencesWindow(Gtk.Window):
 
     @Gtk.Template.Callback()
     def change_invoice_counter(self, widget):
-        preference_store['invoice_counter'] = int(widget.get_text())
+        preference_store['invoice_counter'] = widget.get_text()
 
     @Gtk.Template.Callback()
     def change_customer_counter(self, widget):
-        preference_store['customer_counter'] = int(widget.get_text())
+        preference_store['customer_counter'] = widget.get_text()
 
     @Gtk.Template.Callback()
     def change_locale(self, combobox):

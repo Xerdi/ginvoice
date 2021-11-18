@@ -1,3 +1,4 @@
+import os
 
 import gi
 
@@ -19,11 +20,24 @@ class CustomerWindow(Gtk.Window):
     street = Gtk.Template.Child('street')
     postal = Gtk.Template.Child('postal')
 
-    def __init__(self, customer=None):
+    existing = True
+
+    def __init__(self, customer):
         Gtk.Window.__init__(self)
         self.customer = customer
-        if not self.customer:
+        if self.customer.id:
+            self.salutation.grab_focus()
+            self.name.set_sensitive(False)
+            self.number.set_text(str(self.customer.id))
+            self.name.set_text(self.customer.name)
+            a1, a2, a3 = self.customer.addresslines.split(os.linesep)
+            self.salutation.set_text(a1)
+            self.street.set_text(a2)
+            self.postal.set_text(a3)
+        else:
             self.number.set_text(str(preference_store['customer_counter'].value))
+            self.name.grab_focus()
+            self.existing = False
 
     @Gtk.Template.Callback()
     def cancel(self, btn):
@@ -31,7 +45,15 @@ class CustomerWindow(Gtk.Window):
 
     @Gtk.Template.Callback()
     def save(self, btn):
-        preference_store['customer_counter'] += 1
+        if not self.existing:
+            preference_store['customer_counter'] = int(preference_store['customer_counter'].value) + 1
+        self.customer.id = int(self.number.get_text())
+        self.customer.name = self.name.get_text()
+        self.customer.addresslines = os.linesep.join([
+            self.salutation.get_text(), self.street.get_text(), self.postal.get_text()
+        ])
+        self.customer.emit('changed' if self.existing else 'created')
+        self.destroy()
 
     @Gtk.Template.Callback()
     def name_changed(self, entry):
