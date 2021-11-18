@@ -3,7 +3,7 @@ from ginvoice.ui.app import GinVoiceWindow
 from ginvoice.util import find_css_file
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib, Gio, Gtk, Gdk
+from gi.repository import Gio, Gtk
 
 
 class Application(Gtk.Application):
@@ -20,11 +20,4 @@ class Application(Gtk.Application):
 
 if __name__ == '__main__':
     import ginvoice.i18n
-    screen = Gdk.Screen.get_default()
-    provider = Gtk.CssProvider()
-    style_context = Gtk.StyleContext()
-    style_context.add_provider_for_screen(
-        screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-    )
-    provider.load_from_path(find_css_file('style.css'))
     Application().run(sys.argv)

@@ -4,7 +4,8 @@ import shutil
 import gi
 
 from ginvoice.environment import image_dir
-from ginvoice.util import find_ui_file, find_css_file
+from ginvoice.model.style import Style
+from ginvoice.util import find_ui_file
 from ginvoice.model.preference import preference_store
 
 gi.require_version("Gtk", "3.0")
@@ -59,9 +60,9 @@ class PreferencesWindow(Gtk.Window):
             return family.is_monospace() == include
 
         self.main_font.set_filter_func(filter_mono, False)
-        self.main_font.set_font_name(preference_store['main_font'].value)
+        self.main_font.set_font(preference_store['main_font'].value)
         self.mono_font.set_filter_func(filter_mono, True)
-        self.mono_font.set_font_name(preference_store['mono_font'].value)
+        self.mono_font.set_font(preference_store['mono_font'].value)
         fg_color = Gdk.RGBA()
         fg_color.parse(preference_store['foreground_color'].value)
         self.fg_color.set_rgba(fg_color)
@@ -180,6 +181,7 @@ class PreferencesWindow(Gtk.Window):
     @Gtk.Template.Callback()
     def cancel_changes(self, btn):
         preference_store.load()
+
         self.destroy()
 
     @Gtk.Template.Callback()
@@ -189,14 +191,7 @@ class PreferencesWindow(Gtk.Window):
 
 if __name__ == '__main__':
     import ginvoice.i18n
-    screen = Gdk.Screen.get_default()
-    provider = Gtk.CssProvider()
-    style_context = Gtk.StyleContext()
-    style_context.add_provider_for_screen(
-        screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-    )
-    provider.load_from_path(find_css_file('style.css'))
-
+    Style()
     window = PreferencesWindow()
     window.connect("destroy", Gtk.main_quit)
     window.show_all()

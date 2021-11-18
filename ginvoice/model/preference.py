@@ -55,7 +55,9 @@ class PreferenceStore(GObject.GObject):
             if k not in self.preferences:
                 print("Key %s missing" % k)
                 continue
-            self.preferences[k].value = v
+            if self.preferences[k].value != v:
+                self.preferences[k].value = v
+                self.preferences[k].emit('changed', v)
 
     def commit(self):
         with open(self.data_file, 'w') as f:

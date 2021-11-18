@@ -1,6 +1,4 @@
-import os
-
-import gi
+import os, gi
 
 from ginvoice.model.preference import preference_store
 from ginvoice.util import find_ui_file
