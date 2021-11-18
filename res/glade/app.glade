@@ -195,7 +195,6 @@ Author: Erik Nijenhuis
                     <property name="shadow-type">none</property>
                     <child>
                       <object class="GtkListBox" id="sidebar_listbox">
-                        <property name="width-request">239</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="vexpand">True</property>
@@ -1193,10 +1192,12 @@ Author: Erik Nijenhuis
                                   <object class="GtkTextView">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
+                                    <property name="wrap-mode">word</property>
                                     <property name="left-margin">16</property>
                                     <property name="right-margin">16</property>
                                     <property name="top-margin">8</property>
                                     <property name="bottom-margin">8</property>
+                                    <property name="accepts-tab">False</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

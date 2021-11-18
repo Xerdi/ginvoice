@@ -98,8 +98,8 @@ preference_store += Preference('footer_image_2')
 preference_store += Preference('footer_image_3')
 
 # Counters
-preference_store += Preference('invoice_counter', default=1)
-preference_store += Preference('customer_counter', default=1)
+preference_store += Preference('invoice_counter', default='1')
+preference_store += Preference('customer_counter', default='1')
 
 # Language and currency
 preference_store += Preference('locale', default='')

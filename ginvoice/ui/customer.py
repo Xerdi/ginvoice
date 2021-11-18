@@ -47,6 +47,7 @@ class CustomerWindow(Gtk.Window):
     def save(self, btn):
         if not self.existing:
             preference_store['customer_counter'] = int(preference_store['customer_counter'].value) + 1
+            preference_store.commit()
         self.customer.id = int(self.number.get_text())
         self.customer.name = self.name.get_text()
         self.customer.addresslines = os.linesep.join([
