@@ -36,6 +36,7 @@ class CustomerStore(Gio.ListStore):
         super().__init__()
 
     def load(self):
+        self.remove_all()
         with open(self.data_file, 'r') as f:
             data = json.load(f)
             for raw in data:

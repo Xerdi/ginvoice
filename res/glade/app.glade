@@ -199,6 +199,7 @@ Author: Erik Nijenhuis
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="vexpand">True</property>
+                        <signal name="row-selected" handler="customer_selected" swapped="no"/>
                         <child type="placeholder">
                           <object class="GtkLabel">
                             <property name="visible">True</property>
@@ -238,6 +239,7 @@ Author: Erik Nijenhuis
                 <child>
                   <object class="GtkToolButton" id="remove_customer">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="icon-name">list-remove</property>
@@ -248,8 +250,9 @@ Author: Erik Nijenhuis
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton">
+                  <object class="GtkToolButton" id="edit_customer">
                     <property name="visible">True</property>
+                    <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="stock-id">gtk-edit</property>

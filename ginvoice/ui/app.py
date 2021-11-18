@@ -8,6 +8,7 @@ from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
+from ginvoice.i18n import _
 
 
 @Gtk.Template.from_file(find_ui_file("app.glade"))
@@ -20,6 +21,8 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     search = Gtk.Template.Child('sidebar_search_entry')
     search_toggle = Gtk.Template.Child('sidebar_search_toggle')
     search_revealer = Gtk.Template.Child('sidebar_search_revealer')
+    remove_btn = Gtk.Template.Child('remove_customer')
+    edit_btn = Gtk.Template.Child('edit_customer')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -59,14 +62,26 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         window.set_transient_for(self)
         window.show_all()
 
-    def do_remove_customer(self, listbox):
-        self.customer_store.remove(listbox.get_selected_row().get_index())
-        self.customer_store.commit()
+    def do_remove_customer(self, dialog, response, listbox):
+        if response == Gtk.ResponseType.OK:
+            self.customer_store.remove(listbox.get_selected_row().get_index())
+            self.customer_store.commit()
+        else:
+            self.customer_store.load()
+        dialog.destroy()
 
     @Gtk.Template.Callback()
     def remove_customer(self, listbox):
-        # TODO confirm dialog
-        self.do_remove_customer(listbox)
+        confirm_dialog = Gtk.MessageDialog(title=_("Delete Customer Confirmation"),
+                                           parent=self,
+                                           modal=True,
+                                           destroy_with_parent=True,
+                                           message_type=Gtk.MessageType.QUESTION,
+                                           buttons=Gtk.ButtonsType.OK_CANCEL,
+                                           text=_("Are you sure you want to delete the customer?"))
+        confirm_dialog.connect("response", self.do_remove_customer, listbox)
+        confirm_dialog.show_all()
+        print('done')
 
     @Gtk.Template.Callback()
     def search_changed(self, listbox):
@@ -82,6 +97,11 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     def focus_sidebar_search(self, entry, focus_event):
         self.search_revealer.set_reveal_child(False)
         self.search_toggle.set_active(False)
+
+    @Gtk.Template.Callback()
+    def customer_selected(self, listbox, row):
+        self.edit_btn.set_sensitive(row is not None)
+        self.remove_btn.set_sensitive(row is not None)
 
     def create_customer_row(self, customer):
         row = Gtk.ListBoxRow()
