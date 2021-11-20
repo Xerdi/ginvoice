@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.39.0 
 
 GinVoice - Creating Invoices
-Copyright (C) 
+Copyright (C) Erik Nijenhuis <erik@xerdi.com>
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,6 +26,7 @@ Author: Erik Nijenhuis
   <!-- interface-license-type gplv2 -->
   <!-- interface-name GinVoice -->
   <!-- interface-description Creating Invoices -->
+  <!-- interface-copyright Erik Nijenhuis <erik@xerdi.com> -->
   <!-- interface-authors Erik Nijenhuis -->
   <object class="GtkPopover" id="settings_popover">
     <property name="can-focus">False</property>

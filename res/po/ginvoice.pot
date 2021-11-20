@@ -331,19 +331,9 @@ msgstr ""
 msgid "John Doe"
 msgstr ""
 
-#: glade/preferences.glade.h:13 glade/preferences.glade.h:36
-#, no-c-format
-msgid "Invoice %(invoice_nr)s"
-msgstr ""
-
 #: glade/preferences.glade.h:14 glade/preferences.glade.h:37
 #: glade/preferences.glade.h:36
 msgid "Keywords"
-msgstr ""
-
-#: glade/preferences.glade.h:16 glade/preferences.glade.h:39
-#, no-c-format
-msgid "Invoice %(grandtotal)s"
 msgstr ""
 
 #: glade/preferences.glade.h:17 glade/preferences.glade.h:40

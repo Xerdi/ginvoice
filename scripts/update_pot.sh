@@ -15,6 +15,7 @@ for ui_file in $UI_FILES; do
 done
 
 # Create .pot file
+# shellcheck disable=SC2086
 xgettext -k=_ -kN_ -jo po/ginvoice.pot \
          --from-code utf-8 \
          --copyright-holder='Erik Nijenhuis <erik@xerdi.com>' \
