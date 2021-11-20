@@ -13,6 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import os
 import sys
 
 from setuptools import setup
@@ -27,10 +28,14 @@ def icon_map(res):
     return "share/icons/hicolor/%s/apps" % res, ["res/icon/%s/GinVoice.png" % res]
 
 
+def res(filename):
+    return os.path.join('res/glade/', filename)
+
+
 data_files = [
     ("share/applications", ["res/ginvoice.desktop"]),
     ("lib/ginvoice/templates", ["res/basic_template.tar.gz"]),
-    ("lib/ginvoice", ["res/glade/app.glade"]),
+    ("lib/ginvoice", [res("app.glade"), res("customer.glade"), res("invoice.glade"), res("preferences.glade")]),
     ("lib/ginvoice", ["res/css/style.css"])
 ]
 
@@ -52,7 +57,7 @@ setup(name="GinVoice",
       author="Erik Nijenhuis",
       author_email="erik@xerdi.com",
       license="GPLv3",
-      packages=["ginvoice", "ginvoice.widgets"],
+      packages=["ginvoice", "ginvoice.ui", "ginvoice.model"],
       data_files=data_files,
       install_requires=[
           "pycairo",
@@ -60,5 +65,5 @@ setup(name="GinVoice",
           "xdg"
       ],
       entry_points={
-          'console_scripts': ['ginvoice=ginvoice.app:main', 'gingen=ginvoice.generator:main']
+          'console_scripts': ['ginvoice=ginvoice.main:main', 'gingen=ginvoice.generator:main']
       })

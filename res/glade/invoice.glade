@@ -4,33 +4,35 @@
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkListStore" id="cumulative_store">
     <columns>
-      <!-- column-name Cumulative -->
+      <!-- column-name key -->
       <column type="gchararray"/>
-      <!-- column-name Cumulative1 -->
+      <!-- column-name value -->
       <column type="gchararray"/>
     </columns>
     <data>
       <row>
         <col id="0" translatable="yes">&lt;b&gt;Subtotal&lt;/b&gt;</col>
-        <col id="1" translatable="yes">  € 255,00</col>
+        <col id="1">  € 255,00</col>
       </row>
       <row>
         <col id="0" translatable="yes">&lt;b&gt;Discount&lt;/b&gt;</col>
-        <col id="1" translatable="yes"> € -5,00</col>
+        <col id="1"> € -5,00</col>
       </row>
       <row>
         <col id="0" translatable="yes">&lt;b&gt;VAT&lt;/b&gt;</col>
-        <col id="1" translatable="yes"> €53,55</col>
+        <col id="1"> €53,55</col>
       </row>
       <row>
         <col id="0" translatable="yes">&lt;b&gt;Total&lt;/b&gt;</col>
-        <col id="1" translatable="yes"> €308,55</col>
+        <col id="1"> €308,55</col>
       </row>
     </data>
   </object>
   <object class="GtkListStore" id="invoice_row_store">
     <columns>
       <!-- column-name Description -->
+      <column type="gchararray"/>
+      <!-- column-name Date -->
       <column type="gchararray"/>
       <!-- column-name Quantity -->
       <column type="gchararray"/>
@@ -45,12 +47,13 @@
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Werkzaamheden</col>
-        <col id="1" translatable="yes">4 uren</col>
-        <col id="2" translatable="yes">€ 65,00</col>
-        <col id="3" translatable="yes">€5,00</col>
-        <col id="4" translatable="yes">€53,55</col>
-        <col id="5" translatable="yes">€308,55</col>
+        <col id="0">Werkzaamheden</col>
+        <col id="1">4 oct 2021</col>
+        <col id="2">4 uren</col>
+        <col id="3">€ 65,00</col>
+        <col id="4">€5,00</col>
+        <col id="5">€53,55</col>
+        <col id="6">€308,55</col>
       </row>
     </data>
   </object>
@@ -97,9 +100,9 @@
               <object class="GtkToolButton">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">__glade_unnamed_99</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">document-properties</property>
+                <signal name="clicked" handler="open_document_preferences" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -214,9 +217,9 @@
               <object class="GtkToolButton">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">__glade_unnamed_106</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">document-properties</property>
+                <signal name="clicked" handler="open_info_preferences" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -247,7 +250,7 @@
                   <object class="GtkLabel" id="addressline1">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Address line 1</property>
+                    <property name="label">Address line 1</property>
                     <property name="xalign">0</property>
                   </object>
                   <packing>
@@ -260,7 +263,7 @@
                   <object class="GtkLabel" id="addressline2">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Address line 2</property>
+                    <property name="label">Address line 2</property>
                     <property name="xalign">0</property>
                   </object>
                   <packing>
@@ -273,7 +276,7 @@
                   <object class="GtkLabel" id="addressline3">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Address line 3</property>
+                    <property name="label">Address line 3</property>
                     <property name="xalign">0</property>
                   </object>
                   <packing>
@@ -296,7 +299,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Extra customer line 1</property>
+                            <property name="label">Extra customer line 1</property>
                             <property name="xalign">0</property>
                           </object>
                           <packing>
@@ -309,7 +312,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Extra customer line 2</property>
+                            <property name="label">Extra customer line 2</property>
                             <property name="xalign">0</property>
                           </object>
                           <packing>
@@ -322,7 +325,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Extra customer line 3</property>
+                            <property name="label">Extra customer line 3</property>
                             <property name="xalign">0</property>
                           </object>
                           <packing>
@@ -359,7 +362,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">20 oct. 2021</property>
+                            <property name="label">20 oct. 2021</property>
                             <property name="xalign">0</property>
                           </object>
                           <packing>
@@ -372,7 +375,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">1</property>
+                            <property name="label">1</property>
                             <property name="xalign">0</property>
                           </object>
                           <packing>
@@ -435,7 +438,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Supplier line 1</property>
+                        <property name="label">Supplier line 1</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -448,7 +451,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Supplier line 2</property>
+                        <property name="label">Supplier line 2</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -461,7 +464,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Supplier line 3</property>
+                        <property name="label">Supplier line 3</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -474,7 +477,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Supplier line 4</property>
+                        <property name="label">Supplier line 4</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -487,7 +490,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Supplier line 5</property>
+                        <property name="label">Supplier line 5</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -500,7 +503,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Supplier line 6</property>
+                        <property name="label">Supplier line 6</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -525,7 +528,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">1</property>
+                        <property name="label">1</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -538,7 +541,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">2</property>
+                        <property name="label">2</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -551,7 +554,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">3</property>
+                        <property name="label">3</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -564,7 +567,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">4</property>
+                        <property name="label">4</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -577,7 +580,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">5</property>
+                        <property name="label">5</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -590,7 +593,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">6</property>
+                        <property name="label">6</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -666,7 +669,6 @@
               <object class="GtkToolButton" id="add_row1">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">__glade_unnamed_100</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">list-add</property>
               </object>
@@ -679,7 +681,6 @@
               <object class="GtkToolButton" id="remove_row1">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">__glade_unnamed_99</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">list-remove</property>
               </object>
@@ -692,9 +693,9 @@
               <object class="GtkToolButton" id="edit_row1">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">__glade_unnamed_101</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">document-properties</property>
+                <signal name="clicked" handler="open_table_preferences" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -743,6 +744,18 @@
                       <object class="GtkCellRendererText"/>
                       <attributes>
                         <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="sizing">fixed</property>
+                    <property name="title" translatable="yes">Date</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
                       </attributes>
                     </child>
                   </object>

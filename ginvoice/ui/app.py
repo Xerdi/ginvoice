@@ -121,7 +121,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback()
     def add_invoice(self, btn):
         customer = self.customer_store[self.customer_listbox.get_selected_row().get_index()]
-        invoice = InvoiceForm(self.invoice_stack, customer, len(self.invoice_stack))
+        invoice = InvoiceForm(self, self.invoice_stack, customer, len(self.invoice_stack))
         title = self.invoice_title(len(self.invoice_stack))
         self.invoice_stack.add_titled(invoice, title, title)
 

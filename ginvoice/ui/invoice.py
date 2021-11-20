@@ -3,6 +3,7 @@ import os, gi
 from ginvoice.model.customer import Customer
 from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
+from ginvoice.ui.preferences import PreferencesWindow
 from ginvoice.util import find_ui_file, find_css_file
 
 gi.require_version("Gtk", "3.0")
@@ -29,8 +30,10 @@ class InvoiceForm(Gtk.Box):
     addressline2 = Gtk.Template.Child('addressline2')
     addressline3 = Gtk.Template.Child('addressline3')
 
-    def __init__(self, invoice_stack: Gtk.Stack, customer: Customer, idx: int):
+    def __init__(self, parent: Gtk.Window, invoice_stack: Gtk.Stack, customer: Customer, idx: int):
         super().__init__()
+
+        self.parent = parent
         self.invoice_stack = invoice_stack
         self.idx = idx
         self.customer = customer
@@ -65,6 +68,24 @@ class InvoiceForm(Gtk.Box):
         self.customer = customer
         self.customer.connect('changed', self.update_address)
         self.update_address(self.customer)
+
+    @Gtk.Template.Callback()
+    def open_document_preferences(self, btn):
+        window = PreferencesWindow(section='document_settings')
+        window.set_transient_for(self.parent)
+        window.show_all()
+
+    @Gtk.Template.Callback()
+    def open_info_preferences(self, btn):
+        window = PreferencesWindow(section='info')
+        window.set_transient_for(self.parent)
+        window.show_all()
+
+    @Gtk.Template.Callback()
+    def open_table_preferences(self, btn):
+        window = PreferencesWindow(section='table_config')
+        window.set_transient_for(self.parent)
+        window.show_all()
 
 
 if __name__ == '__main__':

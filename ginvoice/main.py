@@ -1,6 +1,5 @@
 import sys, gi
 from ginvoice.ui.app import GinVoiceWindow
-from ginvoice.util import find_css_file
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
@@ -18,6 +17,9 @@ class Application(Gtk.Application):
         self.window.present()
 
 
-if __name__ == '__main__':
-    import ginvoice.i18n
+def main():
     Application().run(sys.argv)
+
+
+if __name__ == '__main__':
+    main()

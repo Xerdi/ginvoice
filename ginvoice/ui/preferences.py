@@ -1,9 +1,11 @@
 import os
+import re
 import shutil
 
 import gi
 
 from ginvoice.environment import image_dir
+from ginvoice.model.column import TableColumnStore, CumulativeColumnStore, Column, TableColumnHandler
 from ginvoice.model.style import Style
 from ginvoice.util import find_ui_file
 from ginvoice.model.preference import preference_store
@@ -49,12 +51,23 @@ class PreferencesWindow(Gtk.Window):
     babel = Gtk.Template.Child('babel')
     currency = Gtk.Template.Child('currency')
 
-    def __init__(self):
+    settings_stack = Gtk.Template.Child('settings_stack')
+
+    completion = Gtk.Template.Child('invoice_ending_completer')
+    table_column_group = Gtk.Template.Child('table_column_group')
+
+    table_columns = TableColumnStore()
+    cumulative_columns = CumulativeColumnStore()
+
+    def __init__(self, section=None):
         Gtk.Window.__init__(self)
         self.title.set_text(preference_store['title'].value)
         self.subtitle.set_text(preference_store['subtitle'].value)
         self.author.set_text(preference_store['author'].value)
         self.keywords.set_text(preference_store['keywords'].value)
+
+        if section:
+            self.settings_stack.set_visible_child_name(section)
 
         def filter_mono(family, face, include):
             return family.is_monospace() == include
@@ -92,6 +105,57 @@ class PreferencesWindow(Gtk.Window):
         self.locale.set_active_id(preference_store['locale'].value)
         self.currency.set_active_id(preference_store['currency'].value)
         self.babel.set_active_id(preference_store['babel'].value)
+
+        self.completion.set_match_func(self.complete_entry)
+        table_column_rows = self.table_column_group.get_children()
+        self.table_columns.load()
+        # Setup default values from glade defaults
+        if len(table_column_rows) != len(self.table_columns):
+            for row in table_column_rows:
+                c = Column()
+                l, t, s, t = row.get_children()
+                c.title = l.get_text()
+                c.size_type = s.get_model()[s.get_active_iter()][0]
+                c.text = t.get_text()
+                self.table_columns.append(c)
+        for idx, row in enumerate(table_column_rows):
+            TableColumnHandler(*row.get_children()[1:], self.table_columns[idx])
+
+    @staticmethod
+    def complete_entry(completion: Gtk.EntryCompletion, text: str, iter: Gtk.TreeIter):
+        cursor = completion.get_entry().get_position()
+        variable = completion.get_model().get_value(iter, 0)
+
+        if cursor:
+            begin = text.rfind('{', 0, cursor)
+            end = max(min(text.find('}', cursor), text.find(' ', cursor)), cursor) \
+                if len(text) > cursor \
+                else max(text.find(' ', cursor), cursor)
+            if begin < 0:
+                return False
+            return text[begin + 1:end] in variable
+        else:
+            return False
+
+    @Gtk.Template.Callback()
+    def complete_match_selected(self, completion: Gtk.EntryCompletion, model: Gtk.ListStore, iter: Gtk.TreeIter):
+        entry = completion.get_entry()
+        cursor = entry.get_position()
+        text = entry.get_text()
+        match = model.get_value(iter, 0)
+        begin = text.rfind('{', 0, cursor)
+        end = min(
+            max(text.find('}', cursor), cursor),
+            max(text.find(' ', cursor), cursor)
+        )
+        end_valid = end < len(text)
+        ending = text[end:] if end_valid else ''
+        if not end_valid or (end_valid and text[end] != '}'):
+            match += '}'
+        result = text[:begin+1] + match + ending
+        entry.set_text(result)
+        entry.set_position(begin + len(match) + 1)
+        return True
 
     @Gtk.Template.Callback()
     def validate_number(self, widget):
@@ -176,11 +240,13 @@ class PreferencesWindow(Gtk.Window):
                 shutil.copy(val, image_dir)
                 preference_store[k] = os.path.basename(val)
         preference_store.commit()
+        self.table_columns.commit()
         self.destroy()
 
     @Gtk.Template.Callback()
     def cancel_changes(self, btn):
         preference_store.load()
+        self.table_columns.load()
 
         self.destroy()
 
@@ -192,7 +258,7 @@ class PreferencesWindow(Gtk.Window):
 if __name__ == '__main__':
     import ginvoice.i18n
     Style()
-    window = PreferencesWindow()
+    window = PreferencesWindow(section='table_config')
     window.connect("destroy", Gtk.main_quit)
     window.show_all()
     Gtk.main()

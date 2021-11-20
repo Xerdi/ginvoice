@@ -20,8 +20,11 @@ PROJECT_DIRECTORY="$(git rev-parse --show-toplevel)"
 
 set -e
 
-cd "$PROJECT_DIRECTORY/res"
+cd "$PROJECT_DIRECTORY/res/basic_template"
+latexmk -C
+rm -f footer.tex header.tex languages.tex meta.tex style.tex table.tex
 
+cd ..
 tar -zcvf basic_template.tar.gz basic_template
 
 cd "$PROJECT_DIRECTORY"

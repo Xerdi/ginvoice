@@ -46,6 +46,8 @@ res_dirs = [
 
 invoice_nr_file = os.path.join(config_dir, 'invoice_nr.txt')
 customer_file = os.path.join(config_dir, 'customers.json')
+table_column_file = os.path.join(config_dir, 'table.json')
+cumulative_column_file = os.path.join(config_dir, 'cumulatives.json')
 
 
 def setup_environment():
