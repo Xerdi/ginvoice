@@ -208,9 +208,9 @@ Author: Erik Nijenhuis
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Document details</property>
                                     <property name="xalign">0</property>
-                                    <attributes>
-                                      <attribute name="size" value="14336"/>
-                                    </attributes>
+                                    <style>
+                                      <class name="header"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -383,9 +383,9 @@ Author: Erik Nijenhuis
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Styling</property>
                                     <property name="xalign">0</property>
-                                    <attributes>
-                                      <attribute name="size" value="14336"/>
-                                    </attributes>
+                                    <style>
+                                      <class name="header"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -569,9 +569,9 @@ Author: Erik Nijenhuis
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Footer Images</property>
                                     <property name="xalign">0</property>
-                                    <attributes>
-                                      <attribute name="size" value="14336"/>
-                                    </attributes>
+                                    <style>
+                                      <class name="header"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -679,9 +679,9 @@ Author: Erik Nijenhuis
                                             <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Customer Information</property>
                                             <property name="xalign">0</property>
-                                            <attributes>
-                                              <attribute name="size" value="14336"/>
-                                            </attributes>
+                                            <style>
+                                              <class name="header"/>
+                                            </style>
                                           </object>
                                         </child>
                                       </object>
@@ -825,9 +825,9 @@ Author: Erik Nijenhuis
                                             <property name="can-focus">False</property>
                                             <property name="label" translatable="yes">Supplier Information</property>
                                             <property name="xalign">0</property>
-                                            <attributes>
-                                              <attribute name="size" value="14336"/>
-                                            </attributes>
+                                            <style>
+                                              <class name="header"/>
+                                            </style>
                                           </object>
                                         </child>
                                       </object>
@@ -960,9 +960,9 @@ Author: Erik Nijenhuis
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Invoice ending</property>
                                     <property name="xalign">0</property>
-                                    <attributes>
-                                      <attribute name="size" value="14336"/>
-                                    </attributes>
+                                    <style>
+                                      <class name="header"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1032,9 +1032,9 @@ Author: Erik Nijenhuis
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Table columns</property>
                                     <property name="xalign">0</property>
-                                    <attributes>
-                                      <attribute name="size" value="14336"/>
-                                    </attributes>
+                                    <style>
+                                      <class name="header"/>
+                                    </style>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

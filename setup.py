@@ -35,7 +35,12 @@ def res(filename):
 data_files = [
     ("share/applications", ["res/ginvoice.desktop"]),
     ("lib/ginvoice/templates", ["res/basic_template.tar.gz"]),
-    ("lib/ginvoice", [res("app.glade"), res("customer.glade"), res("invoice.glade"), res("preferences.glade")]),
+    ("lib/ginvoice", [res("app.glade"),
+                      res("customer.glade"),
+                      res("invoice.glade"),
+                      res("info.glade"),
+                      res("variable.glade"),
+                      res("preferences.glade")]),
     ("lib/ginvoice", ["res/css/style.css"])
 ]
 

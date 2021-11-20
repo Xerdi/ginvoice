@@ -13,7 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import gettext, locale
+
+import gettext, locale, os
 from ginvoice.model.preference import preference_store
 
 APP_NAME = 'ginvoice'
@@ -21,15 +22,20 @@ LOCALE_DIR = '/usr/share/locale'
 
 
 def update_locale(pref, new_locale):
-    locale.setlocale(locale.LC_ALL, new_locale + ".UTF-8" if new_locale else '')
+    if new_locale:
+        new_locale += ".UTF-8"
+    os.environ['LANG'] = new_locale
+    os.environ['LANGUAGE'] = new_locale[:2]
+    locale.setlocale(locale.LC_ALL, new_locale)
+
+    locale.bindtextdomain(APP_NAME, LOCALE_DIR)
+    locale.textdomain(APP_NAME)
+
+    gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
+    gettext.textdomain(APP_NAME)
+    gettext.install(APP_NAME, LOCALE_DIR)
 
 
-locale.bindtextdomain(APP_NAME, LOCALE_DIR)
-locale.textdomain(APP_NAME)
-
-gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
-gettext.textdomain(APP_NAME)
-gettext.install(APP_NAME, LOCALE_DIR)
 _ = gettext.gettext
 
 update_locale(preference_store['locale'], preference_store['locale'].value)

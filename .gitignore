@@ -7,3 +7,4 @@ MANIFEST
 dist
 .pybuild
 *.egg-info
+locale
