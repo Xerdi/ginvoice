@@ -4,8 +4,12 @@ import shutil
 
 import gi
 
-from ginvoice.environment import image_dir
+from ginvoice.i18n import _
+from ginvoice.ui.info import InfoWindow
+from ginvoice.ui.variable import VariableEntry
+from ginvoice.environment import image_dir, customer_info_file, supplier_info_file
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore, Column, TableColumnHandler
+from ginvoice.model.info import GenericInfoStore
 from ginvoice.model.style import Style
 from ginvoice.util import find_ui_file
 from ginvoice.model.preference import preference_store
@@ -51,10 +55,15 @@ class PreferencesWindow(Gtk.Window):
     babel = Gtk.Template.Child('babel')
     currency = Gtk.Template.Child('currency')
 
-    settings_stack = Gtk.Template.Child('settings_stack')
+    customer_info_table = Gtk.Template.Child('customer_info_table')
+    supplier_info_table = Gtk.Template.Child('supplier_info_table')
 
-    completion = Gtk.Template.Child('invoice_ending_completer')
     table_column_group = Gtk.Template.Child('table_column_group')
+
+    customer_info_store = GenericInfoStore(customer_info_file)
+    supplier_info_store = GenericInfoStore(supplier_info_file)
+
+    settings_stack = Gtk.Template.Child('settings_stack')
 
     table_columns = TableColumnStore()
     cumulative_columns = CumulativeColumnStore()
@@ -106,7 +115,11 @@ class PreferencesWindow(Gtk.Window):
         self.currency.set_active_id(preference_store['currency'].value)
         self.babel.set_active_id(preference_store['babel'].value)
 
-        self.completion.set_match_func(self.complete_entry)
+        self.customer_info_store.load()
+        self.supplier_info_store.load()
+        self.customer_info_table.set_model(self.customer_info_store)
+        self.supplier_info_table.set_model(self.supplier_info_store)
+
         table_column_rows = self.table_column_group.get_children()
         self.table_columns.load()
         # Setup default values from glade defaults
@@ -120,42 +133,6 @@ class PreferencesWindow(Gtk.Window):
                 self.table_columns.append(c)
         for idx, row in enumerate(table_column_rows):
             TableColumnHandler(*row.get_children()[1:], self.table_columns[idx])
-
-    @staticmethod
-    def complete_entry(completion: Gtk.EntryCompletion, text: str, iter: Gtk.TreeIter):
-        cursor = completion.get_entry().get_position()
-        variable = completion.get_model().get_value(iter, 0)
-
-        if cursor:
-            begin = text.rfind('{', 0, cursor)
-            end = max(min(text.find('}', cursor), text.find(' ', cursor)), cursor) \
-                if len(text) > cursor \
-                else max(text.find(' ', cursor), cursor)
-            if begin < 0:
-                return False
-            return text[begin + 1:end] in variable
-        else:
-            return False
-
-    @Gtk.Template.Callback()
-    def complete_match_selected(self, completion: Gtk.EntryCompletion, model: Gtk.ListStore, iter: Gtk.TreeIter):
-        entry = completion.get_entry()
-        cursor = entry.get_position()
-        text = entry.get_text()
-        match = model.get_value(iter, 0)
-        begin = text.rfind('{', 0, cursor)
-        end = min(
-            max(text.find('}', cursor), cursor),
-            max(text.find(' ', cursor), cursor)
-        )
-        end_valid = end < len(text)
-        ending = text[end:] if end_valid else ''
-        if not end_valid or (end_valid and text[end] != '}'):
-            match += '}'
-        result = text[:begin+1] + match + ending
-        entry.set_text(result)
-        entry.set_position(begin + len(match) + 1)
-        return True
 
     @Gtk.Template.Callback()
     def validate_number(self, widget):
@@ -240,6 +217,8 @@ class PreferencesWindow(Gtk.Window):
                 shutil.copy(val, image_dir)
                 preference_store[k] = os.path.basename(val)
         preference_store.commit()
+        self.customer_info_store.commit()
+        self.supplier_info_store.commit()
         self.table_columns.commit()
         self.destroy()
 
@@ -247,18 +226,30 @@ class PreferencesWindow(Gtk.Window):
     def cancel_changes(self, btn):
         preference_store.load()
         self.table_columns.load()
-
+        self.customer_info_store.load()
+        self.supplier_info_store.load()
         self.destroy()
 
     @Gtk.Template.Callback()
     def change_confirmation(self, switch, state):
         preference_store[switch.get_name()] = state
 
+    @Gtk.Template.Callback()
+    def open_customer_info(self, btn):
+        dialog = InfoWindow(_('Add customer record'), self.customer_info_store)
+        dialog.set_transient_for(self)
+        dialog.show_all()
+
+    @Gtk.Template.Callback()
+    def open_supplier_info(self, btn):
+        dialog = InfoWindow(_('Add supplier record'), self.supplier_info_store)
+        dialog.set_transient_for(self)
+        dialog.show_all()
+
 
 if __name__ == '__main__':
-    import ginvoice.i18n
     Style()
-    window = PreferencesWindow(section='table_config')
+    window = PreferencesWindow(section='info')
     window.connect("destroy", Gtk.main_quit)
     window.show_all()
     Gtk.main()

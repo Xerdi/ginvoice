@@ -46,6 +46,8 @@ res_dirs = [
 
 invoice_nr_file = os.path.join(config_dir, 'invoice_nr.txt')
 customer_file = os.path.join(config_dir, 'customers.json')
+customer_info_file = os.path.join(config_dir, 'customer_info.json')
+supplier_info_file = os.path.join(config_dir, 'supplier_info.json')
 table_column_file = os.path.join(config_dir, 'table.json')
 cumulative_column_file = os.path.join(config_dir, 'cumulatives.json')
 

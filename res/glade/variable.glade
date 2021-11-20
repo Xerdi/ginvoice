@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.39.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkListStore" id="variable_store">
+    <columns>
+      <!-- column-name key -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">invoice_nr</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">today</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">customer_nr</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">customer_name</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">customer_salutation</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">grandtotal</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">subtotal</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">total_vat</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes" comments="Template variable">total_discount</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkEntryCompletion" id="variable_completion">
+    <property name="model">variable_store</property>
+    <property name="text-column">0</property>
+    <property name="inline-completion">True</property>
+    <signal name="match-selected" handler="complete_match_selected" swapped="no"/>
+    <child>
+      <object class="GtkCellRendererText"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <template class="variable_entry" parent="GtkEntry">
+    <property name="name">VariableEntry</property>
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <property name="completion">variable_completion</property>
+  </template>
+</interface>
