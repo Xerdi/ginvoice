@@ -709,6 +709,7 @@ Author: Erik Nijenhuis
                                         <property name="can-focus">False</property>
                                         <property name="use-underline">True</property>
                                         <property name="icon-name">list-remove</property>
+                                        <signal name="clicked" handler="remove_info" object="customer_info_table" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -721,6 +722,7 @@ Author: Erik Nijenhuis
                                         <property name="can-focus">False</property>
                                         <property name="use-underline">True</property>
                                         <property name="stock-id">gtk-edit</property>
+                                        <signal name="clicked" handler="edit_customer_info" object="customer_info_table" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -748,6 +750,7 @@ Author: Erik Nijenhuis
                                         <property name="headers-clickable">False</property>
                                         <property name="reorderable">True</property>
                                         <property name="search-column">0</property>
+                                        <signal name="row-activated" handler="info_row_activated" object="edit_row2" swapped="no"/>
                                         <child internal-child="selection">
                                           <object class="GtkTreeSelection"/>
                                         </child>
@@ -852,6 +855,7 @@ Author: Erik Nijenhuis
                                         <property name="can-focus">False</property>
                                         <property name="use-underline">True</property>
                                         <property name="icon-name">list-remove</property>
+                                        <signal name="clicked" handler="remove_info" object="supplier_info_table" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -864,6 +868,7 @@ Author: Erik Nijenhuis
                                         <property name="can-focus">False</property>
                                         <property name="use-underline">True</property>
                                         <property name="stock-id">gtk-edit</property>
+                                        <signal name="clicked" handler="edit_supplier_info" object="supplier_info_table" swapped="no"/>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -891,6 +896,7 @@ Author: Erik Nijenhuis
                                         <property name="headers-clickable">False</property>
                                         <property name="reorderable">True</property>
                                         <property name="search-column">0</property>
+                                        <signal name="row-activated" handler="info_row_activated" object="edit_row1" swapped="no"/>
                                         <child internal-child="selection">
                                           <object class="GtkTreeSelection"/>
                                         </child>

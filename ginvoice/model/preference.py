@@ -94,6 +94,7 @@ preference_store += Preference('mono_font', default='Monospace')
 preference_store += Preference('foreground_color', default='#000000')
 preference_store += Preference('background_color', default='#ffffff')
 
+preference_store += Preference('invoice_ending', default='')
 # Footer images
 preference_store += Preference('footer_image_1')
 preference_store += Preference('footer_image_2')

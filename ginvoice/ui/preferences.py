@@ -39,6 +39,8 @@ class PreferencesWindow(Gtk.Window):
     fg_color = Gtk.Template.Child('foreground_color')
     bg_color = Gtk.Template.Child('background_color')
 
+    invoice_ending = Gtk.Template.Child('invoice_ending')
+
     footer_image_1 = Gtk.Template.Child('footer_image_1')
     footer_image_2 = Gtk.Template.Child('footer_image_2')
     footer_image_3 = Gtk.Template.Child('footer_image_3')
@@ -91,6 +93,8 @@ class PreferencesWindow(Gtk.Window):
         bg_color = Gdk.RGBA()
         bg_color.parse(preference_store['background_color'].value)
         self.bg_color.set_rgba(bg_color)
+
+        self.invoice_ending.set_text(preference_store['invoice_ending'].value)
 
         self.footer_image_1.add_shortcut_folder(image_dir)
         self.footer_image_2.add_shortcut_folder(image_dir)
@@ -245,6 +249,33 @@ class PreferencesWindow(Gtk.Window):
         dialog = InfoWindow(_('Add supplier record'), self.supplier_info_store)
         dialog.set_transient_for(self)
         dialog.show_all()
+
+    @Gtk.Template.Callback()
+    def edit_customer_info(self, treeview):
+        dialog = InfoWindow(_('Edit customer record'), self.customer_info_store,
+                            treeview.get_selection().get_selected()[1])
+        dialog.set_transient_for(self)
+        dialog.show_all()
+
+    @Gtk.Template.Callback()
+    def edit_supplier_info(self, treeview):
+        dialog = InfoWindow(_('Edit supplier record'), self.supplier_info_store,
+                            treeview.get_selection().get_selected()[1])
+        dialog.set_transient_for(self)
+        dialog.show_all()
+
+    @Gtk.Template.Callback()
+    def remove_info(self, treeview):
+        model, iter = treeview.get_selection().get_selected()
+        model.remove(iter)
+
+    @Gtk.Template.Callback()
+    def change_invoice_ending(self, entry):
+        preference_store['invoice_ending'] = entry.get_text()
+
+    @Gtk.Template.Callback()
+    def info_row_activated(self, btn, *args):
+        btn.emit('clicked')
 
 
 if __name__ == '__main__':
