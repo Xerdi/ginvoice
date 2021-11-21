@@ -625,7 +625,7 @@ Author: Erik Nijenhuis
               </packing>
             </child>
             <child>
-              <object class="GtkTreeView">
+              <object class="GtkTreeView" id="cumulative_records">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="halign">end</property>

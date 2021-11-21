@@ -28,11 +28,11 @@ class CustomerWindow(Gtk.Window):
 
     __gtype_name__ = "customer_dialog"
 
-    number = Gtk.Template.Child('number')
-    name = Gtk.Template.Child('name')
-    salutation = Gtk.Template.Child('salutation')
-    street = Gtk.Template.Child('street')
-    postal = Gtk.Template.Child('postal')
+    number = Gtk.Template.Child()
+    name = Gtk.Template.Child()
+    salutation = Gtk.Template.Child()
+    street = Gtk.Template.Child()
+    postal = Gtk.Template.Child()
 
     existing = True
 

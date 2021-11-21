@@ -82,7 +82,7 @@ Author: Erik Nijenhuis
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkRevealer" id="sidebar_search_revealer">
+              <object class="GtkRevealer" id="customer_search_revealer">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
@@ -91,7 +91,7 @@ Author: Erik Nijenhuis
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkSearchEntry" id="sidebar_search_entry">
+                      <object class="GtkSearchEntry" id="customer_search_entry">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="margin-top">6</property>
@@ -100,7 +100,7 @@ Author: Erik Nijenhuis
                         <property name="primary-icon-activatable">False</property>
                         <property name="primary-icon-sensitive">False</property>
                         <signal name="focus-out-event" handler="focus_sidebar_search" swapped="no"/>
-                        <signal name="search-changed" handler="search_changed" object="sidebar_listbox" swapped="no"/>
+                        <signal name="search-changed" handler="search_changed" object="customer_listbox" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -143,7 +143,7 @@ Author: Erik Nijenhuis
                     <property name="can-focus">False</property>
                     <property name="shadow-type">none</property>
                     <child>
-                      <object class="GtkListBox" id="sidebar_listbox">
+                      <object class="GtkListBox" id="customer_listbox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="vexpand">True</property>
@@ -178,7 +178,7 @@ Author: Erik Nijenhuis
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
-                  <object class="GtkToolButton" id="add_customer">
+                  <object class="GtkToolButton" id="add_customer_btn">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
@@ -190,26 +190,26 @@ Author: Erik Nijenhuis
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="remove_customer">
+                  <object class="GtkToolButton" id="remove_customer_btn">
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="icon-name">list-remove</property>
-                    <signal name="clicked" handler="remove_customer" object="sidebar_listbox" swapped="no"/>
+                    <signal name="clicked" handler="remove_customer" object="customer_listbox" swapped="no"/>
                   </object>
                   <packing>
                     <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="edit_customer">
+                  <object class="GtkToolButton" id="edit_customer_btn">
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
                     <property name="stock-id">gtk-edit</property>
-                    <signal name="clicked" handler="edit_customer" object="sidebar_listbox" swapped="no"/>
+                    <signal name="clicked" handler="edit_customer" object="customer_listbox" swapped="no"/>
                   </object>
                   <packing>
                     <property name="pack-type">end</property>
@@ -272,7 +272,7 @@ Author: Erik Nijenhuis
               </packing>
             </child>
             <child>
-              <object class="GtkRevealer" id="switcher_revealer">
+              <object class="GtkRevealer" id="invoice_switcher_revealer">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="transition-type">slide-up</property>
@@ -412,7 +412,7 @@ Author: Erik Nijenhuis
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkToggleButton" id="sidebar_search_toggle">
+              <object class="GtkToggleButton" id="customer_search_toggle">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="focus-on-click">False</property>
@@ -469,7 +469,7 @@ Author: Erik Nijenhuis
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
-              <object class="GtkButton" id="add_invoice">
+              <object class="GtkButton" id="add_invoice_btn">
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">True</property>

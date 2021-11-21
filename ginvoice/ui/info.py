@@ -28,8 +28,8 @@ from gi.repository import Gtk
 class InfoWindow(Gtk.Window):
     __gtype_name__ = "info_dialog"
 
-    title = Gtk.Template.Child('title')
-    value = Gtk.Template.Child('value')
+    title = Gtk.Template.Child()
+    value = Gtk.Template.Child()
     repeat = Gtk.Template.Child('repeat_checkbox')
 
     def __init__(self, title: str, store: GenericInfoStore, iter=None):

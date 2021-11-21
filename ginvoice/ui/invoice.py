@@ -34,19 +34,20 @@ from gi.repository import Gtk, Gdk, GObject
 class InvoiceForm(Gtk.Box):
     __gtype_name__ = "invoice"
 
-    title = Gtk.Template.Child('title')
-    subtitle = Gtk.Template.Child('subtitle')
+    title = Gtk.Template.Child()
+    subtitle = Gtk.Template.Child()
 
-    addressline1 = Gtk.Template.Child('addressline1')
-    addressline2 = Gtk.Template.Child('addressline2')
-    addressline3 = Gtk.Template.Child('addressline3')
+    addressline1 = Gtk.Template.Child()
+    addressline2 = Gtk.Template.Child()
+    addressline3 = Gtk.Template.Child()
 
-    customer_info = Gtk.Template.Child('customer_info')
-    supplier_info = Gtk.Template.Child('supplier_info')
+    customer_info = Gtk.Template.Child()
+    supplier_info = Gtk.Template.Child()
 
-    invoice_records = Gtk.Template.Child('invoice_records')
+    invoice_records = Gtk.Template.Child()
+    cumulative_records = Gtk.Template.Child()
 
-    invoice_ending = Gtk.Template.Child('invoice_ending')
+    invoice_ending = Gtk.Template.Child()
 
     table_column_store = TableColumnStore()
     cumulative_column_store = CumulativeColumnStore()

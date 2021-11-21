@@ -45,44 +45,44 @@ class PreferencesWindow(Gtk.Window):
 
     __gtype_name__ = "preferences_window"
 
-    title = Gtk.Template.Child('title')
-    subtitle = Gtk.Template.Child('subtitle')
-    author = Gtk.Template.Child('author')
-    keywords = Gtk.Template.Child('keywords')
+    title = Gtk.Template.Child()
+    subtitle = Gtk.Template.Child()
+    author = Gtk.Template.Child()
+    keywords = Gtk.Template.Child()
 
-    main_font = Gtk.Template.Child('main_font')
-    mono_font = Gtk.Template.Child('mono_font')
+    main_font = Gtk.Template.Child()
+    mono_font = Gtk.Template.Child()
     fg_color = Gtk.Template.Child('foreground_color')
     bg_color = Gtk.Template.Child('background_color')
 
-    invoice_ending = Gtk.Template.Child('invoice_ending')
+    invoice_ending = Gtk.Template.Child()
 
-    footer_image_1 = Gtk.Template.Child('footer_image_1')
-    footer_image_2 = Gtk.Template.Child('footer_image_2')
-    footer_image_3 = Gtk.Template.Child('footer_image_3')
+    footer_image_1 = Gtk.Template.Child()
+    footer_image_2 = Gtk.Template.Child()
+    footer_image_3 = Gtk.Template.Child()
 
-    invoice_counter = Gtk.Template.Child('invoice_counter')
-    customer_counter = Gtk.Template.Child('customer_counter')
+    invoice_counter = Gtk.Template.Child()
+    customer_counter = Gtk.Template.Child()
 
     profile_removal = Gtk.Template.Child('removal_profile')
-    customer_removal = Gtk.Template.Child('customer_removal')
-    invoice_removal = Gtk.Template.Child('invoice_removal')
-    record_removal = Gtk.Template.Child('record_removal')
+    customer_removal = Gtk.Template.Child()
+    invoice_removal = Gtk.Template.Child()
+    record_removal = Gtk.Template.Child()
 
-    locale = Gtk.Template.Child('locale')
-    babel = Gtk.Template.Child('babel')
-    currency = Gtk.Template.Child('currency')
+    locale = Gtk.Template.Child()
+    babel = Gtk.Template.Child()
+    currency = Gtk.Template.Child()
 
-    customer_info_table = Gtk.Template.Child('customer_info_table')
-    supplier_info_table = Gtk.Template.Child('supplier_info_table')
+    customer_info_table = Gtk.Template.Child()
+    supplier_info_table = Gtk.Template.Child()
 
-    table_column_group = Gtk.Template.Child('table_column_group')
+    table_column_group = Gtk.Template.Child()
     cumulative_column_group = Gtk.Template.Child()
 
     customer_info_store = GenericInfoStore(customer_info_file)
     supplier_info_store = GenericInfoStore(supplier_info_file)
 
-    settings_stack = Gtk.Template.Child('settings_stack')
+    settings_stack = Gtk.Template.Child()
 
     table_columns = TableColumnStore()
     cumulative_columns = CumulativeColumnStore()

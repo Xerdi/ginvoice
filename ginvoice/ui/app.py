@@ -35,16 +35,16 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     __gtype_name__ = "app_window"
 
     customer_store = CustomerStore()
-    customer_listbox = Gtk.Template.Child('sidebar_listbox')
-    search = Gtk.Template.Child('sidebar_search_entry')
-    search_toggle = Gtk.Template.Child('sidebar_search_toggle')
-    search_revealer = Gtk.Template.Child('sidebar_search_revealer')
-    remove_btn = Gtk.Template.Child('remove_customer')
-    edit_btn = Gtk.Template.Child('edit_customer')
-    add_invoice_btn = Gtk.Template.Child('add_invoice')
-    invoice_stack = Gtk.Template.Child('invoice_stack')
-    invoice_switcher = Gtk.Template.Child('invoice_switcher')
-    switcher_revealer = Gtk.Template.Child('switcher_revealer')
+    customer_listbox = Gtk.Template.Child()
+    customer_search_entry = Gtk.Template.Child()
+    customer_search_toggle = Gtk.Template.Child()
+    customer_search_revealer = Gtk.Template.Child()
+    remove_customer_btn = Gtk.Template.Child()
+    edit_customer_btn = Gtk.Template.Child()
+    add_invoice_btn = Gtk.Template.Child()
+    invoice_stack = Gtk.Template.Child()
+    invoice_switcher = Gtk.Template.Child()
+    invoice_switcher_revealer = Gtk.Template.Child()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -55,7 +55,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         preference_store['invoice_counter'].connect('changed', self.recalculate_indexes)
 
     def filter_customers(self, row):
-        return self.search.get_text().lower() in self.customer_store[row.get_index()].name.lower()
+        return self.customer_search_entry.get_text().lower() in self.customer_store[row.get_index()].name.lower()
 
     @Gtk.Template.Callback()
     def open_preferences(self, *args):
@@ -112,14 +112,14 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def toggle_sidebar_search(self, btn):
-        self.search_revealer.set_reveal_child(btn.get_active())
+        self.customer_customer_search_revealer.set_reveal_child(btn.get_active())
         if btn.get_active():
-            self.search.grab_focus()
+            self.customer_search_entry.grab_focus()
 
     @Gtk.Template.Callback()
     def focus_sidebar_search(self, entry, focus_event):
-        self.search_revealer.set_reveal_child(False)
-        self.search_toggle.set_active(False)
+        self.customer_customer_search_revealer.set_reveal_child(False)
+        self.customer_search_toggle.set_active(False)
 
     @Gtk.Template.Callback()
     def customer_activated(self, listbox, row):
@@ -127,8 +127,8 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def customer_selected(self, listbox, row):
-        self.edit_btn.set_sensitive(row is not None)
-        self.remove_btn.set_sensitive(row is not None)
+        self.edit_customer_btn.set_sensitive(row is not None)
+        self.remove_customer_btn.set_sensitive(row is not None)
         self.add_invoice_btn.set_sensitive(row is not None)
         invoice_view = self.invoice_stack.get_visible_child()
         if invoice_view and row:
@@ -146,7 +146,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def show_switcher(self, stack, invoice):
-        self.switcher_revealer.set_reveal_child(len(self.invoice_stack))
+        self.invoice_switcher_revealer.set_reveal_child(len(self.invoice_stack))
 
     def recalculate_indexes(self, preference, idx):
         if idx:
