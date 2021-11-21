@@ -1613,7 +1613,7 @@ Author: Erik Nijenhuis
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkBox">
+                                  <object class="GtkBox" id="cumulative_column_group">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="orientation">vertical</property>

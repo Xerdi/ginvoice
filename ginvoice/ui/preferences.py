@@ -23,7 +23,8 @@ from ginvoice.i18n import _
 from ginvoice.ui.info import InfoWindow
 from ginvoice.ui.variable import VariableEntry
 from ginvoice.environment import image_dir, customer_info_file, supplier_info_file
-from ginvoice.model.column import TableColumnStore, CumulativeColumnStore, Column, TableColumnHandler
+from ginvoice.model.column import TableColumnStore, CumulativeColumnStore, Column, TableColumnHandler, \
+    CumulativeColumnHandler
 from ginvoice.model.info import GenericInfoStore
 from ginvoice.model.style import Style
 from ginvoice.util import find_ui_file
@@ -76,6 +77,7 @@ class PreferencesWindow(Gtk.Window):
     supplier_info_table = Gtk.Template.Child('supplier_info_table')
 
     table_column_group = Gtk.Template.Child('table_column_group')
+    cumulative_column_group = Gtk.Template.Child()
 
     customer_info_store = GenericInfoStore(customer_info_file)
     supplier_info_store = GenericInfoStore(supplier_info_file)
@@ -153,6 +155,19 @@ class PreferencesWindow(Gtk.Window):
                 self.table_columns.append(c)
         for idx, row in enumerate(table_column_rows):
             TableColumnHandler(*row.get_children()[1:], self.table_columns[idx])
+
+        cumulative_column_rows = self.cumulative_column_group.get_children()
+        self.cumulative_columns.load()
+        print(len(cumulative_column_rows), len(self.cumulative_columns))
+        if len(cumulative_column_rows) != len(self.cumulative_columns):
+            for row in cumulative_column_rows:
+                c = Column()
+                l, t, s = row.get_children()
+                c.title = t.get_text()
+                c.size_type = int(s.get_active())
+                self.cumulative_columns.append(c)
+        for idx, row in enumerate(cumulative_column_rows):
+            CumulativeColumnHandler(*row.get_children()[1:], self.cumulative_columns[idx])
 
     @Gtk.Template.Callback()
     def validate_number(self, widget):
@@ -240,12 +255,14 @@ class PreferencesWindow(Gtk.Window):
         self.customer_info_store.commit()
         self.supplier_info_store.commit()
         self.table_columns.commit()
+        self.cumulative_columns.commit()
         self.destroy()
 
     @Gtk.Template.Callback()
     def cancel_changes(self, btn):
         preference_store.load()
         self.table_columns.load()
+        self.cumulative_columns.load()
         self.customer_info_store.load()
         self.supplier_info_store.load()
         self.destroy()

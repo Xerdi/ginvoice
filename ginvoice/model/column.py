@@ -80,6 +80,30 @@ class TableColumnHandler(GObject.GObject):
         self.data.text = entry.get_text()
 
 
+class CumulativeColumnHandler(GObject.GObject):
+
+    title = GObject.Property(type=Gtk.Entry)
+    visible = GObject.Property(type=Gtk.Switch)
+    data = GObject.Property(type=Column)
+
+    def __init__(self, title, visible, data):
+        GObject.GObject.__init__(self)
+        self.title = title
+        self.title.set_text(data.title)
+        self.visible = visible
+        print(data.size_type)
+        self.visible.set_active(data.size_type != 0)
+        self.data = data
+        self.title.connect('changed', self.title_changed)
+        self.visible.connect('state-set', self.visibility_changed)
+
+    def title_changed(self, entry):
+        self.data.title = entry.get_text()
+
+    def visibility_changed(self, entry, state):
+        self.data.size_type = int(state)
+
+
 class TableColumnStore(Gio.ListStore):
     data_file = GObject.Property(type=str, default=table_column_file)
 
