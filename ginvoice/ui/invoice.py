@@ -20,14 +20,15 @@ from ginvoice.i18n import _
 from ginvoice.environment import customer_info_file, supplier_info_file
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
 from ginvoice.model.customer import Customer
+from ginvoice.model.form import FormEventRegistry
 from ginvoice.model.info import GenericInfoStore
 from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
 from ginvoice.ui.preferences import PreferencesWindow
-from ginvoice.util import find_ui_file, find_css_file
+from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, GObject
+from gi.repository import Gtk
 
 
 @Gtk.Template.from_file(find_ui_file("invoice.glade"))
@@ -52,8 +53,10 @@ class InvoiceForm(Gtk.Box):
     table_column_store = TableColumnStore()
     cumulative_column_store = CumulativeColumnStore()
 
-    def __init__(self, parent: Gtk.Window, invoice_stack: Gtk.Stack, customer: Customer, idx: int):
+    def __init__(self, parent: Gtk.Window, invoice_stack: Gtk.Stack, customer: Customer, idx: int,
+                 event: FormEventRegistry):
         super().__init__()
+        event.connect('saved', self.invalidate)
         self.vars = {
             _('invoice_nr'): str(int(preference_store['invoice_counter'].value) + idx),
             _('today'): "{%s}" % _('today')
@@ -124,7 +127,7 @@ class InvoiceForm(Gtk.Box):
     def set_invoice_ending(self, preference, invoice_ending):
         self.invoice_ending.set_text(invoice_ending)
 
-    def invalidate(self):
+    def invalidate(self, *args):
         a1, a2, a3 = self.customer.addresslines.split(os.linesep)
         self.addressline1.set_text(a1)
         self.addressline2.set_text(a2)
@@ -142,8 +145,10 @@ class InvoiceForm(Gtk.Box):
                 col.set_sizing(1)
             elif column.size_type == 2:
                 col.set_sizing(0)
+        self.cumulative_records.get_model().clear()
         for col_idx, column in enumerate(self.cumulative_column_store):
-            print(col_idx, column)
+            if column.size_type:
+                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, '€ 0'))
 
 
 if __name__ == '__main__':

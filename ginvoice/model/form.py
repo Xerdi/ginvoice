@@ -14,9 +14,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from ginvoice.common import signal
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import GObject
 
 
-@signal()
-def filter_customers(row, search):
-    return search.get_text().lower() in row.get_child().get_text().lower()
+class FormEventRegistry(GObject.GObject):
+    __gsignals__ = {
+        'saved': (GObject.SignalFlags.RUN_FIRST, None, ()),
+        'canceled': (GObject.SignalFlags.RUN_FIRST, None, ())
+    }

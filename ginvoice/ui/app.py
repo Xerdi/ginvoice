@@ -17,6 +17,7 @@
 import gi
 
 from ginvoice.model.customer import Customer, CustomerStore
+from ginvoice.model.form import FormEventRegistry
 from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
 from ginvoice.ui.customer import CustomerWindow
@@ -46,10 +47,13 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     invoice_switcher = Gtk.Template.Child()
     invoice_switcher_revealer = Gtk.Template.Child()
 
+    event = FormEventRegistry()
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.style = Style()
         self.customer_listbox.set_filter_func(self.filter_customers)
+        # self.customer_listbox.set_sort_func(self.sort_customers)
         self.customer_listbox.bind_model(self.customer_store, self.create_customer_row)
         self.customer_store.load()
         preference_store['invoice_counter'].connect('changed', self.recalculate_indexes)
@@ -57,9 +61,12 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     def filter_customers(self, row):
         return self.customer_search_entry.get_text().lower() in self.customer_store[row.get_index()].name.lower()
 
+    def sort_customers(self, row1, row2):
+        return self.customer_store[row1.get_index()].id < self.customer_store[row2.get_index()].id
+
     @Gtk.Template.Callback()
     def open_preferences(self, *args):
-        window = PreferencesWindow()
+        window = PreferencesWindow(self.event)
         window.set_transient_for(self)
         window.show_all()
 
@@ -76,7 +83,12 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         window.show_all()
 
     def customer_changed(self, customer: Customer):
-        self.customer_store.commit()
+        selected_row = self.customer_listbox.get_selected_row()
+        if selected_row:
+            position = selected_row.get_index()
+            self.customer_store.commit()
+            self.customer_store.items_changed(position, 1, 1)
+            self.customer_listbox.select_row(self.customer_listbox.get_row_at_index(position))
 
     @Gtk.Template.Callback()
     def edit_customer(self, listbox):
@@ -140,7 +152,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback()
     def add_invoice(self, btn):
         customer = self.customer_store[self.customer_listbox.get_selected_row().get_index()]
-        invoice = InvoiceForm(self, self.invoice_stack, customer, len(self.invoice_stack))
+        invoice = InvoiceForm(self, self.invoice_stack, customer, len(self.invoice_stack), self.event)
         title = self.invoice_title(len(self.invoice_stack))
         self.invoice_stack.add_titled(invoice, title, title)
 

@@ -20,9 +20,6 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import GObject, Gtk
 
 
-__INFO_STORES__ = []
-
-
 class GenericInfoStore(Gtk.ListStore):
     __gsignals__ = {
         'changed': (GObject.SignalFlags.RUN_FIRST, None, ())
@@ -32,8 +29,6 @@ class GenericInfoStore(Gtk.ListStore):
 
     def __init__(self, data_file, vars=None):
         Gtk.ListStore.__init__(self, str, str)
-        global __INFO_STORES__
-        __INFO_STORES__.append(self)
         self.data_file = data_file
         self.vars = vars
 
@@ -49,8 +44,5 @@ class GenericInfoStore(Gtk.ListStore):
     def commit(self):
         with open(self.data_file, 'w') as f:
             json.dump([{'key': c[0], 'value': c[1]} for c in self], f)
-        for store in __INFO_STORES__:
-            if store != self:
-                store.load()
 
 

@@ -72,17 +72,6 @@ Author: Erik Nijenhuis
       <!-- column-name Total -->
       <column type="gchararray"/>
     </columns>
-    <data>
-      <row>
-        <col id="0">Werkzaamheden</col>
-        <col id="1">4 oct 2021</col>
-        <col id="2">4 uren</col>
-        <col id="3">€ 65,00</col>
-        <col id="4">€5,00</col>
-        <col id="5">€53,55</col>
-        <col id="6">€308,55</col>
-      </row>
-    </data>
   </object>
   <template class="invoice" parent="GtkBox">
     <property name="width-request">570</property>
@@ -573,6 +562,7 @@ Author: Erik Nijenhuis
                   <object class="GtkTreeViewColumn">
                     <property name="sizing">fixed</property>
                     <property name="title" translatable="yes">Price</property>
+                    <property name="alignment">1</property>
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
@@ -585,6 +575,7 @@ Author: Erik Nijenhuis
                   <object class="GtkTreeViewColumn">
                     <property name="sizing">fixed</property>
                     <property name="title" translatable="yes">Discount</property>
+                    <property name="alignment">1</property>
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
@@ -597,6 +588,7 @@ Author: Erik Nijenhuis
                   <object class="GtkTreeViewColumn">
                     <property name="sizing">fixed</property>
                     <property name="title" translatable="yes">VAT</property>
+                    <property name="alignment">1</property>
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
@@ -609,6 +601,7 @@ Author: Erik Nijenhuis
                   <object class="GtkTreeViewColumn">
                     <property name="sizing">fixed</property>
                     <property name="title" translatable="yes">Total</property>
+                    <property name="alignment">1</property>
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>

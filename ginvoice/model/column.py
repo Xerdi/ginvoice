@@ -91,7 +91,6 @@ class CumulativeColumnHandler(GObject.GObject):
         self.title = title
         self.title.set_text(data.title)
         self.visible = visible
-        print(data.size_type)
         self.visible.set_active(data.size_type != 0)
         self.data = data
         self.title.connect('changed', self.title_changed)

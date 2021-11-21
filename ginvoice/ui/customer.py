@@ -41,7 +41,7 @@ class CustomerWindow(Gtk.Window):
         self.customer = customer
         if self.customer.id:
             self.salutation.grab_focus()
-            self.name.set_sensitive(False)
+            # self.name.set_sensitive(False)
             self.number.set_text(str(self.customer.id))
             self.name.set_text(self.customer.name)
             a1, a2, a3 = self.customer.addresslines.split(os.linesep)

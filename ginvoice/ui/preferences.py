@@ -20,6 +20,7 @@ import shutil
 import gi
 
 from ginvoice.i18n import _
+from ginvoice.model.form import FormEventRegistry
 from ginvoice.ui.info import InfoWindow
 from ginvoice.ui.variable import VariableEntry
 from ginvoice.environment import image_dir, customer_info_file, supplier_info_file
@@ -87,13 +88,14 @@ class PreferencesWindow(Gtk.Window):
     table_columns = TableColumnStore()
     cumulative_columns = CumulativeColumnStore()
 
-    def __init__(self, section=None):
+    def __init__(self, form_registry: FormEventRegistry, section=None):
         Gtk.Window.__init__(self)
         self.table_columns.load()
         self.title.set_text(preference_store['title'].value)
         self.subtitle.set_text(preference_store['subtitle'].value)
         self.author.set_text(preference_store['author'].value)
         self.keywords.set_text(preference_store['keywords'].value)
+        self.event = form_registry
 
         if section:
             self.settings_stack.set_visible_child_name(section)
@@ -158,7 +160,6 @@ class PreferencesWindow(Gtk.Window):
 
         cumulative_column_rows = self.cumulative_column_group.get_children()
         self.cumulative_columns.load()
-        print(len(cumulative_column_rows), len(self.cumulative_columns))
         if len(cumulative_column_rows) != len(self.cumulative_columns):
             for row in cumulative_column_rows:
                 c = Column()
@@ -245,29 +246,6 @@ class PreferencesWindow(Gtk.Window):
         preference_store['currency'] = combobox.get_active_id()
 
     @Gtk.Template.Callback()
-    def save_changes(self, btn):
-        for k in ['footer_image_1', 'footer_image_2', 'footer_image_3']:
-            val = preference_store[k].value
-            if val and not val.startswith(image_dir):
-                shutil.copy(val, image_dir)
-                preference_store[k] = os.path.basename(val)
-        preference_store.commit()
-        self.customer_info_store.commit()
-        self.supplier_info_store.commit()
-        self.table_columns.commit()
-        self.cumulative_columns.commit()
-        self.destroy()
-
-    @Gtk.Template.Callback()
-    def cancel_changes(self, btn):
-        preference_store.load()
-        self.table_columns.load()
-        self.cumulative_columns.load()
-        self.customer_info_store.load()
-        self.supplier_info_store.load()
-        self.destroy()
-
-    @Gtk.Template.Callback()
     def change_confirmation(self, switch, state):
         preference_store[switch.get_name()] = state
 
@@ -310,10 +288,35 @@ class PreferencesWindow(Gtk.Window):
     def info_row_activated(self, btn, *args):
         btn.emit('clicked')
 
+    @Gtk.Template.Callback()
+    def save_changes(self, btn):
+        for k in ['footer_image_1', 'footer_image_2', 'footer_image_3']:
+            val = preference_store[k].value
+            if val and not val.startswith(image_dir):
+                shutil.copy(val, image_dir)
+                preference_store[k] = os.path.basename(val)
+        preference_store.commit()
+        self.customer_info_store.commit()
+        self.supplier_info_store.commit()
+        self.table_columns.commit()
+        self.cumulative_columns.commit()
+        self.event.emit('saved')
+        self.destroy()
+
+    @Gtk.Template.Callback()
+    def cancel_changes(self, btn):
+        preference_store.load()
+        self.table_columns.load()
+        self.cumulative_columns.load()
+        self.customer_info_store.load()
+        self.supplier_info_store.load()
+        self.event.emit('canceled')
+        self.destroy()
+
 
 if __name__ == '__main__':
     Style()
-    window = PreferencesWindow(section='info')
+    window = PreferencesWindow(FormEventRegistry(), section='info')
     window.connect("destroy", Gtk.main_quit)
     window.show_all()
     Gtk.main()
