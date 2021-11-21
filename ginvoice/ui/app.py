@@ -49,8 +49,8 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.style = Style()
-        self.customer_listbox.bind_model(self.customer_store, self.create_customer_row)
         self.customer_listbox.set_filter_func(self.filter_customers)
+        self.customer_listbox.bind_model(self.customer_store, self.create_customer_row)
         self.customer_store.load()
         preference_store['invoice_counter'].connect('changed', self.recalculate_indexes)
 
@@ -122,12 +122,16 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         self.search_toggle.set_active(False)
 
     @Gtk.Template.Callback()
+    def customer_activated(self, listbox, row):
+        self.edit_customer(listbox)
+
+    @Gtk.Template.Callback()
     def customer_selected(self, listbox, row):
         self.edit_btn.set_sensitive(row is not None)
         self.remove_btn.set_sensitive(row is not None)
         self.add_invoice_btn.set_sensitive(row is not None)
         invoice_view = self.invoice_stack.get_visible_child()
-        if invoice_view:
+        if invoice_view and row:
             invoice_view.set_customer(self.customer_store[row.get_index()])
 
     def invoice_title(self, idx):
@@ -157,6 +161,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     @staticmethod
     def create_customer_row(customer):
         row = Gtk.ListBoxRow()
+        row.get_style_context().add_class('frame')
         wrapper = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         idx = Gtk.Label(label=str(customer.id))
         idx.set_visible(False)

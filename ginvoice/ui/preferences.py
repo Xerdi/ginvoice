@@ -87,6 +87,7 @@ class PreferencesWindow(Gtk.Window):
 
     def __init__(self, section=None):
         Gtk.Window.__init__(self)
+        self.table_columns.load()
         self.title.set_text(preference_store['title'].value)
         self.subtitle.set_text(preference_store['subtitle'].value)
         self.author.set_text(preference_store['author'].value)

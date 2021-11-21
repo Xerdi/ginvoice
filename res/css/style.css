@@ -8,6 +8,23 @@
   border-width: 0;
 }
 
+list.sidebar {
+  border-right: 0;
+}
+
+.no-borders {
+  border-width: 0;
+}
+
+list.sidebar row.frame {
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+
+list.sidebar row box label {
+  padding: 8px 4px;
+}
+
 .view.frame {
   padding: 8px 16px;
 }
