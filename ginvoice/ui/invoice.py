@@ -38,9 +38,8 @@ class InvoiceForm(Gtk.Box):
     title = Gtk.Template.Child()
     subtitle = Gtk.Template.Child()
 
-    addressline1 = Gtk.Template.Child()
-    addressline2 = Gtk.Template.Child()
-    addressline3 = Gtk.Template.Child()
+    address = Gtk.Template.Child()
+    address_store = Gtk.ListStore(str)
 
     customer_info = Gtk.Template.Child()
     supplier_info = Gtk.Template.Child()
@@ -56,7 +55,8 @@ class InvoiceForm(Gtk.Box):
     def __init__(self, parent: Gtk.Window, invoice_stack: Gtk.Stack, customer: Customer, idx: int,
                  event: FormEventRegistry):
         super().__init__()
-        event.connect('saved', self.invalidate)
+        self.event = event
+        self.event.connect('saved', self.invalidate)
         self.vars = {
             _('invoice_nr'): str(int(preference_store['invoice_counter'].value) + idx),
             _('today'): "{%s}" % _('today')
@@ -66,6 +66,7 @@ class InvoiceForm(Gtk.Box):
         self.idx = idx
         self.customer = customer
         self.customer.connect('changed', self.update_customer)
+        self.address.set_model(self.address_store)
         self.title.set_text(preference_store['title'].value)
         preference_store['title'].connect('changed', self.set_title)
         self.subtitle.set_text(preference_store['subtitle'].value)
@@ -108,19 +109,19 @@ class InvoiceForm(Gtk.Box):
 
     @Gtk.Template.Callback()
     def open_document_preferences(self, btn):
-        window = PreferencesWindow(section='document_settings')
+        window = PreferencesWindow(self.event, section='document_settings')
         window.set_transient_for(self.parent)
         window.show_all()
 
     @Gtk.Template.Callback()
     def open_info_preferences(self, btn):
-        window = PreferencesWindow(section='info')
+        window = PreferencesWindow(self.event, section='info')
         window.set_transient_for(self.parent)
         window.show_all()
 
     @Gtk.Template.Callback()
     def open_table_preferences(self, btn):
-        window = PreferencesWindow(section='table_config')
+        window = PreferencesWindow(self.event, section='table_config')
         window.set_transient_for(self.parent)
         window.show_all()
 
@@ -128,10 +129,9 @@ class InvoiceForm(Gtk.Box):
         self.invoice_ending.set_text(invoice_ending)
 
     def invalidate(self, *args):
-        a1, a2, a3 = self.customer.addresslines.split(os.linesep)
-        self.addressline1.set_text(a1)
-        self.addressline2.set_text(a2)
-        self.addressline3.set_text(a3)
+        self.address_store.clear()
+        for address_line in self.customer.addresslines.split(os.linesep):
+            self.address_store.append((address_line,))
         self.customer_info_store.load()
         self.supplier_info_store.load()
         self.table_column_store.load()

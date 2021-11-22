@@ -136,14 +136,13 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label" translatable="yes">Cancel</property>
+                <property name="label" translatable="yes">Close</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <signal name="clicked" handler="close" swapped="no"/>
                 <style>
                   <class name="flat"/>
-                  <class name="destructive-action"/>
                 </style>
               </object>
               <packing>

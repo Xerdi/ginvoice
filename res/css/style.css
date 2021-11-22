@@ -49,6 +49,6 @@ list row label {
   margin: 6px 0;
 }
 
-.switchbar {
-  margin: 3px 0;
+headerbar label.title {
+  padding: 0;
 }

@@ -45,7 +45,6 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     add_invoice_btn = Gtk.Template.Child()
     invoice_stack = Gtk.Template.Child()
     invoice_switcher = Gtk.Template.Child()
-    invoice_switcher_revealer = Gtk.Template.Child()
 
     event = FormEventRegistry()
 
@@ -124,13 +123,13 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
 
     @Gtk.Template.Callback()
     def toggle_sidebar_search(self, btn):
-        self.customer_customer_search_revealer.set_reveal_child(btn.get_active())
+        self.customer_search_revealer.set_reveal_child(btn.get_active())
         if btn.get_active():
             self.customer_search_entry.grab_focus()
 
     @Gtk.Template.Callback()
     def focus_sidebar_search(self, entry, focus_event):
-        self.customer_customer_search_revealer.set_reveal_child(False)
+        self.customer_search_revealer.set_reveal_child(False)
         self.customer_search_toggle.set_active(False)
 
     @Gtk.Template.Callback()
@@ -155,10 +154,6 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         invoice = InvoiceForm(self, self.invoice_stack, customer, len(self.invoice_stack), self.event)
         title = self.invoice_title(len(self.invoice_stack))
         self.invoice_stack.add_titled(invoice, title, title)
-
-    @Gtk.Template.Callback()
-    def show_switcher(self, stack, invoice):
-        self.invoice_switcher_revealer.set_reveal_child(len(self.invoice_stack))
 
     def recalculate_indexes(self, preference, idx):
         if idx:
