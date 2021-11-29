@@ -30,7 +30,7 @@ class Column(GObject.GObject):
     }
 
     title = GObject.Property(type=str, default='')
-    size_type = GObject.Property(type=int, default=-1)
+    size_type = GObject.Property(type=int, default=0)
     text = GObject.Property(type=str, default='')
 
     def __init__(self):
@@ -54,21 +54,21 @@ class TableColumnHandler(GObject.GObject):
     def __init__(self, title, stype, text, data):
         GObject.GObject.__init__(self)
         self.title = title
-        self.title.set_text(data.title)
         self.stype = stype
-        self.stype.set_active(data.size_type)
         self.text = text
-        self.text.set_text(data.text)
         self.data = data
         self.title.connect('changed', self.title_changed)
         self.stype.connect('changed', self.stype_changed)
         self.text.connect('changed', self.text_changed)
+        self.title.set_text(data.title)
+        self.stype.set_active(data.size_type)
+        self.text.set_text(data.text)
 
     def title_changed(self, entry):
         self.data.title = entry.get_text()
 
     def stype_changed(self, combobox):
-        stype = self.data.stype = combobox.get_model()[combobox.get_active_iter()][0]
+        stype = self.data.size_type = combobox.get_model()[combobox.get_active_iter()][0]
         if stype == 2:
             self.text.set_text(self.data.text or '')
             self.text.set_sensitive(True)

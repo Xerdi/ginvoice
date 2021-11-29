@@ -30,7 +30,7 @@ class Customer(GObject.GObject):
         'changed': (GObject.SignalFlags.RUN_FIRST, None, ())
     }
 
-    id = GObject.Property(type=int)
+    id = GObject.Property(type=str)
     name = GObject.Property(type=str)
     addresslines = GObject.Property(type=str)
 

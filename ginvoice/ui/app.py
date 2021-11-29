@@ -17,7 +17,7 @@
 import gi
 
 from ginvoice.model.customer import Customer, CustomerStore
-from ginvoice.model.form import FormEventRegistry
+from ginvoice.model.form import FormEvent
 from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
 from ginvoice.ui.customer import CustomerWindow
@@ -46,7 +46,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     invoice_stack = Gtk.Template.Child()
     invoice_switcher = Gtk.Template.Child()
 
-    event = FormEventRegistry()
+    event = FormEvent()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -170,10 +170,6 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         row = Gtk.ListBoxRow()
         row.get_style_context().add_class('frame')
         wrapper = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        idx = Gtk.Label(label=str(customer.id))
-        idx.set_visible(False)
-        idx.set_child_visible(False)
-        wrapper.add(idx)
         wrapper.add(Gtk.Label(label=customer.name))
         row.add(wrapper)
         row.show_all()

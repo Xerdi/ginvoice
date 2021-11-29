@@ -46,7 +46,7 @@ stacksidebar.sidebar list {
 }
 
 list row label {
-  margin: 6px 0;
+  margin: 6px;
 }
 
 headerbar label.title {

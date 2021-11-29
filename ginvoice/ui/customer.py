@@ -42,7 +42,7 @@ class CustomerWindow(Gtk.Window):
         if self.customer.id:
             self.salutation.grab_focus()
             # self.name.set_sensitive(False)
-            self.number.set_text(str(self.customer.id))
+            self.number.set_text(self.customer.id)
             self.name.set_text(self.customer.name)
             a1, a2, a3 = self.customer.addresslines.split(os.linesep)
             self.salutation.set_text(a1)
@@ -62,7 +62,7 @@ class CustomerWindow(Gtk.Window):
         if not self.existing:
             preference_store['customer_counter'] = int(preference_store['customer_counter'].value) + 1
             preference_store.commit()
-        self.customer.id = int(self.number.get_text())
+        self.customer.id = self.number.get_text()
         self.customer.name = self.name.get_text()
         self.customer.addresslines = os.linesep.join([
             self.salutation.get_text(), self.street.get_text(), self.postal.get_text()

@@ -67,10 +67,14 @@ Author: Erik Nijenhuis
       <column type="gchararray"/>
       <!-- column-name Discount -->
       <column type="gchararray"/>
+      <!-- column-name Subtotal -->
+      <column type="gchararray"/>
       <!-- column-name VAT -->
       <column type="gchararray"/>
       <!-- column-name Total -->
       <column type="gchararray"/>
+      <!-- column-name Object -->
+      <column type="GObject"/>
     </columns>
   </object>
   <template class="invoice" parent="GtkBox">
@@ -445,6 +449,7 @@ Author: Erik Nijenhuis
                 <property name="can-focus">False</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">list-add</property>
+                <signal name="clicked" handler="add_record" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -541,7 +546,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
-                        <attribute name="text">1</attribute>
+                        <attribute name="text">2</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -554,7 +559,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
-                        <attribute name="text">2</attribute>
+                        <attribute name="text">3</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -567,7 +572,20 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
-                        <attribute name="text">3</attribute>
+                        <attribute name="text">4</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="sizing">fixed</property>
+                    <property name="title" translatable="yes">Subtotal</property>
+                    <property name="alignment">1</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">5</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -580,7 +598,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
-                        <attribute name="text">2</attribute>
+                        <attribute name="text">6</attribute>
                       </attributes>
                     </child>
                   </object>
@@ -593,7 +611,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
-                        <attribute name="text">5</attribute>
+                        <attribute name="text">7</attribute>
                       </attributes>
                     </child>
                   </object>

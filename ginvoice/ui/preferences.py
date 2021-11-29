@@ -20,7 +20,7 @@ import shutil
 import gi
 
 from ginvoice.i18n import _
-from ginvoice.model.form import FormEventRegistry
+from ginvoice.model.form import FormEvent
 from ginvoice.ui.info import InfoWindow
 from ginvoice.ui.variable import VariableEntry
 from ginvoice.environment import image_dir, customer_info_file, supplier_info_file
@@ -88,7 +88,7 @@ class PreferencesWindow(Gtk.Window):
     table_columns = TableColumnStore()
     cumulative_columns = CumulativeColumnStore()
 
-    def __init__(self, form_registry: FormEventRegistry, section=None):
+    def __init__(self, form_registry: FormEvent, section=None):
         Gtk.Window.__init__(self)
         self.table_columns.load()
         self.title.set_text(preference_store['title'].value)
@@ -316,7 +316,7 @@ class PreferencesWindow(Gtk.Window):
 
 if __name__ == '__main__':
     Style()
-    window = PreferencesWindow(FormEventRegistry(), section='info')
+    window = PreferencesWindow(FormEvent(), section='info')
     window.connect("destroy", Gtk.main_quit)
     window.show_all()
     Gtk.main()

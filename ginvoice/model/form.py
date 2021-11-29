@@ -19,7 +19,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import GObject
 
 
-class FormEventRegistry(GObject.GObject):
+class FormEvent(GObject.GObject):
     __gsignals__ = {
         'saved': (GObject.SignalFlags.RUN_FIRST, None, ()),
         'canceled': (GObject.SignalFlags.RUN_FIRST, None, ())

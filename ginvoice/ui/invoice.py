@@ -20,11 +20,13 @@ from ginvoice.i18n import _
 from ginvoice.environment import customer_info_file, supplier_info_file
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
 from ginvoice.model.customer import Customer
-from ginvoice.model.form import FormEventRegistry
+from ginvoice.model.form import FormEvent
+from ginvoice.model.record import RecordEvent, Record
 from ginvoice.model.info import GenericInfoStore
 from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
 from ginvoice.ui.preferences import PreferencesWindow
+from ginvoice.ui.record import RecordDialog
 from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
@@ -45,18 +47,23 @@ class InvoiceForm(Gtk.Box):
     supplier_info = Gtk.Template.Child()
 
     invoice_records = Gtk.Template.Child()
+    invoice_row_store = Gtk.Template.Child()
     cumulative_records = Gtk.Template.Child()
 
     invoice_ending = Gtk.Template.Child()
 
     table_column_store = TableColumnStore()
     cumulative_column_store = CumulativeColumnStore()
+    grand_totals = [0, 0, 0, 0]
 
     def __init__(self, parent: Gtk.Window, invoice_stack: Gtk.Stack, customer: Customer, idx: int,
-                 event: FormEventRegistry):
+                 event: FormEvent):
         super().__init__()
         self.event = event
+        self.record_event = RecordEvent()
+        self.record_event.connect('saved', self.do_add_record)
         self.event.connect('saved', self.invalidate)
+
         self.vars = {
             _('invoice_nr'): str(int(preference_store['invoice_counter'].value) + idx),
             _('today'): "{%s}" % _('today')
@@ -80,7 +87,7 @@ class InvoiceForm(Gtk.Box):
         preference_store['invoice_ending'].connect('changed', self.set_invoice_ending)
 
     def update_customer(self, customer: Customer):
-        self.vars[_('customer_nr')] = str(customer.id)
+        self.vars[_('customer_nr')] = customer.id
         self.vars[_('customer_name')] = customer.name
         self.invalidate()
 
@@ -95,6 +102,30 @@ class InvoiceForm(Gtk.Box):
     @Gtk.Template.Callback()
     def remove_invoice(self, invoice):
         self.invoice_stack.remove(invoice)
+
+    @Gtk.Template.Callback()
+    def add_record(self, *args):
+        dialog = RecordDialog(self.record_event)
+        dialog.set_transient_for(self.parent)
+        dialog.show_all()
+
+    def do_add_record(self, event, record: Record):
+        record.iter = self.invoice_row_store.append(record.as_list())
+        self.reload_cumulatives()
+        self.invalidate()
+
+    def reload_cumulatives(self):
+        discount = 0
+        subtotal = 0
+        vat = 0
+        total = 0
+        for row in self.invoice_row_store:
+            record = row[8]
+            discount = round(discount + record.discount, 2)
+            subtotal = round(subtotal + record.subtotal, 2)
+            vat = round(vat + record.vat, 2)
+            total = round(total + record.total, 2)
+        self.grand_totals = [discount, subtotal, vat, total]
 
     def set_idx(self, idx: int):
         self.idx = idx
@@ -137,8 +168,11 @@ class InvoiceForm(Gtk.Box):
         self.table_column_store.load()
         self.cumulative_column_store.load()
         for col_idx, column in enumerate(self.table_column_store):
+            print(col_idx)
             col = self.invoice_records.get_column(col_idx)
             col.set_title(column.title)
+            if col_idx > 1:
+                col.set_alignment(1.0)
             if column.size_type == 0:
                 col.set_visible(False)
             elif column.size_type == 1:
@@ -148,7 +182,7 @@ class InvoiceForm(Gtk.Box):
         self.cumulative_records.get_model().clear()
         for col_idx, column in enumerate(self.cumulative_column_store):
             if column.size_type:
-                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, '€ 0'))
+                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, str(self.grand_totals[col_idx])))
 
 
 if __name__ == '__main__':
