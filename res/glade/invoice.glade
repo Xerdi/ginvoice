@@ -804,12 +804,12 @@ Author: Erik Nijenhuis
               </packing>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkToggleButton">
                 <property name="label" translatable="yes">Preview</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <property name="relief">none</property>
+                <signal name="toggled" handler="toggle_preview" swapped="no"/>
                 <style>
                   <class name="flat"/>
                 </style>
@@ -827,6 +827,7 @@ Author: Erik Nijenhuis
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="relief">none</property>
+                <signal name="clicked" handler="save" swapped="no"/>
                 <style>
                   <class name="suggested-action"/>
                   <class name="flat"/>

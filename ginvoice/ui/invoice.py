@@ -68,6 +68,7 @@ class InvoiceForm(Gtk.Box):
             _('invoice_nr'): str(int(preference_store['invoice_counter'].value) + idx),
             _('today'): "{%s}" % _('today')
         }
+        self.reload_cumulatives()
         self.parent = parent
         self.invoice_stack = invoice_stack
         self.idx = idx
@@ -83,8 +84,8 @@ class InvoiceForm(Gtk.Box):
         self.customer_info.set_model(self.customer_info_store)
         self.supplier_info.set_model(self.supplier_info_store)
         self.update_customer(customer)
-        self.invoice_ending.set_text(preference_store['invoice_ending'].value)
         preference_store['invoice_ending'].connect('changed', self.set_invoice_ending)
+        self.invoice_ending.set_text(preference_store['invoice_ending'].value)
 
     def update_customer(self, customer: Customer):
         self.vars[_('customer_nr')] = customer.id
@@ -126,6 +127,11 @@ class InvoiceForm(Gtk.Box):
             vat = round(vat + record.vat, 2)
             total = round(total + record.total, 2)
         self.grand_totals = [discount, subtotal, vat, total]
+        the_format = "{:.2f}"
+        self.vars[_('grandtotal')] = the_format.format(total)
+        self.vars[_('subtotal')] = the_format.format(subtotal)
+        self.vars[_('total_vat')] = the_format.format(vat)
+        self.vars[_('total_discount')] = the_format.format(discount)
 
     def set_idx(self, idx: int):
         self.idx = idx
@@ -157,7 +163,7 @@ class InvoiceForm(Gtk.Box):
         window.show_all()
 
     def set_invoice_ending(self, preference, invoice_ending):
-        self.invoice_ending.set_text(invoice_ending)
+        self.invoice_ending.set_text(invoice_ending.format_map(self.vars))
 
     def invalidate(self, *args):
         self.address_store.clear()
@@ -180,9 +186,9 @@ class InvoiceForm(Gtk.Box):
                 col.set_sizing(0)
         self.cumulative_records.get_model().clear()
         for col_idx, column in enumerate(self.cumulative_column_store):
-            print(column.title, self.grand_totals[col_idx], self.grand_totals)
             if column.size_type:
                 self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, str(self.grand_totals[col_idx]), 1))
+        self.set_invoice_ending(None, preference_store['invoice_ending'].value)
 
 
 if __name__ == '__main__':
