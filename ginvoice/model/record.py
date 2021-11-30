@@ -22,10 +22,10 @@ from gi.repository import Gtk, GObject
 
 
 class Record(GObject.GObject):
-    iter = GObject.Property(type=Gtk.TreeIter)
     description = GObject.Property(type=str, default='')
     date = GObject.Property(type=str, default='')
     quantity = GObject.Property(type=float, default=0)
+    quantity_postfix = GObject.Property(type=str, default='')
     price = GObject.Property(type=float, default=0)
     discount = GObject.Property(type=float, default=0)
     subtotal = GObject.Property(type=float, default=0)
@@ -36,13 +36,14 @@ class Record(GObject.GObject):
         return [
             self.description,
             self.date,
-            str(self.quantity),
+            str(self.quantity) + self.quantity_postfix,
             str(self.price),
             str(self.discount),
             str(self.subtotal),
             str(self.vat),
             str(self.total),
-            self
+            self,
+            1
         ]
 
 

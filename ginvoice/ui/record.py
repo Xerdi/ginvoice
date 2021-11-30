@@ -18,6 +18,7 @@ import gi
 
 from ginvoice.model.record import Record
 from ginvoice.util import find_ui_file
+from ginvoice.i18n import _
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -54,18 +55,46 @@ class RecordDialog(Gtk.Window):
         record = Record()
         record.description = self.description.get_text()
         record.date = self.date.get_text()
-        record.quantity = float(self.quantity.get_text()) * 60\
-            if self.hours_radio.get_active()\
-            else float(self.quantity.get_text())
+        qtype = self.quantity_type()
+        if qtype == 0:
+            record.quantity_postfix = _('x')
+        elif qtype == 1:
+            record.quantity_postfix = _('h')
+        elif qtype == 2:
+            record.quantity_postfix = _('m')
+        record.quantity = int(self.quantity.get_text()) if qtype == 0 else float(self.quantity.get_text())
         record.price = float(self.price.get_text())
-        record.discount = float(self.discount.get_text())
-        record.subtotal = record.quantity * record.price - record.discount
-        vat_multiplier = self.vat_store[self.vat.get_active()][0] / 100
-        record.vat = round(record.subtotal * vat_multiplier, 2)
-        record.total = record.subtotal + record.vat
+        if self.percentages_radio.get_active():
+            record.discount = record.quantity * record.price * (int(self.discount.get_text()) / 100)
+        else:
+            record.discount = float(self.discount.get_text())
+
+        subtotal, vat, total = self.calc_record(
+            record.quantity * 60 if qtype == 1 else record.quantity,
+            record.price / 60.0 if qtype == 1 else record.price,
+            record.discount,
+            self.vat_store[self.vat.get_active()][0]
+        )
+
+        record.subtotal = subtotal
+        record.vat = vat
+        record.total = total
         self.event.emit('saved', record)
         if not self.repeat.get_active():
             self.destroy()
+
+    def calc_record(self, quantity, price, discount, vat_percent):
+        subtotal = quantity * price - discount
+        vat_multiplier = vat_percent / 100
+        vat = round(subtotal * vat_multiplier, 2)
+        total = subtotal + vat
+        return subtotal, vat, total
+
+    def quantity_type(self):
+        for i, x in enumerate([self.units_radio, self.hours_radio, self.minutes_radio]):
+            if x.get_active():
+                return i
+        return -1
 
     @Gtk.Template.Callback()
     def close(self, btn):

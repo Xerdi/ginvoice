@@ -110,15 +110,15 @@ class InvoiceForm(Gtk.Box):
         dialog.show_all()
 
     def do_add_record(self, event, record: Record):
-        record.iter = self.invoice_row_store.append(record.as_list())
+        self.invoice_row_store.append(record.as_list())
         self.reload_cumulatives()
         self.invalidate()
 
     def reload_cumulatives(self):
-        discount = 0
-        subtotal = 0
-        vat = 0
-        total = 0
+        discount = 0.0
+        subtotal = 0.0
+        vat = 0.0
+        total = 0.0
         for row in self.invoice_row_store:
             record = row[8]
             discount = round(discount + record.discount, 2)
@@ -168,7 +168,6 @@ class InvoiceForm(Gtk.Box):
         self.table_column_store.load()
         self.cumulative_column_store.load()
         for col_idx, column in enumerate(self.table_column_store):
-            print(col_idx)
             col = self.invoice_records.get_column(col_idx)
             col.set_title(column.title)
             if col_idx > 1:
@@ -181,8 +180,9 @@ class InvoiceForm(Gtk.Box):
                 col.set_sizing(0)
         self.cumulative_records.get_model().clear()
         for col_idx, column in enumerate(self.cumulative_column_store):
+            print(column.title, self.grand_totals[col_idx], self.grand_totals)
             if column.size_type:
-                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, str(self.grand_totals[col_idx])))
+                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, str(self.grand_totals[col_idx]), 1))
 
 
 if __name__ == '__main__':

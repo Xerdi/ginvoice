@@ -35,23 +35,29 @@ Author: Erik Nijenhuis
       <column type="gchararray"/>
       <!-- column-name value -->
       <column type="gchararray"/>
+      <!-- column-name alignment -->
+      <column type="gint"/>
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">&lt;b&gt;Subtotal&lt;/b&gt;</col>
-        <col id="1">  € 255,00</col>
-      </row>
-      <row>
         <col id="0" translatable="yes">&lt;b&gt;Discount&lt;/b&gt;</col>
         <col id="1"> € -5,00</col>
+        <col id="2">0</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">&lt;b&gt;Subtotal&lt;/b&gt;</col>
+        <col id="1">  € 255,00</col>
+        <col id="2">0</col>
       </row>
       <row>
         <col id="0" translatable="yes">&lt;b&gt;VAT&lt;/b&gt;</col>
         <col id="1"> €53,55</col>
+        <col id="2">0</col>
       </row>
       <row>
         <col id="0" translatable="yes">&lt;b&gt;Total&lt;/b&gt;</col>
         <col id="1"> €308,55</col>
+        <col id="2">0</col>
       </row>
     </data>
   </object>
@@ -75,6 +81,8 @@ Author: Erik Nijenhuis
       <column type="gchararray"/>
       <!-- column-name Object -->
       <column type="GObject"/>
+      <!-- column-name Alignment -->
+      <column type="gint"/>
     </columns>
   </object>
   <template class="invoice" parent="GtkBox">
@@ -546,6 +554,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">9</attribute>
                         <attribute name="text">2</attribute>
                       </attributes>
                     </child>
@@ -559,6 +568,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">9</attribute>
                         <attribute name="text">3</attribute>
                       </attributes>
                     </child>
@@ -572,6 +582,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">9</attribute>
                         <attribute name="text">4</attribute>
                       </attributes>
                     </child>
@@ -585,6 +596,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">9</attribute>
                         <attribute name="text">5</attribute>
                       </attributes>
                     </child>
@@ -598,6 +610,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">9</attribute>
                         <attribute name="text">6</attribute>
                       </attributes>
                     </child>
@@ -611,6 +624,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">9</attribute>
                         <attribute name="text">7</attribute>
                       </attributes>
                     </child>
@@ -658,6 +672,7 @@ Author: Erik Nijenhuis
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
+                        <attribute name="xalign">2</attribute>
                         <attribute name="text">1</attribute>
                       </attributes>
                     </child>
