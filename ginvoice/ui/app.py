@@ -103,19 +103,23 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
             self.customer_store.commit()
         else:
             self.customer_store.load()
-        dialog.destroy()
+        if dialog:
+            dialog.destroy()
 
     @Gtk.Template.Callback()
     def remove_customer(self, listbox):
-        confirm_dialog = Gtk.MessageDialog(title=_("Delete Customer Confirmation"),
-                                           parent=self,
-                                           modal=True,
-                                           destroy_with_parent=True,
-                                           message_type=Gtk.MessageType.QUESTION,
-                                           buttons=Gtk.ButtonsType.OK_CANCEL,
-                                           text=_("Are you sure you want to delete the customer?"))
-        confirm_dialog.connect("response", self.do_remove_customer, listbox)
-        confirm_dialog.show_all()
+        if preference_store['show_customer_removal'].value:
+            confirm_dialog = Gtk.MessageDialog(title=_("Delete Customer Confirmation"),
+                                               parent=self,
+                                               modal=True,
+                                               destroy_with_parent=True,
+                                               message_type=Gtk.MessageType.QUESTION,
+                                               buttons=Gtk.ButtonsType.OK_CANCEL,
+                                               text=_("Are you sure you want to delete the customer?"))
+            confirm_dialog.connect("response", self.do_remove_customer, listbox)
+            confirm_dialog.show_all()
+        else:
+            self.do_remove_customer(None, Gtk.ResponseType.OK, listbox)
 
     @Gtk.Template.Callback()
     def search_changed(self, listbox):
@@ -174,3 +178,7 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         row.add(wrapper)
         row.show_all()
         return row
+
+    def cleanup(self):
+        for invoice in self.invoice_stack:
+            invoice.remove_invoice(invoice)

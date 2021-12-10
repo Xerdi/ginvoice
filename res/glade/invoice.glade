@@ -470,6 +470,7 @@ Author: Erik Nijenhuis
                 <property name="can-focus">False</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">list-remove</property>
+                <signal name="clicked" handler="remove_row" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -519,6 +520,7 @@ Author: Erik Nijenhuis
                 <property name="hover-expand">True</property>
                 <property name="show-expanders">False</property>
                 <property name="enable-tree-lines">True</property>
+                <signal name="row-activated" handler="edit_row" swapped="no"/>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
                 </child>
@@ -804,7 +806,7 @@ Author: Erik Nijenhuis
               </packing>
             </child>
             <child>
-              <object class="GtkToggleButton">
+              <object class="GtkToggleButton" id="preview_toggle">
                 <property name="label" translatable="yes">Preview</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>

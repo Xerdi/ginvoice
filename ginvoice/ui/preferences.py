@@ -32,7 +32,7 @@ from ginvoice.util import find_ui_file
 from ginvoice.model.preference import preference_store
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Gio
 
 
 def parse_bool(v):
@@ -65,7 +65,8 @@ class PreferencesWindow(Gtk.Window):
     invoice_counter = Gtk.Template.Child()
     customer_counter = Gtk.Template.Child()
 
-    profile_removal = Gtk.Template.Child('removal_profile')
+    pdf_viewer = Gtk.Template.Child()
+
     customer_removal = Gtk.Template.Child()
     invoice_removal = Gtk.Template.Child()
     record_removal = Gtk.Template.Child()
@@ -129,7 +130,11 @@ class PreferencesWindow(Gtk.Window):
         self.invoice_counter.set_text(str(preference_store['invoice_counter'].value))
         self.customer_counter.set_text(str(preference_store['customer_counter'].value))
 
-        self.profile_removal.set_active(parse_bool(preference_store['show_profile_removal'].value))
+        if preference_store['pdf_viewer'].value:
+            current_viewer = preference_store['pdf_viewer'].value
+            self.pdf_viewer.append_custom_item(current_viewer, _('Default ') + current_viewer, Gio.ThemedIcon(name="application-pdf"))
+            self.pdf_viewer.set_active_custom_item(current_viewer)
+
         self.customer_removal.set_active(parse_bool(preference_store['show_customer_removal'].value))
         self.invoice_removal.set_active(parse_bool(preference_store['show_invoice_removal'].value))
         self.record_removal.set_active(parse_bool(preference_store['show_record_removal'].value))
@@ -248,6 +253,11 @@ class PreferencesWindow(Gtk.Window):
     @Gtk.Template.Callback()
     def change_confirmation(self, switch, state):
         preference_store[switch.get_name()] = state
+
+    @Gtk.Template.Callback()
+    def changed_pdf_viewer(self, btn):
+        if hasattr(btn.get_app_info(), 'get_executable'):
+            preference_store['pdf_viewer'] = btn.get_app_info().get_executable()
 
     @Gtk.Template.Callback()
     def open_customer_info(self, btn):

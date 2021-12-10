@@ -13,24 +13,27 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 import os, gi
+import shutil
+from subprocess import Popen
 
 from ginvoice.i18n import _
 from ginvoice.environment import customer_info_file, supplier_info_file
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
 from ginvoice.model.customer import Customer
 from ginvoice.model.form import FormEvent
+from ginvoice.model.pdf import PDF
 from ginvoice.model.record import RecordEvent, Record
 from ginvoice.model.info import GenericInfoStore
 from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
+from ginvoice.tex_project import TexProject
 from ginvoice.ui.preferences import PreferencesWindow
 from ginvoice.ui.record import RecordDialog
 from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 
 @Gtk.Template.from_file(find_ui_file("invoice.glade"))
@@ -41,7 +44,6 @@ class InvoiceForm(Gtk.Box):
     subtitle = Gtk.Template.Child()
 
     address = Gtk.Template.Child()
-    address_store = Gtk.ListStore(str)
 
     customer_info = Gtk.Template.Child()
     supplier_info = Gtk.Template.Child()
@@ -56,17 +58,27 @@ class InvoiceForm(Gtk.Box):
     cumulative_column_store = CumulativeColumnStore()
     grand_totals = [0, 0, 0, 0]
 
+    preview_toggle = Gtk.Template.Child()
+
     def __init__(self, parent: Gtk.Window, invoice_stack: Gtk.Stack, customer: Customer, idx: int,
                  event: FormEvent):
         super().__init__()
+        self.tex_project = TexProject()
+        self.pdf = PDF(customer,
+                       self.table_column_store,
+                       self.cumulative_column_store,
+                       self.invoice_row_store,
+                       self.grand_totals,
+                       self.tex_project.working_directory)
         self.event = event
         self.record_event = RecordEvent()
         self.record_event.connect('saved', self.do_add_record)
         self.event.connect('saved', self.invalidate)
+        self.address_store = Gtk.ListStore(str)
 
         self.vars = {
             _('invoice_nr'): str(int(preference_store['invoice_counter'].value) + idx),
-            _('today'): "{%s}" % _('today')
+            _('today'): "\\today"
         }
         self.reload_cumulatives()
         self.parent = parent
@@ -85,11 +97,12 @@ class InvoiceForm(Gtk.Box):
         self.supplier_info.set_model(self.supplier_info_store)
         self.update_customer(customer)
         preference_store['invoice_ending'].connect('changed', self.set_invoice_ending)
-        self.invoice_ending.set_text(preference_store['invoice_ending'].value)
+        self.invoice_ending.set_text(preference_store['invoice_ending'].value.format_map(self.vars))
 
     def update_customer(self, customer: Customer):
         self.vars[_('customer_nr')] = customer.id
         self.vars[_('customer_name')] = customer.name
+        self.pdf.customer = customer
         self.invalidate()
 
     def set_title(self, preference, title):
@@ -100,9 +113,29 @@ class InvoiceForm(Gtk.Box):
         self.subtitle.set_text(subtitle)
         self.vars[_('subtitle')] = subtitle
 
+    def do_remove_invoice(self, dialog, response, invoice):
+        if response == Gtk.ResponseType.OK:
+            self.tex_project.stop_tex()
+            self.tex_project.stop_previewer()
+            shutil.rmtree(self.tex_project.working_directory, ignore_errors=True)
+            self.invoice_stack.remove(invoice)
+        if dialog:
+            dialog.destroy()
+
     @Gtk.Template.Callback()
     def remove_invoice(self, invoice):
-        self.invoice_stack.remove(invoice)
+        if preference_store['show_invoice_removal'].value:
+            confirm_dialog = Gtk.MessageDialog(title=_("Delete Invoice Confirmation"),
+                                               parent=self.parent,
+                                               modal=True,
+                                               destroy_with_parent=True,
+                                               message_type=Gtk.MessageType.QUESTION,
+                                               buttons=Gtk.ButtonsType.OK_CANCEL,
+                                               text=_("Are you sure you want to delete the invoice?"))
+            confirm_dialog.connect("response", self.do_remove_invoice, invoice)
+            confirm_dialog.show_all()
+        else:
+            self.do_remove_invoice(None, Gtk.ResponseType.OK, invoice)
 
     @Gtk.Template.Callback()
     def add_record(self, *args):
@@ -127,11 +160,11 @@ class InvoiceForm(Gtk.Box):
             vat = round(vat + record.vat, 2)
             total = round(total + record.total, 2)
         self.grand_totals = [discount, subtotal, vat, total]
-        the_format = "{:.2f}"
-        self.vars[_('grandtotal')] = the_format.format(total)
-        self.vars[_('subtotal')] = the_format.format(subtotal)
-        self.vars[_('total_vat')] = the_format.format(vat)
-        self.vars[_('total_discount')] = the_format.format(discount)
+        the_format = "\\financial{%.2f}"
+        self.vars[_('grandtotal')] = the_format % total
+        self.vars[_('subtotal')] = the_format % subtotal
+        self.vars[_('total_vat')] = the_format % vat
+        self.vars[_('total_discount')] = the_format % discount
 
     def set_idx(self, idx: int):
         self.idx = idx
@@ -165,6 +198,18 @@ class InvoiceForm(Gtk.Box):
     def set_invoice_ending(self, preference, invoice_ending):
         self.invoice_ending.set_text(invoice_ending.format_map(self.vars))
 
+    @Gtk.Template.Callback()
+    def toggle_preview(self, btn):
+        if btn.get_active():
+            self.pdf.totals = self.grand_totals
+            self.pdf.reload(self.vars)
+            self.tex_project.run_tex()
+            self.tex_project.run_previewer()
+            self.tex_project.run_tex(run_once=False)
+        else:
+            self.tex_project.stop_tex()
+            self.tex_project.stop_previewer()
+
     def invalidate(self, *args):
         self.address_store.clear()
         for address_line in self.customer.addresslines.split(os.linesep):
@@ -187,14 +232,10 @@ class InvoiceForm(Gtk.Box):
         self.cumulative_records.get_model().clear()
         for col_idx, column in enumerate(self.cumulative_column_store):
             if column.size_type:
-                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title, str(self.grand_totals[col_idx]), 1))
+                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title,
+                                                            str(self.grand_totals[col_idx]),
+                                                            1))
         self.set_invoice_ending(None, preference_store['invoice_ending'].value)
-
-
-if __name__ == '__main__':
-    Style()
-    window = Gtk.Window()
-    window.add(InvoiceForm())
-    window.connect('destroy', Gtk.main_quit)
-    window.show_all()
-    Gtk.main()
+        if self.preview_toggle.get_active():
+            self.pdf.totals = self.grand_totals
+            self.pdf.reload(self.vars)

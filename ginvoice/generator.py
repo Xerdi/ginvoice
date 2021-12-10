@@ -17,6 +17,7 @@
 import argparse
 import json
 import os
+import re
 import sys
 
 from ginvoice.environment import image_dir
@@ -26,9 +27,6 @@ filename = 'generated_vars.tex'
 cmd_template = '\\newcommand{\\%s}{%s}\n'
 global_cmd_template = '\\global\\def\\%s{%s}\n'
 bool_template = '\\newbool{%s}\n\\global\\bool%s{%s}'
-custom_cmd_template = '\\%s{%s}\n'
-hours_template = '\t\\hourrow{%s}{%s}{%s}{%s}\n'
-fee_template = '\t\\feerow{%s}{%s}{%s}{%s}\n'
 
 
 def to_roman(n):
@@ -38,14 +36,47 @@ def to_roman(n):
         raise "expected integer, got %s" % type(n)
     if not 0 < n < 4000:
         raise "Argument must be between 1 and 3999"
-    ints = (1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1)
-    nums = ('M',  'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
+    ints = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    nums = ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I')
     result = []
     for i in range(len(ints)):
         count = int(n / ints[i])
         result.append(nums[i] * count)
         n -= ints[i] * count
     return ''.join(result)
+
+
+pre_escape_chars = {
+    '&': r'\&',
+    '%': r'\%',
+    '$': r'\$',
+    '#': r'\#',
+    '_': r'\_',
+    # '{': r'\{',
+    # '}': r'\}',
+    '~': r'\textasciitilde{}',
+    '^': r'\^{}',
+    '\\\\': r'\textbackslash{}'
+}
+
+post_escape_chars = {
+    '<': r'\textless{}',
+    '>': r'\textgreater{}'
+}
+
+
+def escape_tex(text, conv):
+    regex = re.compile('|'.join(re.escape(str(key)) for key in sorted(conv.keys(), key=lambda item: - len(item))))
+    return regex.sub(lambda match: conv[match.group()], text)
+
+
+def format_tex(text):
+    text = escape_tex(text, pre_escape_chars)
+    text = re.sub(r'(.*?)<b>(.*?)</b>(.*?)', r'\1\\textbf{\2}\3', text)
+    text = re.sub(r'(.*?)<u>(.*?)</u>(.*?)', r'\1\\underline{\2}\3', text)
+    text = re.sub(r'(.*?)<i>(.*?)</i>(.*?)', r'\1\\textit{\2}\3', text)
+    text = escape_tex(text, post_escape_chars)
+    return text
 
 
 GENERATORS = dict()
@@ -61,7 +92,7 @@ def generator(label):
 
 
 def parse_map(data):
-    return "\n" + "\n".join(["\t%s & %s \\\\" % (x['key'], x['val']) for x in data]) + "\n"
+    return "\n" + "\n".join(["\t%s & %s \\\\" % (format_tex(x['key']), format_tex(x['val'])) for x in data]) + "\n"
 
 
 @generator("languages")
@@ -71,13 +102,12 @@ def generate_languages(f, data):
 
 @generator("header")
 def generate_header(f, data):
-    # f.write(custom_cmd_template % ('title', data['title']))
-    f.write(global_cmd_template % ('subtitle', data['subtitle']))
+    f.write(global_cmd_template % ('subtitle', format_tex(data['subtitle'])))
 
 
 @generator("addressee")
 def generate_addressee(f, data):
-    f.write(cmd_template % ('addressee', '\\\\'.join(data)))
+    f.write(cmd_template % ('addressee', '\\\\'.join([format_tex(x) for x in data])))
 
 
 @generator("customer_info")
@@ -101,7 +131,7 @@ def generate_table(f, data):
     for i, c in enumerate(columns):
         if isinstance(c['width'], str):
             f.write("\\newlength{\\c%ssize}\n" % to_roman(i))
-            f.write("\\settowidth{\\c%ssize}{%s}\n" % (to_roman(i), c['width']))
+            f.write("\\settowidth{\\c%ssize}{%s}\n" % (to_roman(i), format_tex(c['width'])))
             f.write("\\addtolength{\\rowsize}{-\\c%ssize}\n" % to_roman(i))
             f.write("\\addtolength{\\rowsize}{-2\\tabcolsep}\n")
             buf.append("%s{%s}" % (c['type'], "\\c%ssize" % to_roman(i)))
@@ -112,7 +142,7 @@ def generate_table(f, data):
     f.write("\\newcolumntype\\columndef{%s}\n" % ' '.join(buf))
 
     f.write(cmd_template % ('tableheader', '%s\\\\' % (
-        '&'.join("\\rowheadercolor\\textbf{%s}" % (c['title']) for c in columns)
+        '&'.join("\\rowheadercolor{}%s" % (format_tex(c['title'])) for c in columns)
     )))
 
     def format_cells(row):
@@ -122,7 +152,7 @@ def generate_table(f, data):
             if c['type'] == 'F':
                 new_row.append("\\currency\\hfill\\financial{%.2f}" % cell)
             else:
-                new_row.append(cell)
+                new_row.append(format_tex(cell))
         return new_row
 
     f.write(cmd_template % ('tablerecords',
@@ -130,18 +160,19 @@ def generate_table(f, data):
                                 "\n\t%s\\\\" % " & ".join(format_cells(x)) for x in data['records']
                             ])))
 
-    f.write(cmd_template % ('cumoffset', '& '.join('' for x in range(column_count-1))))
+    f.write(cmd_template % ('cumoffset', '& '.join('' for x in range(column_count - 1))))
     cum_row = ""
     # cum_row = "\\cline{%d-%d}\n" % (column_count-1, column_count)
     f.write(cmd_template % ('tablefooter',
-                            cum_row.join(["\\cum{%s}{%.2f}\n" % (r['key'], r['val']) for r in data['cumulative']])))
+                            cum_row.join(
+                                ["\\cum{%s}{%.2f}\n" % (format_tex(r['key']), r['val']) for r in data['cumulative']])))
 
 
 @generator("footer")
 def generate_footer(f, data):
     graphics_extensions = ["pdf", "png", "jpg", "mps", "jpeg", "jbig2", "jb2", "PDF", "PNG", "JPG", "JPEG",
                            "JBIG2", "JB2", "eps"]
-    f.write(cmd_template % ('theending', data['ending']))
+    f.write(cmd_template % ('theending', format_tex(data['ending'])))
 
     def include_graphics(file):
         fn, ext = file.split('.')
@@ -152,7 +183,7 @@ def generate_footer(f, data):
 
     # Don't forget to add trailing slash
     f.write("\\graphicspath{{%s/}}\n" % image_dir)
-    images = [include_graphics(x) for x in data['images']]
+    images = [include_graphics(os.path.basename(x)) for x in data['images']]
     f.write(cmd_template % ('images', '\n' + '\t\\hspace{1.5em}\n'.join(images)))
     f.write("\n")
 
@@ -184,7 +215,7 @@ def generate_style(f, data):
 @generator("misc")
 def generate_misc(f, data):
     for k, v in data.items():
-        f.write(global_cmd_template % (k, v))
+        f.write(global_cmd_template % (k, format_tex(v)))
 
 
 def main():
@@ -202,7 +233,10 @@ def main():
 
     tex_file_mapping = {
         "languages.tex": ["languages"],
-        "header.tex": ["header", "addressee", "customer_info", "supplier_info"],
+        "header.tex": ["header"],
+        "customer_info.tex": ["customer_info"],
+        "supplier_info.tex": ["supplier_info"],
+        "addressee.tex": ["addressee"],
         "table.tex": ["table"],
         "footer.tex": ["footer"],
         "style.tex": ["style"],

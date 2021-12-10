@@ -36,7 +36,7 @@ class Record(GObject.GObject):
         return [
             self.description,
             self.date,
-            str(self.quantity) + self.quantity_postfix,
+            self.quantity_format(),
             str(self.price),
             str(self.discount),
             str(self.subtotal),
@@ -45,6 +45,9 @@ class Record(GObject.GObject):
             self,
             1
         ]
+
+    def quantity_format(self):
+        return "%g%s" % (self.quantity, self.quantity_postfix)
 
 
 class RecordEvent(GObject.GObject):

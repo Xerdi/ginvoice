@@ -59,22 +59,22 @@
       {
         "title": "Date",
         "type": "R",
-        "width": " oct. 22 "
+        "width": "oct. 22"
       },
       {
         "title": "Quantity",
         "type": "L",
-        "width": "\\textbf{ Quantity }"
+        "width": "<b>Quantity</b>"
       },
       {
         "title": "Price",
         "type": "F",
-        "width": "\\textbf{Total (incl.)}~"
+        "width": "<b>Total (incl.)</b>"
       },
       {
         "title": "Total",
         "type": "F",
-        "width": "\\$ \\financial{1000.00}"
+        "width": "$ 1,000.00"
       }
     ],
     "cumulative": [
@@ -83,7 +83,7 @@
         "val": 1229.05
       },
       {
-        "key": "VAT (21\\%)",
+        "key": "VAT (21%)",
         "val": 258.1
       },
       {
@@ -130,7 +130,7 @@
     ]
   },
   "footer": {
-    "ending": "Please send us the total of \\currency \\financial{500.00}\nwithin the coming 14 days\nto account number NL00 0000 0000 0000 0000 00\nwith the note of the invoice number 1.\n\nQuestions about this invoice?\nPlease contact us.",
+    "ending": "Please send us the total of $ \\financial{1487.15}\nwithin the coming 14 days\nto account number NL00 0000 0000 0000 0000 00\nwith the note of the invoice number 1.\n\nQuestions about this invoice?\nPlease contact us.",
     "images": [
       "image1.png",
       "image2.png",
@@ -142,10 +142,10 @@
     "mono_font": "Ubuntu Mono",
     "background_color": "#360519",
     "accent_color": "#c4a000",
-    "style_table": true
+    "style_table": false
   },
   "misc": {
-    "currency": "\\$",
+    "currency": "$",
     "author": "Erik Nijenhuis",
     "title": "Grapefruit Inc. Invoice",
     "subject": "Invoice for Juicing Joker",

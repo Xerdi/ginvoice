@@ -126,9 +126,11 @@ preference_store += Preference('babel', default='english')
 preference_store += Preference('currency', default='€')
 preference_store += Preference('active_profile', default='Default')
 
-# Dialog confirmations
-preference_store += Preference('show_profile_removal', default=True)
+# Dialogs
+preference_store += Preference('pdf_viewer')
+
 preference_store += Preference('show_customer_removal', default=True)
 preference_store += Preference('show_invoice_removal', default=True)
 preference_store += Preference('show_record_removal', default=True)
+
 preference_store.load()

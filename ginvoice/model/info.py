@@ -38,11 +38,11 @@ class GenericInfoStore(Gtk.ListStore):
             with open(self.data_file, 'r') as f:
                 data = json.load(f)
                 for raw in data:
-                    value = raw['value'].format_map(self.vars) if self.vars else raw['value']
+                    value = raw['val'].format_map(self.vars) if self.vars else raw['val']
                     self.append((raw['key'], value))
 
     def commit(self):
         with open(self.data_file, 'w') as f:
-            json.dump([{'key': c[0], 'value': c[1]} for c in self], f)
+            json.dump([{'key': c[0], 'val': c[1]} for c in self], f)
 
 

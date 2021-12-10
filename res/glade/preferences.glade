@@ -2081,7 +2081,7 @@ Author: Erik Nijenhuis
                                   <object class="GtkLabel">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="label" translatable="yes">Removal Confirmations</property>
+                                    <property name="label" translatable="yes">PDF Viewer</property>
                                     <property name="xalign">0</property>
                                     <style>
                                       <class name="header"/>
@@ -2107,7 +2107,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">Profile removal</property>
+                                            <property name="label" translatable="yes">Executable</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -2117,12 +2117,13 @@ Author: Erik Nijenhuis
                                           </packing>
                                         </child>
                                         <child>
-                                          <object class="GtkSwitch" id="removal_profile">
-                                            <property name="name">show_profile_removal</property>
+                                          <object class="GtkAppChooserButton" id="pdf_viewer">
                                             <property name="visible">True</property>
-                                            <property name="can-focus">True</property>
-                                            <property name="active">True</property>
-                                            <signal name="state-set" handler="change_confirmation" swapped="no"/>
+                                            <property name="can-focus">False</property>
+                                            <property name="content-type">application/pdf</property>
+                                            <property name="show-default-item">True</property>
+                                            <property name="heading" translatable="yes">Executable</property>
+                                            <signal name="changed" handler="changed_pdf_viewer" swapped="no"/>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2137,6 +2138,51 @@ Author: Erik Nijenhuis
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
+                                    <style>
+                                      <class name="view"/>
+                                      <class name="frame"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Removal Confirmations</property>
+                                    <property name="xalign">0</property>
+                                    <style>
+                                      <class name="header"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="orientation">vertical</property>
+                                    <property name="spacing">16</property>
                                     <child>
                                       <object class="GtkBox">
                                         <property name="visible">True</property>
@@ -2266,7 +2312,7 @@ Author: Erik Nijenhuis
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                             <style>
