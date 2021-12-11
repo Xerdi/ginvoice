@@ -30,6 +30,7 @@ from ginvoice.model.style import Style
 from ginvoice.tex_project import TexProject
 from ginvoice.ui.preferences import PreferencesWindow
 from ginvoice.ui.record import RecordDialog
+from ginvoice.ui.target import TargetChooserDialog
 from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
@@ -38,10 +39,10 @@ from gi.repository import Gtk, GObject
 
 class RecordBinding:
 
-    def __init__(self, store: Gtk.ListStore, record: Record, row: Gtk.ListBoxRow):
+    def __init__(self, store: Gtk.ListStore, record: Record):
         self.store = store
         self.record = record
-        self.row = row
+        self.row = store[store.append(record.as_list())]
         self.store.connect('row-changed', self.rows_changed)
         self.listener = self.record.connect('notify', self.update)
 
@@ -64,6 +65,8 @@ class InvoiceForm(Gtk.Box):
 
     customer_info = Gtk.Template.Child()
     supplier_info = Gtk.Template.Child()
+
+    remove_row = Gtk.Template.Child()
 
     invoice_records = Gtk.Template.Child()
     invoice_row_store = Gtk.Template.Child()
@@ -167,8 +170,8 @@ class InvoiceForm(Gtk.Box):
         dialog.show_all()
 
     def do_add_record(self, event, record: Record):
-        RecordBinding(self.invoice_row_store, record,
-                      self.invoice_row_store[self.invoice_row_store.append(record.as_list())])
+        RecordBinding(self.invoice_row_store, record)
+        self.remove_row.set_sensitive(len(self.invoice_row_store))
         self.reload_cumulatives()
         self.invalidate()
 
@@ -177,8 +180,11 @@ class InvoiceForm(Gtk.Box):
         self.invalidate()
 
     @Gtk.Template.Callback()
-    def remove_record(self, btn):
-        print(btn, 'remove_record')
+    def remove_record(self, treeview):
+        model, iter = treeview.get_selection().get_selected()
+        model.remove(iter)
+        self.remove_row.set_sensitive(len(model))
+
 
     @Gtk.Template.Callback()
     def edit_record(self, treeview, index, column):
@@ -275,10 +281,26 @@ class InvoiceForm(Gtk.Box):
         self.cumulative_records.get_model().clear()
         for col_idx, column in enumerate(self.cumulative_column_store):
             if column.size_type:
-                self.cumulative_records.get_model().append(('<b>%s</b>' % column.title,
+                self.cumulative_records.get_model().append((column.title,
                                                             str(self.grand_totals[col_idx]),
                                                             1))
         self.set_invoice_ending(None, preference_store['invoice_ending'].value)
         if self.preview_toggle.get_active():
             self.pdf.totals = self.grand_totals
             self.pdf.reload(self.vars)
+
+    @Gtk.Template.Callback()
+    def save(self, btn):
+        dialog = TargetChooserDialog(default_filename=_("Invoice {klant_naam} - {factuur_nr}.pdf")
+                                     .format_map(self.vars))
+        dialog.set_transient_for(self.parent)
+        self.tex_project.clear()
+        if dialog.run() == Gtk.ResponseType.OK:
+            target_file = dialog.get_filename()
+            if not target_file.endswith('.pdf'):
+                target_file += '.pdf'
+            self.pdf.reload(self.vars)
+            self.tex_project.run_tex()
+            shutil.copyfile(os.path.join(self.tex_project.working_directory, 'main.pdf'), target_file)
+            self.do_remove_invoice(None, Gtk.ResponseType.OK, self)
+        dialog.destroy()

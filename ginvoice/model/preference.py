@@ -22,7 +22,7 @@ import gi
 from ginvoice.environment import preferences_file
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GObject
+from gi.repository import GObject, GLib
 
 
 class Preference(GObject.GObject):
@@ -132,5 +132,7 @@ preference_store += Preference('pdf_viewer')
 preference_store += Preference('show_customer_removal', default=True)
 preference_store += Preference('show_invoice_removal', default=True)
 preference_store += Preference('show_record_removal', default=True)
+preference_store += Preference('target_directory',
+                               default=GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOCUMENTS))
 
 preference_store.load()

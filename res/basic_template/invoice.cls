@@ -84,7 +84,7 @@
 \newcommand\cum[2]{%
     \cumoffset
     \columnheaderbgcolor
-    \rowheadercolor\textbf{#1} & \currency\hfill\financial{#2} \\
+    \rowheadercolor{#1} & \currency\hfill\financial{#2} \\
 }
 
 \newcommand\rowheaderbgcolor{%

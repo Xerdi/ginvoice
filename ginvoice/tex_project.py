@@ -20,7 +20,6 @@ import os
 import subprocess
 import tarfile
 import tempfile
-from time import sleep
 
 from ginvoice.environment import get_templates, tex_dir
 
@@ -87,6 +86,12 @@ class TexProject(GObject.GObject):
                 print("ERROR: Latexmk exited with code %d" % self.latexmk_proc.poll())
                 subprocess.Popen(['xdg-open', os.path.join(self.working_directory, 'main.log')])
                 self.latexmk_proc = None
+
+    def clear(self):
+        self.stop_previewer()
+        subprocess.Popen(['latexmk', '-C'], cwd=self.working_directory,
+                         stdout=subprocess.DEVNULL,
+                         stderr=subprocess.DEVNULL)
 
     def run_previewer(self):
         self.stop_previewer()
