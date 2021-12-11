@@ -13,6 +13,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+import threading
+
 import gi
 import os
 import subprocess
@@ -25,7 +27,7 @@ from ginvoice.environment import get_templates, tex_dir
 from ginvoice.model.preference import preference_store
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import GObject
 
 
 def get_members(tar, prefix):
@@ -38,11 +40,17 @@ def get_members(tar, prefix):
             yield tarinfo
 
 
-class TexProject:
+class TexProject(GObject.GObject):
+
+    __gsignals__ = {
+        'pdfviewer_exited': (GObject.SignalFlags.RUN_FIRST, None, (int,))
+    }
+
     latexmk_proc = None
     previewer_proc = None
 
     def __init__(self, working_directory=None, template_selection='basic_template'):
+        GObject.GObject.__init__(self)
         self.working_directory = working_directory
         if not self.working_directory:
             self.working_directory = tempfile.mkdtemp(prefix=os.path.join(tex_dir, ''))
@@ -92,6 +100,13 @@ class TexProject:
         self.previewer = preference_store['pdf_viewer'].value
         if self.previewer:
             self.previewer_proc = subprocess.Popen([self.previewer, 'main.pdf'], cwd=self.working_directory)
+            self._watch_process(self.previewer_proc)
         else:
             subprocess.Popen(['xdg-open', os.path.join(self.working_directory, 'main.pdf')])
+
+    def _watch_process(self, proc):
+        def watcher(_self, _proc):
+            _self.emit('pdfviewer_exited', _proc.wait())
+
+        threading.Thread(target=watcher, args=(self, proc)).start()
 

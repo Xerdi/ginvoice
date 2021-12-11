@@ -46,7 +46,7 @@ class RecordBinding:
         self.listener = self.record.connect('notify', self.update)
 
     def update(self, *args):
-        print(self.store.set_row(self.row.iter, self.record.as_list()))
+        self.store.set_row(self.row.iter, self.record.as_list())
 
     def rows_changed(self, store: Gtk.ListStore, idx: int, iter: Gtk.TreeIter):
         if store[iter][8] == self.record:
@@ -81,6 +81,7 @@ class InvoiceForm(Gtk.Box):
                  event: FormEvent):
         super().__init__()
         self.tex_project = TexProject()
+        self.tex_project.connect('pdfviewer_exited', self.pdfviewer_closed)
         self.pdf = PDF(customer,
                        self.table_column_store,
                        self.cumulative_column_store,
@@ -117,6 +118,9 @@ class InvoiceForm(Gtk.Box):
         preference_store['invoice_ending'].connect('changed', self.set_invoice_ending)
         self.invoice_ending.set_text(preference_store['invoice_ending'].value.format_map(self.vars))
         self.dialog = None
+
+    def pdfviewer_closed(self, *args):
+        self.preview_toggle.set_active(False)
 
     def update_customer(self, customer: Customer):
         self.vars[_('customer_nr')] = customer.id

@@ -21,14 +21,26 @@ PROJECT_DIRECTORY="$(git rev-parse --show-toplevel)"
 set -e
 
 cd "$PROJECT_DIRECTORY/res/basic_template"
-latexmk -C
-rm -f footer.tex header.tex languages.tex meta.tex style.tex table.tex
+
+echo "Cleaning up the template directory"
+latexmk -C &> /dev/null
+rm -f languages.tex\
+  header.tex\
+  addressee.tex\
+  customer_info.tex\
+  supplier_info.tex\
+  table.tex\
+  footer.tex\
+  style.tex\
+  meta.tex
 
 cd ..
+echo "Creating template tarball"
 tar -zcvf basic_template.tar.gz basic_template
 
 cd "$PROJECT_DIRECTORY"
 
+echo "Creating .deb package"
 debuild -us -uc
 
 cd debian
