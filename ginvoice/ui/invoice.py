@@ -33,7 +33,24 @@ from ginvoice.ui.record import RecordDialog
 from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, GObject
+
+
+class RecordBinding:
+
+    def __init__(self, store: Gtk.ListStore, record: Record, row: Gtk.ListBoxRow):
+        self.store = store
+        self.record = record
+        self.row = row
+        self.store.connect('row-changed', self.rows_changed)
+        self.listener = self.record.connect('notify', self.update)
+
+    def update(self, *args):
+        print(self.store.set_row(self.row.iter, self.record.as_list()))
+
+    def rows_changed(self, store: Gtk.ListStore, idx: int, iter: Gtk.TreeIter):
+        if store[iter][8] == self.record:
+            self.row = store[iter]
 
 
 @Gtk.Template.from_file(find_ui_file("invoice.glade"))
@@ -73,6 +90,7 @@ class InvoiceForm(Gtk.Box):
         self.event = event
         self.record_event = RecordEvent()
         self.record_event.connect('saved', self.do_add_record)
+        self.record_event.connect('changed', self.record_changed)
         self.event.connect('saved', self.invalidate)
         self.address_store = Gtk.ListStore(str)
 
@@ -98,6 +116,7 @@ class InvoiceForm(Gtk.Box):
         self.update_customer(customer)
         preference_store['invoice_ending'].connect('changed', self.set_invoice_ending)
         self.invoice_ending.set_text(preference_store['invoice_ending'].value.format_map(self.vars))
+        self.dialog = None
 
     def update_customer(self, customer: Customer):
         self.vars[_('customer_nr')] = customer.id
@@ -144,9 +163,29 @@ class InvoiceForm(Gtk.Box):
         dialog.show_all()
 
     def do_add_record(self, event, record: Record):
-        self.invoice_row_store.append(record.as_list())
+        RecordBinding(self.invoice_row_store, record,
+                      self.invoice_row_store[self.invoice_row_store.append(record.as_list())])
         self.reload_cumulatives()
         self.invalidate()
+
+    def record_changed(self, *args):
+        self.reload_cumulatives()
+        self.invalidate()
+
+    @Gtk.Template.Callback()
+    def remove_record(self, btn):
+        print(btn, 'remove_record')
+
+    @Gtk.Template.Callback()
+    def edit_record(self, treeview, index, column):
+        record = treeview.get_model()[index][8]
+        if self.dialog and self.dialog.get_visible():
+            self.dialog.record = record
+            self.dialog.reload_record()
+        else:
+            self.dialog = RecordDialog(self.record_event, record=record)
+            self.dialog.set_transient_for(self.parent)
+            self.dialog.show_all()
 
     def reload_cumulatives(self):
         discount = 0.0

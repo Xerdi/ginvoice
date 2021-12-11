@@ -46,13 +46,20 @@ class RecordDialog(Gtk.Window):
     percentages_radio = Gtk.Template.Child()
     fixed_radio = Gtk.Template.Child()
 
-    def __init__(self, event):
+    def __init__(self, event, record=None):
         super().__init__()
         self.event = event
+        self.record = record
+        self.change_mode()
+        self.reload_record()
 
     @Gtk.Template.Callback()
     def save(self, btn):
-        record = Record()
+        if self.record:
+            record = self.record
+        else:
+            record = Record()
+
         record.description = self.description.get_text()
         record.date = self.date.get_text()
         qtype = self.quantity_type()
@@ -79,9 +86,13 @@ class RecordDialog(Gtk.Window):
         record.subtotal = subtotal
         record.vat = vat
         record.total = total
-        self.event.emit('saved', record)
-        if not self.repeat.get_active():
+        if self.record:
+            self.event.emit('changed', record)
             self.destroy()
+        else:
+            self.event.emit('saved', record)
+            if not self.repeat.get_active():
+                self.destroy()
 
     def calc_record(self, quantity, price, discount, vat_percent):
         subtotal = quantity * price - discount
@@ -95,6 +106,26 @@ class RecordDialog(Gtk.Window):
             if x.get_active():
                 return i
         return -1
+
+    def change_mode(self):
+        if self.record is not None:
+            self.set_title(_('Edit Invoice Record'))
+            self.repeat.set_visible(False)
+
+    def reload_record(self):
+        if self.record:
+            self.description.set_text(self.record.description)
+            self.date.set_text(self.record.date)
+            self.quantity.set_text(str(self.record.quantity))
+            qtype_radios = [self.units_radio, self.hours_radio, self.minutes_radio]
+            qtype_idx = [_('x'), _('h'), _('m')].index(self.record.quantity_postfix)
+            qtype_radios[qtype_idx].set_active(True)
+            self.price.set_text(str(self.record.price))
+            self.discount.set_text(str(self.record.discount))
+            # Always return to fixed price (pre calculated)
+            self.fixed_radio.set_active(True)
+            self.vat.set_active(self.record.vat)
+
 
     @Gtk.Template.Callback()
     def close(self, btn):

@@ -52,6 +52,7 @@ class Record(GObject.GObject):
 
 class RecordEvent(GObject.GObject):
     __gsignals__ = {
-        'saved': (GObject.SignalFlags.RUN_FIRST, None, (Record,))
+        'saved': (GObject.SignalFlags.RUN_FIRST, None, (Record,)),
+        'changed': (GObject.SignalFlags.RUN_FIRST, None, (Record,)),
     }
 
