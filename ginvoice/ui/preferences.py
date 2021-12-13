@@ -105,9 +105,11 @@ class PreferencesWindow(Gtk.Window):
             return family.is_monospace() == include
 
         self.main_font.set_filter_func(filter_mono, False)
-        self.main_font.set_font(preference_store['main_font'].value)
+        if preference_store['main_font'].value:
+            self.main_font.set_font(preference_store['main_font'].value)
         self.mono_font.set_filter_func(filter_mono, True)
-        self.mono_font.set_font(preference_store['mono_font'].value)
+        if preference_store['mono_font'].value:
+            self.mono_font.set_font(preference_store['mono_font'].value)
         fg_color = Gdk.RGBA()
         fg_color.parse(preference_store['foreground_color'].value)
         self.fg_color.set_rgba(fg_color)

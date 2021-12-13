@@ -15,18 +15,16 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import os, gi
 import shutil
-from subprocess import Popen
 
 from ginvoice.i18n import _
 from ginvoice.environment import customer_info_file, supplier_info_file
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
 from ginvoice.model.customer import Customer
 from ginvoice.model.form import FormEvent
-from ginvoice.model.pdf import PDF
+from ginvoice.model.document import Document
 from ginvoice.model.record import RecordEvent, Record
 from ginvoice.model.info import GenericInfoStore
 from ginvoice.model.preference import preference_store
-from ginvoice.model.style import Style
 from ginvoice.tex_project import TexProject
 from ginvoice.ui.preferences import PreferencesWindow
 from ginvoice.ui.record import RecordDialog
@@ -34,7 +32,7 @@ from ginvoice.ui.target import TargetChooserDialog
 from ginvoice.util import find_ui_file
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk
 
 
 class RecordBinding:
@@ -85,12 +83,12 @@ class InvoiceForm(Gtk.Box):
         super().__init__()
         self.tex_project = TexProject()
         self.tex_project.connect('pdfviewer_exited', self.pdfviewer_closed)
-        self.pdf = PDF(customer,
-                       self.table_column_store,
-                       self.cumulative_column_store,
-                       self.invoice_row_store,
-                       self.grand_totals,
-                       self.tex_project.working_directory)
+        self.pdf = Document(customer,
+                            self.table_column_store,
+                            self.cumulative_column_store,
+                            self.invoice_row_store,
+                            self.grand_totals,
+                            self.tex_project.working_directory)
         self.event = event
         self.record_event = RecordEvent()
         self.record_event.connect('saved', self.do_add_record)
@@ -291,7 +289,7 @@ class InvoiceForm(Gtk.Box):
 
     @Gtk.Template.Callback()
     def save(self, btn):
-        dialog = TargetChooserDialog(default_filename=_("Invoice {klant_naam} - {factuur_nr}.pdf")
+        dialog = TargetChooserDialog(_("Invoice {invoice_nr} - {customer_name}.pdf")
                                      .format_map(self.vars))
         dialog.set_transient_for(self.parent)
         self.tex_project.clear()

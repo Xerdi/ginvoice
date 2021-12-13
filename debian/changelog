@@ -1,3 +1,9 @@
+ginvoice (0.0.3) unstable; urgency=medium
+
+  * Locale update.
+
+ -- Erik Nijenhuis <maclotsen@gmail.com>  Wed, 03 Mar 2021 18:33:40 +0100
+
 ginvoice (0.0.1) unstable; urgency=medium
 
   * Initial release.

@@ -15,6 +15,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import sys, gi
+
+from ginvoice.environment import setup_environment
+
 from ginvoice.ui.app import GinVoiceWindow
 
 gi.require_version("Gtk", "3.0")
@@ -34,6 +37,7 @@ class Application(Gtk.Application):
 
 
 def main():
+    setup_environment()
     Application().run(sys.argv)
 
 

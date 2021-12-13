@@ -19,6 +19,7 @@ import json
 
 import gi
 
+from ginvoice.i18n import locale, update_locale, _
 from ginvoice.environment import preferences_file
 
 gi.require_version("Gtk", "3.0")
@@ -98,6 +99,10 @@ class PreferenceStore(GObject.GObject):
 
 preference_store = PreferenceStore()
 
+
+def _update_locale(*args):
+    update_locale(preference_store['locale'].value)
+
 # Document
 preference_store += Preference('title', default='')
 preference_store += Preference('subtitle', default='')
@@ -105,8 +110,8 @@ preference_store += Preference('author', default=getpass.getuser())
 preference_store += Preference('keywords', default='')
 
 # Document styling
-preference_store += Preference('main_font', default='Sans')
-preference_store += Preference('mono_font', default='Monospace')
+preference_store += Preference('main_font')
+preference_store += Preference('mono_font')
 preference_store += Preference('foreground_color', default='#000000')
 preference_store += Preference('background_color', default='#ffffff')
 
@@ -122,9 +127,9 @@ preference_store += Preference('customer_counter', default='1')
 
 # Language and currency
 preference_store += Preference('locale', default='')
+preference_store['locale'].connect('changed', _update_locale)
 preference_store += Preference('babel', default='english')
-preference_store += Preference('currency', default='€')
-preference_store += Preference('active_profile', default='Default')
+preference_store += Preference('currency')
 
 # Dialogs
 preference_store += Preference('pdf_viewer')
@@ -134,5 +139,3 @@ preference_store += Preference('show_invoice_removal', default=True)
 preference_store += Preference('show_record_removal', default=True)
 preference_store += Preference('target_directory',
                                default=GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_DOCUMENTS))
-
-preference_store.load()

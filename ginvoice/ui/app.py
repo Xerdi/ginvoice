@@ -18,7 +18,7 @@ import gi
 
 from ginvoice.model.customer import Customer, CustomerStore
 from ginvoice.model.form import FormEvent
-from ginvoice.model.preference import preference_store
+from ginvoice.model.preference import preference_store, _update_locale
 from ginvoice.model.style import Style
 from ginvoice.ui.customer import CustomerWindow
 from ginvoice.ui.invoice import InvoiceForm
@@ -51,6 +51,8 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.style = Style()
+        preference_store.load()
+        _update_locale(preference_store['locale'].value)
         self.customer_listbox.set_filter_func(self.filter_customers)
         # self.customer_listbox.set_sort_func(self.sort_customers)
         self.customer_listbox.bind_model(self.customer_store, self.create_customer_row)

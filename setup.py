@@ -37,10 +37,13 @@ data_files = [
     ("lib/ginvoice/templates", ["res/basic_template.tar.gz"]),
     ("lib/ginvoice", [res("app.glade"),
                       res("customer.glade"),
-                      res("invoice.glade"),
                       res("info.glade"),
-                      res("variable.glade"),
-                      res("preferences.glade")]),
+                      res("invoice.glade"),
+                      res("preferences.glade"),
+                      res("record.glade"),
+                      res("target.glade"),
+                      res("variable.glade")
+                      ]),
     ("lib/ginvoice", ["res/css/style.css"])
 ]
 
@@ -57,7 +60,7 @@ for po_file in po_files:
     data_files.extend(locales)
 
 setup(name="GinVoice",
-      version=call("git describe --tags", shell=True),
+      version="0.0.3",#call("git describe --tags", shell=True),
       description="Creating LaTeX invoices with a GTK GUI",
       author="Erik Nijenhuis",
       author_email="erik@xerdi.com",
@@ -66,8 +69,7 @@ setup(name="GinVoice",
       data_files=data_files,
       install_requires=[
           "pycairo",
-          "PyGObject",
-          "xdg"
+          "PyGObject"
       ],
       entry_points={
           'console_scripts': ['ginvoice=ginvoice.main:main', 'gingen=ginvoice.generator:main']

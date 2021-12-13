@@ -68,13 +68,14 @@ class TexProject(GObject.GObject):
             self.latexmk_proc.kill()
 
     def _latexmk(self, run_once):
-        cmd = ['latexmk', '-f', '-lualatex']
+        cmd = ['latexmk', '-f', '-lualatex', '--shell-escape', '-interaction=nonstopmode']
         if not run_once:
             cmd.append('-pvc')
         cmd.append('main')
         self.latexmk_proc = subprocess.Popen(cmd, cwd=self.working_directory,
                                              stdout=subprocess.DEVNULL,
-                                             stderr=subprocess.DEVNULL)
+                                             stderr=subprocess.DEVNULL,
+                                             shell=False)
         if run_once:
             return_code = self.latexmk_proc.wait()
             if return_code:

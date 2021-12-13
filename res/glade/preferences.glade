@@ -83,7 +83,7 @@ Author: Erik Nijenhuis
       </row>
       <row>
         <col id="0" translatable="yes">US DOLLAR</col>
-        <col id="1">\$</col>
+        <col id="1">$</col>
       </row>
     </data>
   </object>
@@ -273,6 +273,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="author">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
+                                            <property name="has-focus">True</property>
                                             <property name="placeholder-text" translatable="yes">John Doe</property>
                                             <signal name="changed" handler="change_author" swapped="no"/>
                                           </object>
@@ -312,7 +313,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="subtitle">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
-                                            <property name="placeholder-text" translatable="yes">Invoice {invoice_nr}</property>
+                                            <property name="placeholder-text" translatable="yes">Invoice</property>
                                             <signal name="changed" handler="change_subtitle" swapped="no"/>
                                           </object>
                                           <packing>
@@ -338,7 +339,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="keywords">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
-                                            <property name="placeholder-text" translatable="yes">Invoice {grandtotal}</property>
+                                            <property name="placeholder-text" translatable="yes">Invoice</property>
                                             <signal name="changed" handler="change_keywords" swapped="no"/>
                                           </object>
                                           <packing>
@@ -423,8 +424,9 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
-                                            <property name="font">Sans 12</property>
+                                            <property name="font"/>
                                             <property name="language">nl-nl</property>
+                                            <property name="level">GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
                                             <property name="preview-text"/>
                                             <property name="show-size">False</property>
                                             <signal name="font-set" handler="change_main_font" swapped="no"/>
@@ -494,8 +496,9 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
-                                            <property name="font">Sans 12</property>
+                                            <property name="font"/>
                                             <property name="language">nl-nl</property>
+                                            <property name="level">GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
                                             <property name="preview-text"/>
                                             <property name="show-size">False</property>
                                             <signal name="font-set" handler="change_mono_font" swapped="no"/>
@@ -1086,7 +1089,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="model">column_size_store</property>
-                                            <property name="active">0</property>
+                                            <property name="active">1</property>
                                             <property name="button-sensitivity">on</property>
                                             <property name="id-column">1</property>
                                             <child>
@@ -1596,7 +1599,6 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
-                                            <property name="text">10000</property>
                                             <property name="placeholder-text" translatable="yes">Size of text</property>
                                           </object>
                                           <packing>
@@ -1611,7 +1613,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="model">column_size_store</property>
-                                            <property name="active">2</property>
+                                            <property name="active">0</property>
                                             <property name="button-sensitivity">on</property>
                                             <property name="id-column">0</property>
                                             <child>
@@ -1815,6 +1817,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkSwitch">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
+                                            <property name="active">True</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2589,6 +2592,8 @@ Author: Erik Nijenhuis
                 <property name="label" translatable="yes">Save</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="can-default">True</property>
+                <property name="has-default">True</property>
                 <property name="receives-default">True</property>
                 <signal name="clicked" handler="save_changes" swapped="no"/>
                 <style>

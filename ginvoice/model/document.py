@@ -33,7 +33,7 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import GObject, Gtk
 
 
-class PDF(GObject.GObject):
+class Document(GObject.GObject):
     customer = GObject.Property(type=Customer)
 
     def __init__(self, customer: Customer,

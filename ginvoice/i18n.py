@@ -15,13 +15,12 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import gettext, locale, os
-from ginvoice.model.preference import preference_store
 
 APP_NAME = 'ginvoice'
 LOCALE_DIR = '/usr/share/locale'
 
 
-def update_locale(pref, new_locale):
+def update_locale(new_locale):
     if new_locale:
         new_locale += ".UTF-8"
     os.environ['LANG'] = new_locale
@@ -37,6 +36,3 @@ def update_locale(pref, new_locale):
 
 
 _ = gettext.gettext
-
-update_locale(preference_store['locale'], preference_store['locale'].value)
-preference_store['locale'].connect('changed', update_locale)

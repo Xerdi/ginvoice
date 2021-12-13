@@ -30,7 +30,6 @@ app_name = 'ginvoice'
 config_dir = os.path.join(str(xdg_config_home()), app_name)
 data_dir = os.path.join(str(xdg_data_home()), app_name)
 tex_dir = os.path.join(str(xdg_cache_home()), app_name)
-profile_dir = os.path.join(config_dir, "profiles")
 preferences_file = os.path.join(config_dir, "preferences.json")
 image_dir = os.path.join(data_dir, 'img')
 
@@ -45,7 +44,6 @@ res_dirs = [
     "/usr/local/lib/ginvoice"
 ]
 
-invoice_nr_file = os.path.join(config_dir, 'invoice_nr.txt')
 customer_file = os.path.join(config_dir, 'customers.json')
 customer_info_file = os.path.join(config_dir, 'customer_info.json')
 supplier_info_file = os.path.join(config_dir, 'supplier_info.json')
@@ -54,9 +52,19 @@ cumulative_column_file = os.path.join(config_dir, 'cumulatives.json')
 
 
 def setup_environment():
-    for directory in [config_dir, data_dir, tex_dir, image_dir, profile_dir]:
+    for directory in [config_dir, data_dir, tex_dir, image_dir]:
         if not os.path.exists(directory):
             os.mkdir(directory)
+    for file, text in [
+        (preferences_file, "{}"),
+        (customer_file, "[]"),
+        (customer_info_file, "[]"),
+        (supplier_info_file, "[]"),
+        (table_column_file, "[]"),
+        (cumulative_column_file, "[]")]:
+        if not os.path.exists(file):
+            with open(file, 'w') as f:
+                f.write(text)
 
 
 def get_templates():
@@ -65,24 +73,6 @@ def get_templates():
         templates += [os.path.join(template_dir, x) for x in os.listdir(template_dir) if
                       x.endswith('.tar.gz')]
     return templates
-
-
-def get_client_templates(client):
-    client_dir = os.path.join(tex_dir, client)
-    return [os.path.join(client_dir, x) for x in os.listdir(client_dir) if os.path.isdir(os.path.join(client_dir, x))]
-
-
-def get_client_template_dir(client):
-    # TODO parse (client) preferences
-    return get_client_templates(client)[0]
-
-
-def get_profile(name):
-    return os.path.join(profile_dir, "%s.json" % name)
-
-
-def get_profiles():
-    return [x[:-5] for x in os.listdir(profile_dir) if x.endswith(".json")]
 
 
 def get_image(filename):
@@ -100,20 +90,13 @@ def get_resource(file):
             return path
 
 
-def load_profile(name):
-    with open(get_profile(name), 'r') as f:
-        return json.load(f)
-
-
 if __name__ == '__main__':
     setup_environment()
     print("Config dir", config_dir)
     print("Data dir", data_dir)
     print("Tex dir", data_dir)
     print("Template dir", template_dirs)
-    print("Invoice path", invoice_nr_file)
     print("Customer file", customer_file)
-    print("Profile dir", profile_dir)
     print("Preferences file", preferences_file)
     print("Image dir", image_dir)
     print("Current images", get_images())

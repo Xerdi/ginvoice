@@ -204,9 +204,11 @@ def generate_style(f, data):
     f.write(generate_color('accentcolor', 'textcolor', data['accent_color']))
     f.write("\n")
     if 'main_font' in data:
-        f.write("\\setmainfont{%s}\n" % data['main_font'])
+        if data['main_font']:
+            f.write("\\setmainfont{%s}\n" % data['main_font'])
     if 'mono_font' in data:
-        f.write("\\setmonofont{%s}\n" % data['mono_font'])
+        if data['mono_font']:
+            f.write("\\setmonofont{%s}\n" % data['mono_font'])
     key_name = 'styletable'
     f.write(bool_template % (key_name, 'true' if data['style_table'] else 'false', key_name))
     f.write("\n")
