@@ -24,7 +24,7 @@ So the second example is eleven commits ahead of the version with a short hash o
 
 * **Erik Nijenhuis** - *Initial work* - [MacLotsen](https://gitlab.gnome.org/MacLotsen)
 
-See also the list of [contributors](https://gitlab.gnome.org/MacLotsen/ginvoice/contributors) who participated in this project.
+See also the list of [contributors](https://gitlab.gnome.org/MacLotsen/ginvoice/-/graphs/master) who participated in this project.
 
 ## License
 
