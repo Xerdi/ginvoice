@@ -9,5 +9,6 @@ X-Python3-Version: >= 3.6
 Package: ginvoice
 Architecture: all
 Depends: ${python3:Depends},python3-gi,python3-distutils,python3-xdg,texlive-full
+Recommends: ttf-mscorefonts-installer
 Description: Invoice creator
  Creating LaTeX invoices with a GTK GUI

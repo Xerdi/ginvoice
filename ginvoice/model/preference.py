@@ -129,7 +129,7 @@ preference_store += Preference('customer_counter', default='1')
 preference_store += Preference('locale', default='')
 preference_store['locale'].connect('changed', _update_locale)
 preference_store += Preference('babel', default='english')
-preference_store += Preference('currency')
+preference_store += Preference('currency', default='€')
 
 # Dialogs
 preference_store += Preference('pdf_viewer')

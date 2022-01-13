@@ -246,7 +246,7 @@ def main():
     }
     data = json.load(args.request)
     for file, sections in tex_file_mapping.items():
-        with open(file, 'w') as tex_file:
+        with open(file, mode='w', encoding='utf-8') as tex_file:
             for section in sections:
                 if section not in data:
                     print("Error: No such key %s provided in request" % section)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GinVoice 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 01:11+0100\n"
+"POT-Creation-Date: 2021-12-13 02:31+0100\n"
 "PO-Revision-Date: 2021-11-18 20:16+0100\n"
 "Last-Translator: Erik Nijenhuis <erik@xerdi.com>\n"
 "Language-Team: Dutch\n"
@@ -525,21 +525,22 @@ msgstr "Tekstbreedte"
 
 #: glade/preferences.glade.h:7 ../ginvoice/ui/invoice.py:102
 #: ../ginvoice/ui/invoice.py:220 glade/variable.glade.h:2
+#: ../ginvoice/ui/invoice.py:100 ../ginvoice/ui/invoice.py:218
 msgid "invoice_nr"
 msgstr "factuur_nr"
 
 #: glade/preferences.glade.h:9 ../ginvoice/ui/invoice.py:103
-#: glade/variable.glade.h:4
+#: glade/variable.glade.h:4 ../ginvoice/ui/invoice.py:101
 msgid "today"
 msgstr "vandaag"
 
 #: glade/preferences.glade.h:11 ../ginvoice/ui/invoice.py:129
-#: glade/variable.glade.h:6
+#: glade/variable.glade.h:6 ../ginvoice/ui/invoice.py:127
 msgid "customer_nr"
 msgstr "klant_nr"
 
 #: glade/preferences.glade.h:13 ../ginvoice/ui/invoice.py:130
-#: glade/variable.glade.h:8
+#: glade/variable.glade.h:8 ../ginvoice/ui/invoice.py:128
 msgid "customer_name"
 msgstr "klantnaam"
 
@@ -548,22 +549,22 @@ msgid "customer_salutation"
 msgstr "klant_aanhef"
 
 #: glade/preferences.glade.h:17 ../ginvoice/ui/invoice.py:213
-#: glade/variable.glade.h:12
+#: glade/variable.glade.h:12 ../ginvoice/ui/invoice.py:211
 msgid "grandtotal"
 msgstr "eindtotaal"
 
 #: glade/preferences.glade.h:19 ../ginvoice/ui/invoice.py:214
-#: glade/variable.glade.h:14
+#: glade/variable.glade.h:14 ../ginvoice/ui/invoice.py:212
 msgid "subtotal"
 msgstr "subtotaal"
 
 #: glade/preferences.glade.h:21 ../ginvoice/ui/invoice.py:215
-#: glade/variable.glade.h:16
+#: glade/variable.glade.h:16 ../ginvoice/ui/invoice.py:213
 msgid "total_vat"
 msgstr "totaal_btw"
 
 #: glade/preferences.glade.h:23 ../ginvoice/ui/invoice.py:216
-#: glade/variable.glade.h:18
+#: glade/variable.glade.h:18 ../ginvoice/ui/invoice.py:214
 msgid "total_discount"
 msgstr "totaal_korting"
 
@@ -613,7 +614,6 @@ msgid "Currency:"
 msgstr "Munteenheid"
 
 #: glade/preferences.glade.h:35 glade/preferences.glade.h:15
-#, fuzzy
 msgid "Invoice {invoice_nr}"
 msgstr "Factuur {factuur_nr}"
 
@@ -623,7 +623,6 @@ msgstr "Factuur {eindtotaal}"
 
 #: ../ginvoice/ui/preferences.py:258 ../ginvoice/ui/preferences.py:264
 #: ../ginvoice/ui/preferences.py:266
-#, fuzzy
 msgid "Add customer record"
 msgstr "Klantregel toevoegen"
 
@@ -634,7 +633,6 @@ msgstr "Leveranciersregel toevoegen"
 
 #: ../ginvoice/ui/preferences.py:270 ../ginvoice/ui/preferences.py:276
 #: ../ginvoice/ui/preferences.py:278
-#, fuzzy
 msgid "Edit customer record"
 msgstr "Klantregel wijzigen"
 
@@ -648,13 +646,12 @@ msgid "See next page"
 msgstr "Zie ommezijde"
 
 #: ../ginvoice/model/preference.py:144 ../ginvoice/model/preference.py:105
-#: ../ginvoice/ui/invoice.py:294
-#, fuzzy, python-brace-format
+#: ../ginvoice/ui/invoice.py:294 ../ginvoice/ui/invoice.py:292
+#, python-brace-format
 msgid "Invoice {invoice_nr} - {customer_name}.pdf"
 msgstr "Factuur {factuur_nr} - {klantnaam}.pdf"
 
 #: ../ginvoice/ui/app.py:112 ../ginvoice/ui/app.py:114
-#, fuzzy
 msgid "Delete Customer Confirmation"
 msgstr "Verwijdering klant bevestigen"
 
@@ -662,27 +659,23 @@ msgstr "Verwijdering klant bevestigen"
 msgid "Are you sure you want to delete the customer?"
 msgstr "Weet je zeker dat je de klant wilt verwijderen?"
 
-#: ../ginvoice/ui/invoice.py:136
-#, fuzzy
+#: ../ginvoice/ui/invoice.py:136 ../ginvoice/ui/invoice.py:134
 msgid "title"
 msgstr "titel"
 
-#: ../ginvoice/ui/invoice.py:140
-#, fuzzy
+#: ../ginvoice/ui/invoice.py:140 ../ginvoice/ui/invoice.py:138
 msgid "subtitle"
 msgstr "ondertitel"
 
-#: ../ginvoice/ui/invoice.py:154
-#, fuzzy
+#: ../ginvoice/ui/invoice.py:154 ../ginvoice/ui/invoice.py:152
 msgid "Delete Invoice Confirmation"
 msgstr "Verwijdering factuur bevestigingen"
 
-#: ../ginvoice/ui/invoice.py:160
+#: ../ginvoice/ui/invoice.py:160 ../ginvoice/ui/invoice.py:158
 msgid "Are you sure you want to delete the invoice?"
 msgstr "Weet je zeker dat je de factuur wilt verwijderen?"
 
 #: ../ginvoice/ui/preferences.py:135 ../ginvoice/ui/preferences.py:137
-#, fuzzy
 msgid "Default "
 msgstr "Standaard taal:"
 
@@ -699,7 +692,6 @@ msgid "m"
 msgstr "m"
 
 #: ../ginvoice/ui/record.py:112
-#, fuzzy
 msgid "Edit Invoice Record"
 msgstr "Factuurregel aanpassen"
 
@@ -717,7 +709,6 @@ msgstr ""
 
 #: glade/invoice.glade.h:16 glade/preferences.glade.h:42
 #: glade/preferences.glade.h:41
-#, fuzzy
 msgid "Subtotal"
 msgstr "subtotaal"
 
@@ -745,7 +736,6 @@ msgid "21 %"
 msgstr ""
 
 #: glade/record.glade.h:7
-#, fuzzy
 msgid "Create Invoice Record"
 msgstr "Factuurregel maken"
 
@@ -754,7 +744,6 @@ msgid "0"
 msgstr ""
 
 #: glade/record.glade.h:12
-#, fuzzy
 msgid "Quantity type"
 msgstr "Hoeveelheid"
 
@@ -763,7 +752,6 @@ msgid "In units"
 msgstr "In stuks"
 
 #: glade/record.glade.h:14
-#, fuzzy
 msgid "In minutes"
 msgstr "In minuten"
 
@@ -772,12 +760,10 @@ msgid "In hours"
 msgstr "In uren"
 
 #: glade/record.glade.h:18
-#, fuzzy
 msgid "Discount type"
 msgstr "Kortingstype"
 
 #: glade/record.glade.h:19
-#, fuzzy
 msgid "Fixed discount"
 msgstr "Vast bedrag"
 

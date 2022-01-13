@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GinVoice 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 01:11+0100\n"
-"PO-Revision-Date: 2021-12-13 01:11+0100\n"
+"POT-Creation-Date: 2021-12-13 02:31+0100\n"
+"PO-Revision-Date: 2021-12-13 02:31+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: nl\n"
@@ -525,21 +525,22 @@ msgstr ""
 
 #: glade/preferences.glade.h:7 ../ginvoice/ui/invoice.py:102
 #: ../ginvoice/ui/invoice.py:220 glade/variable.glade.h:2
+#: ../ginvoice/ui/invoice.py:100 ../ginvoice/ui/invoice.py:218
 msgid "invoice_nr"
 msgstr ""
 
 #: glade/preferences.glade.h:9 ../ginvoice/ui/invoice.py:103
-#: glade/variable.glade.h:4
+#: glade/variable.glade.h:4 ../ginvoice/ui/invoice.py:101
 msgid "today"
 msgstr ""
 
 #: glade/preferences.glade.h:11 ../ginvoice/ui/invoice.py:129
-#: glade/variable.glade.h:6
+#: glade/variable.glade.h:6 ../ginvoice/ui/invoice.py:127
 msgid "customer_nr"
 msgstr ""
 
 #: glade/preferences.glade.h:13 ../ginvoice/ui/invoice.py:130
-#: glade/variable.glade.h:8
+#: glade/variable.glade.h:8 ../ginvoice/ui/invoice.py:128
 msgid "customer_name"
 msgstr ""
 
@@ -548,22 +549,22 @@ msgid "customer_salutation"
 msgstr ""
 
 #: glade/preferences.glade.h:17 ../ginvoice/ui/invoice.py:213
-#: glade/variable.glade.h:12
+#: glade/variable.glade.h:12 ../ginvoice/ui/invoice.py:211
 msgid "grandtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:19 ../ginvoice/ui/invoice.py:214
-#: glade/variable.glade.h:14
+#: glade/variable.glade.h:14 ../ginvoice/ui/invoice.py:212
 msgid "subtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:21 ../ginvoice/ui/invoice.py:215
-#: glade/variable.glade.h:16
+#: glade/variable.glade.h:16 ../ginvoice/ui/invoice.py:213
 msgid "total_vat"
 msgstr ""
 
 #: glade/preferences.glade.h:23 ../ginvoice/ui/invoice.py:216
-#: glade/variable.glade.h:18
+#: glade/variable.glade.h:18 ../ginvoice/ui/invoice.py:214
 msgid "total_discount"
 msgstr ""
 
@@ -645,7 +646,7 @@ msgid "See next page"
 msgstr ""
 
 #: ../ginvoice/model/preference.py:144 ../ginvoice/model/preference.py:105
-#: ../ginvoice/ui/invoice.py:294
+#: ../ginvoice/ui/invoice.py:294 ../ginvoice/ui/invoice.py:292
 #, python-brace-format
 msgid "Invoice {invoice_nr} - {customer_name}.pdf"
 msgstr ""
@@ -658,19 +659,19 @@ msgstr ""
 msgid "Are you sure you want to delete the customer?"
 msgstr ""
 
-#: ../ginvoice/ui/invoice.py:136
+#: ../ginvoice/ui/invoice.py:136 ../ginvoice/ui/invoice.py:134
 msgid "title"
 msgstr ""
 
-#: ../ginvoice/ui/invoice.py:140
+#: ../ginvoice/ui/invoice.py:140 ../ginvoice/ui/invoice.py:138
 msgid "subtitle"
 msgstr ""
 
-#: ../ginvoice/ui/invoice.py:154
+#: ../ginvoice/ui/invoice.py:154 ../ginvoice/ui/invoice.py:152
 msgid "Delete Invoice Confirmation"
 msgstr ""
 
-#: ../ginvoice/ui/invoice.py:160
+#: ../ginvoice/ui/invoice.py:160 ../ginvoice/ui/invoice.py:158
 msgid "Are you sure you want to delete the invoice?"
 msgstr ""
 

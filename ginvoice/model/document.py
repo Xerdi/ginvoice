@@ -53,7 +53,7 @@ class Document(GObject.GObject):
         if not filename:
             filename = section + '.tex'
         path = os.path.join(self.working_dir, filename)
-        with open(path, 'w') as f:
+        with open(path, 'w', encoding='utf-8') as f:
             GENERATORS[section](f, data)
 
     def parse_columns(self):
