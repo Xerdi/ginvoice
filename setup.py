@@ -60,7 +60,7 @@ for po_file in po_files:
     data_files.extend(locales)
 
 setup(name="GinVoice",
-      version="0.0.3",#call("git describe --tags", shell=True),
+      version=call("git describe --tags", shell=True),
       description="Creating LaTeX invoices with a GTK GUI",
       author="Erik Nijenhuis",
       author_email="erik@xerdi.com",
