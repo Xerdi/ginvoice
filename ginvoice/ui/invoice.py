@@ -299,6 +299,8 @@ class InvoiceForm(Gtk.Box):
                 target_file += '.pdf'
             self.pdf.reload(self.vars)
             self.tex_project.run_tex()
+            preference_store['invoice_counter'] = str(int(preference_store['invoice_counter'].value) + 1)
+            preference_store.commit()
             shutil.copyfile(os.path.join(self.tex_project.working_directory, 'main.pdf'), target_file)
             self.do_remove_invoice(None, Gtk.ResponseType.OK, self)
         dialog.destroy()
