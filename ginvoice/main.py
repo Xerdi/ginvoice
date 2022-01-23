@@ -14,14 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import sys, gi
+import sys
 
+from ginvoice.gtk import Gtk, Gio
 from ginvoice.environment import setup_environment
-
 from ginvoice.ui.app import GinVoiceWindow
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gio, Gtk
 
 
 class Application(Gtk.Application):

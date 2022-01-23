@@ -1,11 +1,5 @@
-ginvoice (0.0.3) unstable; urgency=medium
+ginvoice (1.0.1) unstable; urgency=low
 
-  * Locale update.
+  * Rework distribution
 
- -- Erik Nijenhuis <maclotsen@gmail.com>  Wed, 03 Mar 2021 18:33:40 +0100
-
-ginvoice (0.0.1) unstable; urgency=medium
-
-  * Initial release.
-
- -- Erik Nijenhuis <maclotsen@gmail.com>  Wed, 03 Mar 2021 18:33:40 +0100
+ -- Erik Nijenhuis <erik@xerdi.com>  Sat, 22 Jan 2022 15:59:40 +0100

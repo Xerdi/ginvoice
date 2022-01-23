@@ -14,12 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import gi
-
+from ginvoice.gtk import Gtk
 from ginvoice.util import find_ui_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
 
 
 @Gtk.Template.from_file(find_ui_file("variable.glade"))
@@ -69,3 +65,10 @@ class VariableEntry(Gtk.Entry):
         entry.set_position(begin + len(match) + 1)
         return True
 
+
+if __name__ == '__main__':
+    window = Gtk.Window()
+    window.add(VariableEntry())
+    window.connect("destroy", Gtk.main_quit)
+    window.show_all()
+    Gtk.main()

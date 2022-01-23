@@ -17,13 +17,9 @@
 import getpass
 import json
 
-import gi
-
 from ginvoice.i18n import locale, update_locale, _
 from ginvoice.environment import preferences_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject, GLib
+from ginvoice.gtk import GObject, GLib
 
 
 class Preference(GObject.GObject):

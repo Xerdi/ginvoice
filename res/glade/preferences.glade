@@ -424,7 +424,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
-                                            <property name="font"/>
+                                            <property name="font">Sans 12</property>
                                             <property name="language">nl-nl</property>
                                             <property name="level">GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
                                             <property name="preview-text"/>
@@ -496,7 +496,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
-                                            <property name="font"/>
+                                            <property name="font">Sans 12</property>
                                             <property name="language">nl-nl</property>
                                             <property name="level">GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
                                             <property name="preview-text"/>
@@ -980,6 +980,7 @@ Author: Erik Nijenhuis
                                     <property name="homogeneous">True</property>
                                     <child>
                                       <object class="variable_entry" id="invoice_ending">
+                                        <property name="name">VariableEntry</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <signal name="changed" handler="change_invoice_ending" swapped="no"/>

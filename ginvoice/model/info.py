@@ -14,10 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import os, json, gi
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject, Gtk
+import os, json
+from ginvoice.gtk import GObject, Gtk
 
 
 class GenericInfoStore(Gtk.ListStore):

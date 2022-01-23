@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=GinVoice
-Icon=GinVoice.png
+Icon=ginvoice
 Comment=GNU Invoice Creator
 Exec=ginvoice %U
 Type=Application

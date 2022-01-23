@@ -17,6 +17,7 @@
 
 TARGET="${1:-ginvoice}"
 PROJECT_DIRECTORY="$(git rev-parse --show-toplevel)"
+export DH_VERBOSE=1
 
 set -e
 
@@ -41,7 +42,7 @@ tar -zcvf basic_template.tar.gz basic_template
 cd "$PROJECT_DIRECTORY"
 
 echo "Creating .deb package"
-debuild -us -uc
+dpkg-buildpackage -us -uc
 
 cd debian
 dpkg-deb --build "$TARGET"

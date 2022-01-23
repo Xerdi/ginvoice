@@ -16,12 +16,8 @@
 
 import json
 
-import gi
-
 from ginvoice.environment import customer_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject, Gio
+from ginvoice.gtk import GObject, Gio
 
 
 class Customer(GObject.GObject):

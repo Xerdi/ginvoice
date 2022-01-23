@@ -14,19 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import threading
-
-import gi
 import os
 import subprocess
 import tarfile
 import tempfile
 
+from ginvoice.gtk import GObject
 from ginvoice.environment import get_templates, tex_dir
 
 from ginvoice.model.preference import preference_store
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject
 
 
 def get_members(tar, prefix):

@@ -43,14 +43,13 @@
     <property name="inline-completion">True</property>
     <signal name="match-selected" handler="complete_match_selected" swapped="no"/>
     <child>
-      <object class="GtkCellRendererText"/>
+      <object class="GtkCellRendererText" id="completion_renderer"/>
       <attributes>
         <attribute name="text">0</attribute>
       </attributes>
     </child>
   </object>
   <template class="variable_entry" parent="GtkEntry">
-    <property name="name">VariableEntry</property>
     <property name="visible">True</property>
     <property name="can-focus">True</property>
     <property name="completion">variable_completion</property>

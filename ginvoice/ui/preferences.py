@@ -17,8 +17,6 @@
 import os
 import shutil
 
-import gi
-
 from ginvoice.i18n import _
 from ginvoice.model.form import FormEvent
 from ginvoice.ui.info import InfoWindow
@@ -31,8 +29,7 @@ from ginvoice.model.style import Style
 from ginvoice.util import find_ui_file
 from ginvoice.model.preference import preference_store
 
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk, Gio
+from ginvoice.gtk import Gtk, Gdk, Gio
 
 
 def parse_bool(v):

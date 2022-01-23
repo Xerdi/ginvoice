@@ -14,13 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import os, gi
+import os
 
+from ginvoice.gtk import Gtk
 from ginvoice.model.preference import preference_store
 from ginvoice.util import find_ui_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gio
 
 
 @Gtk.Template.from_file(find_ui_file("customer.glade"))

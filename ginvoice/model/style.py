@@ -14,13 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import gi
-
+from ginvoice.gtk import Gtk, Gdk
 from ginvoice.model.preference import preference_store
 from ginvoice.util import find_css_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk
 
 
 class Style:

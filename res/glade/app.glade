@@ -356,7 +356,8 @@ Author: Erik Nijenhuis
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
-                    <property name="icon-name">gtk-find</property>
+                    <property name="icon-name">edit-find-symbolic</property>
+                    <property name="icon_size">1</property>
                   </object>
                 </child>
               </object>
@@ -410,6 +411,7 @@ Author: Erik Nijenhuis
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="icon-name">document-new</property>
+                <property name="icon_size">1</property>
               </object>
             </child>
           </object>
@@ -432,7 +434,8 @@ Author: Erik Nijenhuis
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="stock">gtk-find</property>
+                <property name="icon-name">edit-find-symbolic</property>
+                <property name="icon_size">1</property>
               </object>
             </child>
           </object>

@@ -15,8 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
-from xdg import (
-    xdg_runtime_dir,
+from xdg.BaseDirectory import (
     xdg_cache_home,
     xdg_config_dirs,
     xdg_config_home,
@@ -26,9 +25,9 @@ from xdg import (
 
 app_name = 'ginvoice'
 
-config_dir = os.path.join(str(xdg_config_home()), app_name)
-data_dir = os.path.join(str(xdg_data_home()), app_name)
-tex_dir = os.path.join(str(xdg_cache_home()), app_name)
+config_dir = os.path.join(xdg_config_home, app_name)
+data_dir = os.path.join(xdg_data_home, app_name)
+tex_dir = os.path.join(xdg_cache_home, app_name)
 preferences_file = os.path.join(config_dir, "preferences.json")
 image_dir = os.path.join(data_dir, 'img')
 
@@ -100,4 +99,3 @@ if __name__ == '__main__':
     print("Image dir", image_dir)
     print("Current images", get_images())
     print("Data dirs", xdg_data_dirs())
-    print("Runtime dir", xdg_runtime_dir())

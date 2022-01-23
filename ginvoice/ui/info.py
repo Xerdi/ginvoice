@@ -14,14 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import gi
-
+from ginvoice.gtk import Gtk
 from ginvoice.model.info import GenericInfoStore
 from ginvoice.ui import variable
 from ginvoice.util import find_ui_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
 
 
 @Gtk.Template.from_file(find_ui_file("info.glade"))

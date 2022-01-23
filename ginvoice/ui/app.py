@@ -14,8 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import gi
-
 from ginvoice.model.customer import Customer, CustomerStore
 from ginvoice.model.form import FormEvent
 from ginvoice.model.preference import preference_store, _update_locale
@@ -25,8 +23,7 @@ from ginvoice.ui.invoice import InvoiceForm
 from ginvoice.ui.preferences import PreferencesWindow
 from ginvoice.util import find_ui_file
 
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from ginvoice.gtk import Gtk
 from ginvoice.i18n import _
 
 

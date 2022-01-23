@@ -14,23 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import json
-
-import gi
 import os
 
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
-
 from ginvoice.i18n import _
 from ginvoice.model.preference import preference_store
-
 from ginvoice.generator import GENERATORS, format_tex
-
 from ginvoice.model.customer import Customer
-
 from ginvoice.environment import customer_info_file, supplier_info_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject, Gtk
+from ginvoice.gtk import GObject, Gtk
 
 
 class Document(GObject.GObject):

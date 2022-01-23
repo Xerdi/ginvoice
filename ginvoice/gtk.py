@@ -1,4 +1,3 @@
-#!/bin/bash
 # GinVoice - Creating LaTeX invoices with a GTK GUI
 # Copyright (C) 2021  Erik Nijenhuis <erik@xerdi.com>
 #
@@ -15,32 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT_DIRECTORY="$(git rev-parse --show-toplevel)"
+import gi
 
-set -e
+gi.require_version("Gtk", "3.0")
 
-cd "$PROJECT_DIRECTORY"
-
-list_changes () {
-  tags=$(git tag -l --sort=-v:refname)
-  tags+="
-  $(git rev-list --max-parents=0 HEAD)"
-
-  cur=
-
-  for tag in $tags; do
-    if [ -n "$cur" ]; then
-      echo "ginvoice ($cur) experimental; urgency=medium"
-      echo ""
-      git log --no-merges --pretty=format:"  * %s" "$cur...$tag"
-      echo ""
-#      git show -1 -s --tags 0.0.1 --format=' -- %an <%ae>  %aD'
-      git for-each-ref --format="%(refname:short) -- %(taggername) %(taggeremail)  %(taggerdate:rfc)" refs/tags \
-          | grep -e "^$cur" | sed "s/^$cur//"
-      echo ""
-    fi
-    cur=$tag
-  done
-}
-
-list_changes
+from gi.repository import Gio, Gtk, Gdk, GLib, GObject

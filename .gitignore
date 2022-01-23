@@ -8,3 +8,4 @@ dist
 .pybuild
 *.egg-info
 locale
+build

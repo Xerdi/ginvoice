@@ -17,11 +17,9 @@
 import gi
 from ginvoice.model.preference import preference_store
 
+from ginvoice.gtk import Gtk
 from ginvoice.i18n import _
 from ginvoice.util import find_ui_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib
 
 
 @Gtk.Template.from_file(find_ui_file("target.glade"))

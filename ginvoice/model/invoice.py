@@ -14,12 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import gi
-
+from ginvoice.gtk import GObject
 from ginvoice.model.customer import Customer
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject
 
 
 class Invoice(GObject.GObject):

@@ -750,6 +750,7 @@ Author: Erik Nijenhuis
             <property name="orientation">vertical</property>
             <child>
               <object class="variable_entry" id="invoice_ending">
+                <property name="name">VariableEntry</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="input-hints">GTK_INPUT_HINT_SPELLCHECK | GTK_INPUT_HINT_WORD_COMPLETION | GTK_INPUT_HINT_NONE</property>

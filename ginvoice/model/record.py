@@ -15,10 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-import gi
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GObject
+from ginvoice.gtk import Gtk, GObject
 
 
 class Record(GObject.GObject):

@@ -13,9 +13,10 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import os, gi
+import os
 import shutil
 
+from ginvoice.gtk import Gtk
 from ginvoice.i18n import _
 from ginvoice.environment import customer_info_file, supplier_info_file
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
@@ -30,9 +31,6 @@ from ginvoice.ui.preferences import PreferencesWindow
 from ginvoice.ui.record import RecordDialog
 from ginvoice.ui.target import TargetChooserDialog
 from ginvoice.util import find_ui_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
 
 
 class RecordBinding:

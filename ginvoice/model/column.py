@@ -15,13 +15,10 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import os.path
-
-import gi, json
+import json
 
 from ginvoice.environment import customer_file, table_column_file, cumulative_column_file
-
-gi.require_version("Gtk", "3.0")
-from gi.repository import GObject, Gtk, Gio
+from ginvoice.gtk import GObject, Gtk, Gio
 
 
 class Column(GObject.GObject):
