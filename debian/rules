@@ -2,7 +2,7 @@
 export DH_VIRTUALENV_ARGUMENTS := --system-site-packages
 export PYBUILD_NAME=ginvoice
 %:
-	dh $@ --python python3 --buildsystem=dh_virtualenv --setuptools -S
+	dh $@ --with python-virtualenv -S
 override_dh_install:
 	scripts/packres.sh
 	dh_install

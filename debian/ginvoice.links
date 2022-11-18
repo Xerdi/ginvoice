@@ -1,1 +1,1 @@
-/usr/share/python/ginvoice/bin/ginvoice /usr/bin/ginvoice
+/opt/venvs/ginvoice/bin/ginvoice /usr/bin/ginvoice
