@@ -1,3 +1,11 @@
+ginvoice (1.0.3) jammy; urgency=medium
+
+  * Remove git build dependency
+  * Move tarball creation to packres
+  * Add git to build dependencies
+  * Update changelog
+ -- Erik Nijenhuis <erik@xerdi.com>  Fri, 18 Nov 2022 20:54:13 +0100
+
 ginvoice (1.0.2) jammy; urgency=medium
 
   * Fix dist for ubuntu 22.04
