@@ -1,7 +1,7 @@
 ginvoice (1.0.2) jammy; urgency=medium
 
   * Fix dist for ubuntu 22.04
- --    
+ -- Erik Nijenhuis <erik@xerdi.com>  Fri, 18 Nov 2022 17:48:33 +0100
 
 ginvoice (1.0.1) jammy; urgency=medium
 
@@ -9,7 +9,7 @@ ginvoice (1.0.1) jammy; urgency=medium
   * Increment invoice counter after invoice creation
   * Add screenshot
   * Update README.md
- --    
+ -- Erik Nijenhuis <erik@xerdi.com>  Sun, 23 Jan 2022 20:22:56 +0100
 
 ginvoice (1.0.0) jammy; urgency=medium
 
@@ -44,5 +44,5 @@ ginvoice (1.0.0) jammy; urgency=medium
   * Add document preferences. Remove profiles
   * Add preferences dialog + logic
   * Add glade Improve gingen
- --    
+ -- Erik Nijenhuis <erik@xerdi.com>  Thu, 13 Jan 2022 08:58:41 +0100
 

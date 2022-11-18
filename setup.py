@@ -16,8 +16,11 @@
 from setuptools import setup
 from subprocess import check_output
 
+with open('./version') as f:
+    version = f.readline()
+
 setup(name="GinVoice",
-      version=check_output("git describe --tags", shell=True).decode('utf-8').split('-')[0],
+      version=version.split('-')[0],
       description="Creating LaTeX invoices with a GTK GUI",
       author="Erik Nijenhuis",
       author_email="erik@xerdi.com",
