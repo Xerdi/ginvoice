@@ -41,8 +41,11 @@ tar -zcvf basic_template.tar.gz basic_template
 
 cd "$PROJECT_DIRECTORY"
 
+scripts/show_changelog.sh > debian/changelog
+
 echo "Creating .deb package"
-dpkg-buildpackage -us -uc
+dpkg-buildpackage -kerik@xerdi.com
+#dpkg-buildpackage -us -uc
 
 cd debian
 dpkg-deb --build "$TARGET"

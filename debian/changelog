@@ -1,5 +1,48 @@
-ginvoice (1.0.1-1) jammy; urgency=low
+ginvoice (1.0.2) jammy; urgency=medium
+
+  * Fix dist for ubuntu 22.04
+ --    
+
+ginvoice (1.0.1) jammy; urgency=medium
 
   * Rework distribution
+  * Increment invoice counter after invoice creation
+  * Add screenshot
+  * Update README.md
+ --    
 
- -- Erik Nijenhuis <erik@xerdi.com>  Sat, 22 Jan 2022 15:59:40 +0100
+ginvoice (1.0.0) jammy; urgency=medium
+
+  * Add initial README
+  * Update locale. Use utf8 for config files.
+  * Fix startup defaults
+  * Fix save invoice. Don't use default bold table headers. Fix edit invoice row.
+  * Untoggle preview when pdf viewer is closed
+  * Add record editing
+  * Fix PDF viewer
+  * Fix variable populating in ending text
+  * Fix cumulatives
+  * Introduce records
+  * Unfix stackswitcher in the middle.
+  * Fix stackswitcher in the middle. Add variable model
+  * WIP
+  * Add form event registry
+  * Cleanup UI imports
+  * Fix cumulative columns in preferences
+  * Fix some styling
+  * Cleanup old files. Add missing licenses.
+  * Fix edit button for info tables
+  * Fix customer info dialog
+  * Add license to glade files. Remove old translations
+  * Add general info and table config sections in preferences. Fix dutch translations. Fix packaging
+  * Add invoice stack in main content
+  * Add invoice stack in main content
+  * Fix storing new customer counter
+  * Add delete customer confirmation
+  * Add customer actions
+  * Add footer images in preferences
+  * Add document preferences. Remove profiles
+  * Add preferences dialog + logic
+  * Add glade Improve gingen
+ --    
+

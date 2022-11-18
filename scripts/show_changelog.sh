@@ -30,7 +30,7 @@ list_changes () {
 
   for tag in $tags; do
     if [ -n "$cur" ]; then
-      echo "ginvoice ($cur) experimental; urgency=medium"
+      echo "ginvoice ($cur) jammy; urgency=medium"
       echo ""
       git log --no-merges --pretty=format:"  * %s" "$cur...$tag"
       echo ""
