@@ -14,10 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from setuptools import setup
-from subprocess import check_output
 
 with open('./version') as f:
-    version = f.readline()
+    version = f.readline().strip()
 
 setup(name="GinVoice",
       version=version.split('-')[0],
@@ -26,10 +25,6 @@ setup(name="GinVoice",
       author_email="erik@xerdi.com",
       license="GPLv3",
       packages=["ginvoice", "ginvoice.ui", "ginvoice.model"],
-      install_requires=[
-          "pycairo >= 1.20.1",
-          "PyGObject >= 3.42.0"
-      ],
       entry_points={
           'console_scripts': ['ginvoice=ginvoice.main:main', 'gingen=ginvoice.generator:main']
       })
