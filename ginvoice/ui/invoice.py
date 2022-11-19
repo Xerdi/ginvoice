@@ -204,7 +204,7 @@ class InvoiceForm(Gtk.Box):
             subtotal = round(subtotal + record.subtotal, 2)
             vat = round(vat + record.vat, 2)
             total = round(total + record.total, 2)
-        self.grand_totals = [discount, subtotal, vat, total]
+        self.grand_totals = self.pdf.totals = [discount, subtotal, vat, total]
         the_format = "\\financial{%.2f}"
         self.vars[_('grandtotal')] = the_format % total
         self.vars[_('subtotal')] = the_format % subtotal
