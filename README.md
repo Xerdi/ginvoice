@@ -1,5 +1,5 @@
 # GinVoice
-![logo](res/icon/512x512/GinVoice.png)
+![logo](res/icon/512x512/ginvoice.png)
 
 Creating LaTeX invoices with a GTK GUI.
 
