@@ -5,8 +5,22 @@ Creating LaTeX invoices with a GTK GUI.
 
 ## Getting Started
 
-TODO
+GinVoice is currently present in MacLotsen's archive on Launchpad.
+To install the package using apt, be sure to add the PPA:
+```shell
+sudo add-apt-repository ppa:maclotsen/ppa
+sudo apt update && sudo apt install ginvoice
+```
+
+Or you can download the `.deb` file from [gitlab.gnome.org](https://gitlab.gnome.org/MacLotsen/ginvoice/-/releases) and execute the following from the Downloads directory:
+```shell
+sudo apt install ./ginvoice_1.0.3_all.deb
+```
+This will also install the dependencies.
+
+
 ![screenshot](res/screenshot.png)
+![screenshot2](res/screenshot2.png)
 
 ## Contributing
 
