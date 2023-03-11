@@ -1,3 +1,12 @@
+ginvoice (1.0.4) jammy; urgency=medium
+
+  * Add miktex as optional replacement for texlive
+  * Update README and add screenshots
+  * Update README.md
+  * Fix cumulative calculation bug
+  * Move dependencies GObject and Cairo to apt dependencies
+ -- Erik Nijenhuis <erik@xerdi.com>  Sat, 11 Mar 2023 13:49:03 +0100
+
 ginvoice (1.0.3) jammy; urgency=medium
 
   * Version 1.0.3

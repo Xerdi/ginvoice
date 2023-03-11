@@ -19,7 +19,7 @@ with open('./version') as f:
     version = f.readline().strip()
 
 setup(name="GinVoice",
-      version=version.split('-')[0],
+      version='-'.join(version.split('-')[:2]),
       description="Creating LaTeX invoices with a GTK GUI",
       author="Erik Nijenhuis",
       author_email="erik@xerdi.com",
