@@ -52,7 +52,7 @@ cumulative_column_file = os.path.join(config_dir, 'cumulatives.json')
 def setup_environment():
     for directory in [config_dir, data_dir, tex_dir, image_dir]:
         if not os.path.exists(directory):
-            os.mkdir(directory)
+            os.makedirs(directory)
     for file, text in [
         (preferences_file, "{}"),
         (customer_file, "[]"),
@@ -98,4 +98,4 @@ if __name__ == '__main__':
     print("Preferences file", preferences_file)
     print("Image dir", image_dir)
     print("Current images", get_images())
-    print("Data dirs", xdg_data_dirs())
+    # print("Data dirs", xdg_data_dirs())
