@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.40.0 
 
 GinVoice - Generating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -517,7 +517,6 @@ Author: Erik Nijenhuis
                 <property name="enable-search">False</property>
                 <property name="search-column">0</property>
                 <property name="fixed-height-mode">True</property>
-                <property name="ubuntu-almost-fixed-height-mode">True</property>
                 <property name="hover-expand">True</property>
                 <property name="show-expanders">False</property>
                 <property name="enable-tree-lines">True</property>

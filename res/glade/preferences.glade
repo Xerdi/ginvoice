@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.40.0 
 
 GinVoice - Generating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -2125,6 +2125,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
                                             <property name="content-type">application/pdf</property>
+                                            <property name="show-dialog-item">True</property>
                                             <property name="show-default-item">True</property>
                                             <property name="heading" translatable="yes">Executable</property>
                                             <signal name="changed" handler="changed_pdf_viewer" swapped="no"/>

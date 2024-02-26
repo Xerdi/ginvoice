@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.40.0 
 
 GinVoice - Creating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -71,7 +71,7 @@ Author: Erik Nijenhuis
     <property name="window-position">center</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
-    <property name="gravity">center</property>
+    <property name="gravity">static</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>

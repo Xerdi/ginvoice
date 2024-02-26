@@ -103,6 +103,8 @@ class TexProject(GObject.GObject):
         if self.previewer:
             self.previewer_proc = subprocess.Popen([self.previewer, 'main.pdf'], cwd=self.working_directory)
             self._watch_process(self.previewer_proc)
+        elif os.name == 'nt':
+            subprocess.Popen(['start', 'main.pdf'], shell=True, cwd=self.working_directory)
         else:
             subprocess.Popen(['xdg-open', os.path.join(self.working_directory, 'main.pdf')])
 
