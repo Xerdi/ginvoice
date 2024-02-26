@@ -301,7 +301,7 @@ class PreferencesWindow(Gtk.Window):
     def save_changes(self, btn):
         for k in ['footer_image_1', 'footer_image_2', 'footer_image_3']:
             val = preference_store[k].value
-            if val and not val.startswith(image_dir):
+            if val and os.path.exists(val):
                 shutil.copy(val, image_dir)
                 preference_store[k] = os.path.basename(val)
         preference_store.commit()
