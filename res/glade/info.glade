@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <requires lib="user-templates" version="0.0"/>
@@ -75,6 +75,7 @@
                     <property name="name">title</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Title describing the information field</property>
                     <signal name="activate" handler="save" swapped="no"/>
                   </object>
                   <packing>
@@ -88,6 +89,7 @@
                     <property name="name">VariableEntry</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">The actual information (can have variables)</property>
                     <signal name="activate" handler="save" swapped="no"/>
                   </object>
                   <packing>
@@ -109,6 +111,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
+                <property name="tooltip-text" translatable="yes">Let this dialog open to create another one, or close this dialog</property>
                 <property name="draw-indicator">True</property>
               </object>
               <packing>
@@ -159,6 +162,7 @@
                 <property name="can-default">True</property>
                 <property name="has-default">True</property>
                 <property name="receives-default">True</property>
+                <property name="tooltip-text" translatable="yes">Save information line</property>
                 <signal name="clicked" handler="save" swapped="no"/>
                 <style>
                   <class name="flat"/>

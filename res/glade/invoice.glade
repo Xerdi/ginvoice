@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.38.2 
 
 GinVoice - Generating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -128,6 +128,7 @@ Author: Erik Nijenhuis
               <object class="GtkToolButton">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Change header presentation</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">document-properties</property>
                 <signal name="clicked" handler="open_document_preferences" swapped="no"/>
@@ -245,6 +246,7 @@ Author: Erik Nijenhuis
               <object class="GtkToolButton">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Change customer and supplier info</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">document-properties</property>
                 <signal name="clicked" handler="open_info_preferences" swapped="no"/>
@@ -455,6 +457,7 @@ Author: Erik Nijenhuis
               <object class="GtkToolButton" id="add_row">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Add invoice record</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">list-add</property>
                 <signal name="clicked" handler="add_record" swapped="no"/>
@@ -469,6 +472,7 @@ Author: Erik Nijenhuis
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Remove invoice record</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">list-remove</property>
                 <signal name="clicked" handler="remove_record" object="invoice_records" swapped="no"/>
@@ -482,6 +486,7 @@ Author: Erik Nijenhuis
               <object class="GtkToolButton" id="edit_row1">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Change column presentation</property>
                 <property name="use-underline">True</property>
                 <property name="icon-name">document-properties</property>
                 <signal name="clicked" handler="open_table_preferences" swapped="no"/>
@@ -794,6 +799,7 @@ Author: Erik Nijenhuis
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="tooltip-text" translatable="yes">Remove current invoice</property>
                 <property name="relief">none</property>
                 <signal name="clicked" handler="remove_invoice" object="invoice" swapped="no"/>
                 <style>
@@ -813,6 +819,7 @@ Author: Erik Nijenhuis
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="tooltip-text" translatable="yes">Preview the PDF result</property>
                 <signal name="toggled" handler="toggle_preview" swapped="no"/>
                 <style>
                   <class name="flat"/>
@@ -830,6 +837,7 @@ Author: Erik Nijenhuis
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="tooltip-text" translatable="yes">Save this invoice</property>
                 <property name="relief">none</property>
                 <signal name="clicked" handler="save" swapped="no"/>
                 <style>

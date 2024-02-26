@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.38.2 
 
 GinVoice - Generating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -69,6 +69,7 @@ Author: Erik Nijenhuis
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Optional variable</property>
                     <property name="label" translatable="yes">Customer number:</property>
                     <property name="xalign">0</property>
                   </object>
@@ -106,6 +107,7 @@ Author: Erik Nijenhuis
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Customer reference name</property>
                     <property name="label" translatable="yes">Customer name:</property>
                     <property name="xalign">0</property>
                   </object>
@@ -144,6 +146,7 @@ Author: Erik Nijenhuis
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">For most cases this is the first address line</property>
                     <property name="label" translatable="yes">Customer salutation:</property>
                     <property name="xalign">0</property>
                   </object>
@@ -180,6 +183,7 @@ Author: Erik Nijenhuis
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Second address line</property>
                     <property name="label" translatable="yes">Street name and number:</property>
                     <property name="xalign">0</property>
                   </object>
@@ -216,6 +220,7 @@ Author: Erik Nijenhuis
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Third address line</property>
                     <property name="label" translatable="yes">Postal and city:</property>
                     <property name="xalign">0</property>
                   </object>

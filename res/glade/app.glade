@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.38.2 
 
 GinVoice - Creating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -182,6 +182,7 @@ Author: Erik Nijenhuis
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Add customer</property>
                     <property name="icon-name">list-add</property>
                     <signal name="clicked" handler="add_customer" swapped="no"/>
                   </object>
@@ -195,6 +196,7 @@ Author: Erik Nijenhuis
                     <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Remove selected customer</property>
                     <property name="icon-name">list-remove</property>
                     <signal name="clicked" handler="remove_customer" object="customer_listbox" swapped="no"/>
                   </object>
@@ -208,6 +210,7 @@ Author: Erik Nijenhuis
                     <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Edit selected customer</property>
                     <property name="stock-id">gtk-edit</property>
                     <signal name="clicked" handler="edit_customer" object="customer_listbox" swapped="no"/>
                   </object>
@@ -356,6 +359,7 @@ Author: Erik Nijenhuis
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Search in customers</property>
                     <property name="icon-name">edit-find-symbolic</property>
                     <property name="icon_size">1</property>
                   </object>

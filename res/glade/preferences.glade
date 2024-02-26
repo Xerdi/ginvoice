@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 
+<!-- Generated with glade 3.38.2 
 
 GinVoice - Generating Invoices
 Copyright (C) Erik Nijenhuis <erik@xerdi.com>
@@ -247,6 +247,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="title">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
+                                            <property name="tooltip-text" translatable="yes">The title of the paper</property>
                                             <property name="placeholder-text" translatable="yes">My Company</property>
                                             <signal name="changed" handler="change_title" swapped="no"/>
                                           </object>
@@ -274,6 +275,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="has-focus">True</property>
+                                            <property name="tooltip-text" translatable="yes">Only used in the document properties</property>
                                             <property name="placeholder-text" translatable="yes">John Doe</property>
                                             <signal name="changed" handler="change_author" swapped="no"/>
                                           </object>
@@ -313,6 +315,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="subtitle">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
+                                            <property name="tooltip-text" translatable="yes">The subtitle of the paper</property>
                                             <property name="placeholder-text" translatable="yes">Invoice</property>
                                             <signal name="changed" handler="change_subtitle" swapped="no"/>
                                           </object>
@@ -339,6 +342,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="keywords">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
+                                            <property name="tooltip-text" translatable="yes">Only used in the document properties</property>
                                             <property name="placeholder-text" translatable="yes">Invoice</property>
                                             <signal name="changed" handler="change_keywords" swapped="no"/>
                                           </object>
@@ -424,6 +428,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Sets the font for texts and titles</property>
                                             <property name="font">Sans 12</property>
                                             <property name="language">nl-nl</property>
                                             <property name="level">GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
@@ -455,6 +460,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Foreground color for the header</property>
                                             <property name="color">#000000000000</property>
                                             <signal name="color-set" handler="change_fg_color" swapped="no"/>
                                           </object>
@@ -496,6 +502,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Sets the font for financial numbers</property>
                                             <property name="font">Sans 12</property>
                                             <property name="language">nl-nl</property>
                                             <property name="level">GTK_FONT_CHOOSER_LEVEL_FAMILY</property>
@@ -527,6 +534,7 @@ Author: Erik Nijenhuis
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
                                             <property name="receives-default">True</property>
+                                            <property name="tooltip-text" translatable="yes">Background color for the header</property>
                                             <property name="color">#ffffffffffff</property>
                                             <signal name="color-set" handler="change_bg_color" swapped="no"/>
                                           </object>
@@ -570,6 +578,7 @@ Author: Erik Nijenhuis
                                   <object class="GtkLabel">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
+                                    <property name="tooltip-text" translatable="yes">Optional images to display at the bottom of the invoice</property>
                                     <property name="label" translatable="yes">Footer Images</property>
                                     <property name="xalign">0</property>
                                     <style>
@@ -697,6 +706,7 @@ Author: Erik Nijenhuis
                                       <object class="GtkToolButton" id="add_row2">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">Add a customer information line</property>
                                         <property name="use-underline">True</property>
                                         <property name="icon-name">list-add</property>
                                         <signal name="clicked" handler="open_customer_info" swapped="no"/>
@@ -710,6 +720,7 @@ Author: Erik Nijenhuis
                                       <object class="GtkToolButton" id="remove_row2">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">Remove the selected customer information line</property>
                                         <property name="use-underline">True</property>
                                         <property name="icon-name">list-remove</property>
                                         <signal name="clicked" handler="remove_info" object="customer_info_table" swapped="no"/>
@@ -723,6 +734,7 @@ Author: Erik Nijenhuis
                                       <object class="GtkToolButton" id="edit_row2">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">Edit the selected customer information line</property>
                                         <property name="use-underline">True</property>
                                         <property name="stock-id">gtk-edit</property>
                                         <signal name="clicked" handler="edit_customer_info" object="customer_info_table" swapped="no"/>
@@ -843,6 +855,7 @@ Author: Erik Nijenhuis
                                       <object class="GtkToolButton" id="add_row1">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">Add supplier information line</property>
                                         <property name="use-underline">True</property>
                                         <property name="icon-name">list-add</property>
                                         <signal name="clicked" handler="open_supplier_info" swapped="no"/>
@@ -856,6 +869,7 @@ Author: Erik Nijenhuis
                                       <object class="GtkToolButton" id="remove_row1">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">Remove the selected supplier information line</property>
                                         <property name="use-underline">True</property>
                                         <property name="icon-name">list-remove</property>
                                         <signal name="clicked" handler="remove_info" object="supplier_info_table" swapped="no"/>
@@ -869,6 +883,7 @@ Author: Erik Nijenhuis
                                       <object class="GtkToolButton" id="edit_row1">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">Edit the selected supplier information line</property>
                                         <property name="use-underline">True</property>
                                         <property name="stock-id">gtk-edit</property>
                                         <signal name="clicked" handler="edit_supplier_info" object="supplier_info_table" swapped="no"/>
@@ -2023,6 +2038,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkEntry" id="customer_counter">
                                             <property name="visible">True</property>
                                             <property name="can-focus">True</property>
+                                            <property name="tooltip-text" translatable="yes">Current value of the customer counter</property>
                                             <property name="truncate-multiline">True</property>
                                             <property name="progress-pulse-step">1</property>
                                             <property name="input-purpose">number</property>
@@ -2124,6 +2140,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkAppChooserButton" id="pdf_viewer">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Application used to preview the PDF invoice</property>
                                             <property name="content-type">application/pdf</property>
                                             <property name="show-default-item">True</property>
                                             <property name="heading" translatable="yes">Executable</property>
@@ -2383,6 +2400,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkComboBox" id="locale">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Select locale for this application</property>
                                             <property name="model">locale_store</property>
                                             <property name="id-column">1</property>
                                             <signal name="changed" handler="change_locale" swapped="no"/>
@@ -2428,6 +2446,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkComboBox" id="babel">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Select the babel language, which is useful for hyphenation</property>
                                             <property name="model">babel_store</property>
                                             <property name="id-column">1</property>
                                             <signal name="changed" handler="change_babel" swapped="no"/>
@@ -2473,6 +2492,7 @@ Author: Erik Nijenhuis
                                           <object class="GtkComboBox" id="currency">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
+                                            <property name="tooltip-text" translatable="yes">Select the currency used in the invoices</property>
                                             <property name="model">currency_store</property>
                                             <property name="id-column">1</property>
                                             <signal name="changed" handler="change_currency" swapped="no"/>

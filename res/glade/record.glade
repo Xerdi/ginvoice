@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.39.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkListStore" id="vat_store">
@@ -66,6 +66,7 @@
                       <object class="GtkEntry" id="description">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Describe the invoice record</property>
                         <property name="activates-default">True</property>
                       </object>
                       <packing>
@@ -103,6 +104,7 @@
                       <object class="GtkEntry" id="date">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Optional date of work (be sure to display the column as well)</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -139,6 +141,7 @@
                       <object class="GtkEntry" id="quantity">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Specify the quantity (numbers only)</property>
                         <property name="text" translatable="yes">0</property>
                       </object>
                       <packing>
@@ -176,6 +179,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
+                        <property name="tooltip-markup" translatable="yes">Show quantity with &lt;b&gt;x&lt;/b&gt; as postfix</property>
                         <property name="active">True</property>
                         <property name="draw-indicator">True</property>
                         <property name="group">minutes_radio</property>
@@ -193,6 +197,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
+                        <property name="tooltip-markup" translatable="yes">Show quantity with &lt;b&gt;m&lt;/b&gt; as postfix</property>
                         <property name="active">True</property>
                         <property name="draw-indicator">True</property>
                       </object>
@@ -209,6 +214,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
+                        <property name="tooltip-markup" translatable="yes">Show quantity with &lt;b&gt;h&lt;/b&gt; as postfix</property>
                         <property name="active">True</property>
                         <property name="draw-indicator">True</property>
                         <property name="group">minutes_radio</property>
@@ -249,6 +255,7 @@
                       <object class="GtkEntry" id="price">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Fill in the price based on the quantity type</property>
                         <property name="text" translatable="yes">0</property>
                       </object>
                       <packing>
@@ -286,6 +293,7 @@
                       <object class="GtkEntry" id="discount">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Specify the discount (only numbers)</property>
                         <property name="text" translatable="yes">0</property>
                       </object>
                       <packing>
@@ -323,6 +331,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes">Shows the discount as amount</property>
                         <property name="draw-indicator">True</property>
                         <property name="group">percentages_radio</property>
                       </object>
@@ -339,6 +348,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
+                        <property name="tooltip-text" translatable="yes">Shows the discount as percentage</property>
                         <property name="active">True</property>
                         <property name="draw-indicator">True</property>
                       </object>
@@ -378,6 +388,7 @@
                       <object class="GtkComboBox" id="vat">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="tooltip-text" translatable="yes">Select VAT percentage</property>
                         <property name="model">vat_store</property>
                         <property name="active">2</property>
                         <property name="button-sensitivity">on</property>
@@ -415,6 +426,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">False</property>
+                <property name="tooltip-text" translatable="yes">Keep adding records, or close this dialog afterwards</property>
                 <property name="active">True</property>
                 <property name="draw-indicator">True</property>
               </object>
@@ -464,6 +476,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="tooltip-text" translatable="yes">Save the invoice record</property>
                 <signal name="clicked" handler="save" swapped="no"/>
                 <style>
                   <class name="suggested-action"/>
