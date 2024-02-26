@@ -18,7 +18,7 @@ import os
 
 from ginvoice.model.column import TableColumnStore, CumulativeColumnStore
 from ginvoice.i18n import _
-from ginvoice.model.preference import preference_store
+from ginvoice.model.preference import preference_store as ps
 from ginvoice.generator import GENERATORS, format_tex
 from ginvoice.model.customer import Customer
 from ginvoice.environment import customer_info_file, supplier_info_file
@@ -101,7 +101,6 @@ class Document(GObject.GObject):
         return result
 
     def reload(self, _vars):
-        ps = preference_store
         self.set_data('languages', [ps['babel'].value])
         self.set_data('header', {
             "subtitle": ps['subtitle'].value
