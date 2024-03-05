@@ -19,8 +19,9 @@ sudo apt install ./ginvoice_1.0.3_all.deb
 This will also install the dependencies.
 
 
-![screenshot](res/screenshot.png)
-![screenshot2](res/screenshot2.png)
+<video width="100%" controls autoplay muted>
+  <source src="https://xerdi.com/static/public/ginvoice-demo.mp4" type="video/mp4">
+</video>
 
 ## Contributing
 
