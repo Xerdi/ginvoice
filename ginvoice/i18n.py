@@ -23,12 +23,15 @@ LOCALE_DIR = '/usr/share/locale'
 def update_locale(new_locale):
     if new_locale:
         new_locale += ".UTF-8"
-    os.environ['LANG'] = new_locale
-    os.environ['LANGUAGE'] = new_locale[:2]
-    locale.setlocale(locale.LC_ALL, new_locale)
+        os.environ['LANG'] = new_locale
+        os.environ['LANGUAGE'] = new_locale[:2]
+        locale.setlocale(locale.LC_ALL, new_locale)
 
-    locale.bindtextdomain(APP_NAME, LOCALE_DIR)
-    locale.textdomain(APP_NAME)
+    try:
+        locale.bindtextdomain(APP_NAME, LOCALE_DIR)
+        locale.textdomain(APP_NAME)
+    except:
+        pass
 
     gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
     gettext.textdomain(APP_NAME)

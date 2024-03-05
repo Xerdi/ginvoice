@@ -68,7 +68,7 @@ class RecordDialog(Gtk.Window):
         record.quantity = int(self.quantity.get_text()) if qtype == 0 else float(self.quantity.get_text())
         record.price = float(self.price.get_text())
         if self.percentages_radio.get_active():
-            record.discount = record.quantity * record.price * (int(self.discount.get_text()) / 100)
+            record.discount = record.quantity * record.price * (float(self.discount.get_text()) / 100)
         else:
             record.discount = float(self.discount.get_text())
 
