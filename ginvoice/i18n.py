@@ -16,11 +16,13 @@
 
 import gettext, locale, os
 
+from ginvoice.environment import get_locale_dir
+
 APP_NAME = 'ginvoice'
-LOCALE_DIR = '/usr/share/locale'
 
 
 def update_locale(new_locale):
+    locale_dir = get_locale_dir()
     if new_locale:
         new_locale += ".UTF-8"
         os.environ['LANG'] = new_locale
@@ -28,14 +30,14 @@ def update_locale(new_locale):
         locale.setlocale(locale.LC_ALL, new_locale)
 
     try:
-        locale.bindtextdomain(APP_NAME, LOCALE_DIR)
+        locale.bindtextdomain(APP_NAME, locale_dir)
         locale.textdomain(APP_NAME)
     except:
         pass
 
-    gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
+    gettext.bindtextdomain(APP_NAME, locale_dir)
     gettext.textdomain(APP_NAME)
-    gettext.install(APP_NAME, LOCALE_DIR)
+    gettext.install(APP_NAME, locale_dir)
 
 
 _ = gettext.gettext

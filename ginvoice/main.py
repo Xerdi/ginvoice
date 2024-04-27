@@ -18,6 +18,8 @@ import sys
 
 from ginvoice.gtk import Gtk, Gio
 from ginvoice.environment import setup_environment
+from ginvoice.model.preference import preference_store
+from ginvoice.i18n import update_locale
 from ginvoice.ui.app import GinVoiceWindow
 
 
@@ -35,6 +37,8 @@ class Application(Gtk.Application):
 
 def main():
     setup_environment()
+    preference_store.load()
+    update_locale(preference_store['locale'].value)
     Application().run(sys.argv)
 
 

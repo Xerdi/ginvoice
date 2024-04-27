@@ -31,6 +31,11 @@ tex_dir = os.path.join(xdg_cache_home, app_name)
 preferences_file = os.path.join(config_dir, "preferences.json")
 image_dir = os.path.join(data_dir, 'img')
 
+locale_dirs = [
+    os.path.join(os.path.pardir, 'locale'),
+    "/usr/share/locale"
+]
+
 template_dirs = [x for x in [os.path.join(data_dir, "templates"),
                              "/usr/lib/ginvoice/templates",
                              "/usr/local/lib/ginvoice/templates"]
@@ -63,6 +68,10 @@ def setup_environment():
         if not os.path.exists(file):
             with open(file, 'w') as f:
                 f.write(text)
+
+
+def get_locale_dir():
+    return [x for x in locale_dirs if os.path.exists(x)][0]
 
 
 def get_templates():
