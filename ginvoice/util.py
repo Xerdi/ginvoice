@@ -30,3 +30,7 @@ def find_css_file(filename):
 
 def find_ui_file(filename):
     return __safe_path__(filename, "../res/glade")
+
+
+def find_logo_file(filename):
+    return __safe_path__(filename, '../res/icon/512x512')

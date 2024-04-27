@@ -40,9 +40,9 @@ done
 # shellcheck disable=SC2086
 xgettext -k=_ -kN_ -jo po/ginvoice.pot \
          --from-code utf-8 \
-         --copyright-holder='Erik Nijenhuis <erik@xerdi.com>' \
+         --copyright-holder='Xerdi' \
          --package-name='GinVoice' \
-         --package-version=0.2 \
+         --package-version=$(git describe --tags) \
          ${PY_STR} \
          ${UI_H_FILES}
 

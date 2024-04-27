@@ -98,4 +98,4 @@ if __name__ == '__main__':
     print("Preferences file", preferences_file)
     print("Image dir", image_dir)
     print("Current images", get_images())
-    # print("Data dirs", xdg_data_dirs())
+    print("Data dirs", xdg_data_dirs)

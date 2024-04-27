@@ -14,12 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from setuptools import setup
-
-with open('./version') as f:
-    version = f.readline().strip()
+from subprocess import check_output
 
 setup(name="GinVoice",
-      version='-'.join(version.split('-')[:2]),
+      version=check_output("git describe --tags", shell=True).decode('utf-8').split('-')[0],
       description="Creating LaTeX invoices with a GTK GUI",
       author="Erik Nijenhuis",
       author_email="erik@xerdi.com",

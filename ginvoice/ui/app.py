@@ -16,11 +16,12 @@
 
 from ginvoice.model.customer import Customer, CustomerStore
 from ginvoice.model.form import FormEvent
-from ginvoice.model.preference import preference_store, _update_locale
+from ginvoice.model.preference import preference_store
 from ginvoice.model.style import Style
 from ginvoice.ui.customer import CustomerWindow
 from ginvoice.ui.invoice import InvoiceForm
 from ginvoice.ui.preferences import PreferencesWindow
+from ginvoice.ui.about import AboutDialog
 from ginvoice.util import find_ui_file
 
 from ginvoice.gtk import Gtk
@@ -48,8 +49,6 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.style = Style()
-        preference_store.load()
-        _update_locale(preference_store['locale'].value)
         self.customer_listbox.set_filter_func(self.filter_customers)
         # self.customer_listbox.set_sort_func(self.sort_customers)
         self.customer_listbox.bind_model(self.customer_store, self.create_customer_row)
@@ -67,6 +66,13 @@ class GinVoiceWindow(Gtk.ApplicationWindow):
         window = PreferencesWindow(self.event)
         window.set_transient_for(self)
         window.show_all()
+
+    @Gtk.Template.Callback()
+    def open_about(self, *args):
+        dialog = AboutDialog()
+        dialog.set_transient_for(self)
+        dialog.show()
+
 
     def customer_created(self, customer: Customer):
         self.customer_store.append(customer)

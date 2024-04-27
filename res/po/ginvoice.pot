@@ -1,14 +1,14 @@
 # GinVoice - Creating LaTeX invoices with a GTK GUI
-# Copyright (C) YEAR Erik Nijenhuis <erik@xerdi.com>
+# Copyright (C) YEAR Xerdi
 # This file is distributed under the same license as the GinVoice package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GinVoice 0.2\n"
+"Project-Id-Version: GinVoice 1.0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 02:31+0100\n"
+"POT-Creation-Date: 2024-04-27 10:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,8 +32,10 @@ msgstr ""
 #: glade/invoice.glade.h:13 glade/invoice.glade.h:11
 #: glade/preferences.glade.h:60 glade/preferences.glade.h:58
 #: glade/preferences.glade.h:38 glade/invoice.glade.h:12 glade/record.glade.h:9
-#: glade/preferences.glade.h:37 glade/invoice.glade.h:12
-#: glade/preferences.glade.h:37 glade/record.glade.h:9
+#: glade/preferences.glade.h:37 glade/invoice.glade.h:17
+#: glade/preferences.glade.h:51 glade/record.glade.h:10
+#: glade/invoice.glade.h:17 glade/preferences.glade.h:51
+#: glade/record.glade.h:10
 msgid "Date"
 msgstr ""
 
@@ -43,16 +45,18 @@ msgstr ""
 #: glade/invoice.glade.h:12 glade/invoice.glade.h:10
 #: glade/preferences.glade.h:58 glade/preferences.glade.h:56
 #: glade/preferences.glade.h:36 glade/invoice.glade.h:11 glade/record.glade.h:8
-#: glade/preferences.glade.h:35 glade/invoice.glade.h:11
-#: glade/preferences.glade.h:35 glade/record.glade.h:8
+#: glade/preferences.glade.h:35 glade/invoice.glade.h:16
+#: glade/preferences.glade.h:49 glade/invoice.glade.h:16
+#: glade/preferences.glade.h:49 glade/record.glade.h:8
 msgid "Description"
 msgstr ""
 
 #: ginvoice/app.py:57 ginvoice/records.py:32 ginvoice/customers.py:108
 #: ginvoice/widgets/table.py:23 glade/preferences.glade.h:53
 #: glade/preferences.glade.h:51 glade/preferences.glade.h:31
-#: glade/info.glade.h:2 glade/preferences.glade.h:30 glade/info.glade.h:2
-#: glade/preferences.glade.h:30
+#: glade/info.glade.h:2 glade/preferences.glade.h:30
+#: glade/preferences.glade.h:41 glade/info.glade.h:2
+#: glade/preferences.glade.h:41
 msgid "Value"
 msgstr ""
 
@@ -71,23 +75,28 @@ msgstr ""
 #: glade/preferences.glade.h:85 glade/preferences.glade.h:83
 #: glade/preferences.glade.h:61 glade/info.glade.h:5
 #: glade/preferences.glade.h:64 glade/record.glade.h:24 glade/target.glade.h:1
-#: glade/preferences.glade.h:63 glade/customer.glade.h:7 glade/info.glade.h:5
-#: glade/invoice.glade.h:24 glade/preferences.glade.h:63
-#: glade/record.glade.h:24 glade/target.glade.h:1
+#: glade/preferences.glade.h:63 glade/customer.glade.h:12 glade/info.glade.h:8
+#: glade/invoice.glade.h:31 glade/preferences.glade.h:82
+#: glade/record.glade.h:36 glade/customer.glade.h:12 glade/info.glade.h:8
+#: glade/invoice.glade.h:31 glade/preferences.glade.h:82
+#: glade/record.glade.h:36 glade/target.glade.h:1
 msgid "Save"
 msgstr ""
 
 #: ginvoice/app.py:123 glade/customer.glade.h:8 glade/preferences.glade.h:49
 #: glade/preferences.glade.h:86 glade/preferences.glade.h:84
 #: glade/preferences.glade.h:62 glade/preferences.glade.h:65
-#: glade/preferences.glade.h:64 glade/customer.glade.h:8
-#: glade/preferences.glade.h:64
+#: glade/preferences.glade.h:64 glade/customer.glade.h:13
+#: glade/preferences.glade.h:83 glade/customer.glade.h:13
+#: glade/preferences.glade.h:83
 msgid "Cancel"
 msgstr ""
 
 #: ginvoice/app.py:124 ../ginvoice/ui/app.py:153 ../ginvoice/ui/target.py:31
 #: ../ginvoice/ui/app.py:155 glade/preferences.glade.h:15
-#: glade/preferences.glade.h:15
+#: ../ginvoice/ui/app.py:152 ../ginvoice/ui/target.py:29
+#: glade/preferences.glade.h:18 ../ginvoice/ui/app.py:150
+#: ../ginvoice/ui/app.py:158 glade/preferences.glade.h:18
 msgid "Invoice"
 msgstr ""
 
@@ -160,23 +169,23 @@ msgstr ""
 msgid "Customer info"
 msgstr ""
 
-#: glade/customer.glade.h:2 glade/customer.glade.h:2
+#: glade/customer.glade.h:2 glade/customer.glade.h:3 glade/customer.glade.h:3
 msgid "Customer number:"
 msgstr ""
 
-#: glade/customer.glade.h:3 glade/customer.glade.h:3
+#: glade/customer.glade.h:3 glade/customer.glade.h:5 glade/customer.glade.h:5
 msgid "Customer name:"
 msgstr ""
 
-#: glade/customer.glade.h:4 glade/customer.glade.h:4
+#: glade/customer.glade.h:4 glade/customer.glade.h:7 glade/customer.glade.h:7
 msgid "Customer salutation:"
 msgstr ""
 
-#: glade/customer.glade.h:5 glade/customer.glade.h:5
+#: glade/customer.glade.h:5 glade/customer.glade.h:9 glade/customer.glade.h:9
 msgid "Street name and number:"
 msgstr ""
 
-#: glade/customer.glade.h:6 glade/customer.glade.h:6
+#: glade/customer.glade.h:6 glade/customer.glade.h:11 glade/customer.glade.h:11
 msgid "Postal and city:"
 msgstr ""
 
@@ -208,26 +217,26 @@ msgstr ""
 #: glade/invoice.glade.h:17 glade/invoice.glade.h:14 glade/invoice.glade.h:7
 #: glade/invoice.glade.h:6 glade/preferences.glade.h:30
 #: glade/preferences.glade.h:10 glade/info.glade.h:1 glade/info.glade.h:1
-#: glade/invoice.glade.h:6 glade/preferences.glade.h:10
+#: glade/invoice.glade.h:7 glade/preferences.glade.h:10
 msgid "Title"
 msgstr ""
 
 #: glade/invoice.glade.h:19 glade/preferences.glade.h:11
 #: glade/invoice.glade.h:18 glade/invoice.glade.h:15 glade/invoice.glade.h:8
 #: glade/invoice.glade.h:7 glade/preferences.glade.h:34
-#: glade/preferences.glade.h:14 glade/invoice.glade.h:7
-#: glade/preferences.glade.h:14
+#: glade/preferences.glade.h:14 glade/preferences.glade.h:16
+#: glade/invoice.glade.h:8 glade/preferences.glade.h:16
 msgid "Subtitle"
 msgstr ""
 
 #: glade/invoice.glade.h:20 glade/invoice.glade.h:19 glade/invoice.glade.h:16
-#: glade/invoice.glade.h:9 glade/invoice.glade.h:8 glade/invoice.glade.h:8
+#: glade/invoice.glade.h:9 glade/invoice.glade.h:8 glade/invoice.glade.h:9
 msgid "Customer & Supplier Info"
 msgstr ""
 
 #: glade/invoice.glade.h:41 glade/invoice.glade.h:40 glade/invoice.glade.h:37
 #: glade/invoice.glade.h:11 glade/invoice.glade.h:9 glade/invoice.glade.h:10
-#: glade/invoice.glade.h:10
+#: glade/invoice.glade.h:12 glade/invoice.glade.h:12
 msgid "Invoice Records"
 msgstr ""
 
@@ -246,8 +255,9 @@ msgstr ""
 #: glade/preferences.glade.h:61 glade/preferences.glade.h:59
 #: glade/preferences.glade.h:39 glade/invoice.glade.h:13
 #: glade/record.glade.h:10 glade/preferences.glade.h:38
-#: glade/invoice.glade.h:13 glade/preferences.glade.h:38
-#: glade/record.glade.h:10
+#: glade/invoice.glade.h:18 glade/preferences.glade.h:52
+#: glade/record.glade.h:12 glade/invoice.glade.h:18
+#: glade/preferences.glade.h:52 glade/record.glade.h:12
 msgid "Quantity"
 msgstr ""
 
@@ -256,8 +266,9 @@ msgstr ""
 #: glade/preferences.glade.h:63 glade/preferences.glade.h:61
 #: glade/preferences.glade.h:40 glade/invoice.glade.h:14
 #: glade/record.glade.h:16 glade/preferences.glade.h:39
-#: glade/invoice.glade.h:14 glade/preferences.glade.h:39
-#: glade/record.glade.h:16
+#: glade/invoice.glade.h:19 glade/preferences.glade.h:53
+#: glade/record.glade.h:22 glade/invoice.glade.h:19
+#: glade/preferences.glade.h:53 glade/record.glade.h:22
 msgid "Price"
 msgstr ""
 
@@ -266,8 +277,9 @@ msgstr ""
 #: glade/preferences.glade.h:64 glade/preferences.glade.h:62
 #: glade/preferences.glade.h:41 glade/invoice.glade.h:15
 #: glade/record.glade.h:17 glade/preferences.glade.h:40
-#: glade/invoice.glade.h:15 glade/preferences.glade.h:40
-#: glade/record.glade.h:17
+#: glade/invoice.glade.h:20 glade/preferences.glade.h:54
+#: glade/record.glade.h:24 glade/invoice.glade.h:20
+#: glade/preferences.glade.h:54 glade/record.glade.h:24
 msgid "Discount"
 msgstr ""
 
@@ -276,8 +288,9 @@ msgstr ""
 #: glade/preferences.glade.h:65 glade/preferences.glade.h:63
 #: glade/preferences.glade.h:42 glade/preferences.glade.h:44
 #: glade/record.glade.h:21 glade/preferences.glade.h:43
-#: glade/invoice.glade.h:17 glade/preferences.glade.h:43
-#: glade/record.glade.h:21
+#: glade/invoice.glade.h:22 glade/preferences.glade.h:57
+#: glade/record.glade.h:31 glade/invoice.glade.h:22
+#: glade/preferences.glade.h:57 glade/record.glade.h:31
 msgid "VAT"
 msgstr ""
 
@@ -285,38 +298,39 @@ msgstr ""
 #: glade/invoice.glade.h:20 glade/invoice.glade.h:18 glade/invoice.glade.h:16
 #: glade/preferences.glade.h:66 glade/preferences.glade.h:64
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:45
-#: glade/preferences.glade.h:44 glade/invoice.glade.h:18
-#: glade/preferences.glade.h:44
+#: glade/preferences.glade.h:44 glade/invoice.glade.h:23
+#: glade/preferences.glade.h:58 glade/invoice.glade.h:23
+#: glade/preferences.glade.h:58
 msgid "Total"
 msgstr ""
 
 #: glade/invoice.glade.h:51 glade/invoice.glade.h:50 glade/invoice.glade.h:47
 #: glade/invoice.glade.h:21 glade/invoice.glade.h:19 glade/invoice.glade.h:17
-#: glade/invoice.glade.h:19
+#: glade/invoice.glade.h:24 glade/invoice.glade.h:24
 msgid "Cumulative Header"
 msgstr ""
 
 #: glade/invoice.glade.h:52 glade/invoice.glade.h:51 glade/invoice.glade.h:48
 #: glade/invoice.glade.h:22 glade/invoice.glade.h:20 glade/invoice.glade.h:18
-#: glade/invoice.glade.h:20
+#: glade/invoice.glade.h:25 glade/invoice.glade.h:25
 msgid "Cumulative Value"
 msgstr ""
 
 #: glade/invoice.glade.h:53 glade/invoice.glade.h:52 glade/invoice.glade.h:49
 #: glade/invoice.glade.h:23 glade/invoice.glade.h:21 glade/invoice.glade.h:19
-#: glade/invoice.glade.h:21
+#: glade/invoice.glade.h:26 glade/invoice.glade.h:26
 msgid "Invoice Ending Text"
 msgstr ""
 
 #: glade/invoice.glade.h:54 glade/invoice.glade.h:53 glade/invoice.glade.h:50
 #: glade/invoice.glade.h:24 glade/invoice.glade.h:22 glade/invoice.glade.h:20
-#: glade/invoice.glade.h:22
+#: glade/invoice.glade.h:27 glade/invoice.glade.h:27
 msgid "Remove"
 msgstr ""
 
 #: glade/invoice.glade.h:55 glade/invoice.glade.h:54 glade/invoice.glade.h:51
 #: glade/invoice.glade.h:25 glade/invoice.glade.h:23 glade/invoice.glade.h:21
-#: glade/invoice.glade.h:23
+#: glade/invoice.glade.h:29 glade/invoice.glade.h:29
 msgid "Preview"
 msgstr ""
 
@@ -349,107 +363,112 @@ msgid "Document details"
 msgstr ""
 
 #: glade/preferences.glade.h:8 glade/preferences.glade.h:31
-#: glade/preferences.glade.h:11 glade/preferences.glade.h:11
+#: glade/preferences.glade.h:11 glade/preferences.glade.h:12
+#: glade/preferences.glade.h:12
 msgid "My Company"
 msgstr ""
 
 #: glade/preferences.glade.h:9 glade/preferences.glade.h:32
-#: glade/preferences.glade.h:12 glade/preferences.glade.h:12
+#: glade/preferences.glade.h:12 glade/preferences.glade.h:13
+#: glade/preferences.glade.h:13
 msgid "Author"
 msgstr ""
 
 #: glade/preferences.glade.h:10 glade/preferences.glade.h:33
-#: glade/preferences.glade.h:13 glade/preferences.glade.h:13
+#: glade/preferences.glade.h:13 glade/preferences.glade.h:15
+#: glade/preferences.glade.h:15
 msgid "John Doe"
 msgstr ""
 
 #: glade/preferences.glade.h:14 glade/preferences.glade.h:37
 #: glade/preferences.glade.h:36 glade/preferences.glade.h:16
-#: glade/preferences.glade.h:16
+#: glade/preferences.glade.h:19 glade/preferences.glade.h:19
 msgid "Keywords"
 msgstr ""
 
 #: glade/preferences.glade.h:17 glade/preferences.glade.h:40
 #: glade/preferences.glade.h:38 glade/preferences.glade.h:18
-#: glade/preferences.glade.h:17
+#: glade/preferences.glade.h:20 glade/preferences.glade.h:20
 msgid "Styling"
 msgstr ""
 
 #: glade/preferences.glade.h:18 glade/preferences.glade.h:41
 #: glade/preferences.glade.h:39 glade/preferences.glade.h:19
-#: glade/preferences.glade.h:18
+#: glade/preferences.glade.h:21 glade/preferences.glade.h:21
 msgid "Main font"
 msgstr ""
 
 #: glade/preferences.glade.h:19 glade/preferences.glade.h:42
 #: glade/preferences.glade.h:40 glade/preferences.glade.h:20
-#: glade/preferences.glade.h:19
+#: glade/preferences.glade.h:23 glade/preferences.glade.h:23
 msgid "Foreground color"
 msgstr ""
 
 #: glade/preferences.glade.h:20 glade/preferences.glade.h:43
 #: glade/preferences.glade.h:41 glade/preferences.glade.h:21
-#: glade/preferences.glade.h:20
+#: glade/preferences.glade.h:25 glade/preferences.glade.h:25
 msgid "Used for financial representation"
 msgstr ""
 
 #: glade/preferences.glade.h:21 glade/preferences.glade.h:44
 #: glade/preferences.glade.h:42 glade/preferences.glade.h:22
-#: glade/preferences.glade.h:21
+#: glade/preferences.glade.h:26 glade/preferences.glade.h:26
 msgid "Mono font"
 msgstr ""
 
 #: glade/preferences.glade.h:22 glade/preferences.glade.h:45
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:23
-#: glade/preferences.glade.h:22
+#: glade/preferences.glade.h:28 glade/preferences.glade.h:28
 msgid "Background color"
 msgstr ""
 
 #: glade/preferences.glade.h:23 glade/preferences.glade.h:46
 #: glade/preferences.glade.h:44 glade/preferences.glade.h:24
-#: glade/preferences.glade.h:23
+#: glade/preferences.glade.h:31 glade/preferences.glade.h:31
 msgid "Footer Images"
 msgstr ""
 
 #: glade/preferences.glade.h:24 glade/preferences.glade.h:47
 #: glade/preferences.glade.h:45 glade/preferences.glade.h:25
-#: glade/preferences.glade.h:24
+#: glade/preferences.glade.h:32 glade/preferences.glade.h:32
 msgid "Footer image 1"
 msgstr ""
 
 #: glade/preferences.glade.h:25 glade/preferences.glade.h:48
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:26
-#: glade/preferences.glade.h:25
+#: glade/preferences.glade.h:33 glade/preferences.glade.h:33
 msgid "Footer image 2"
 msgstr ""
 
 #: glade/preferences.glade.h:26 glade/preferences.glade.h:49
 #: glade/preferences.glade.h:47 glade/preferences.glade.h:27
-#: glade/preferences.glade.h:26
+#: glade/preferences.glade.h:34 glade/preferences.glade.h:34
 msgid "Footer image 3"
 msgstr ""
 
 #: glade/preferences.glade.h:27 glade/preferences.glade.h:50
 #: glade/preferences.glade.h:48 glade/preferences.glade.h:28
-#: glade/preferences.glade.h:27
+#: glade/preferences.glade.h:35 glade/preferences.glade.h:35
 msgid "Document"
 msgstr ""
 
 #: glade/preferences.glade.h:28 glade/preferences.glade.h:51
 #: glade/preferences.glade.h:49 glade/preferences.glade.h:29
-#: glade/preferences.glade.h:28
+#: glade/preferences.glade.h:36 glade/preferences.glade.h:36
 msgid "Customer Information"
 msgstr ""
 
 #: glade/preferences.glade.h:29 glade/preferences.glade.h:54
 #: glade/preferences.glade.h:52 glade/preferences.glade.h:32
-#: glade/preferences.glade.h:31 glade/preferences.glade.h:31
+#: glade/preferences.glade.h:31 glade/preferences.glade.h:42
+#: glade/preferences.glade.h:42
 msgid "Supplier Information"
 msgstr ""
 
 #: glade/preferences.glade.h:30 glade/preferences.glade.h:55
 #: glade/preferences.glade.h:53 glade/preferences.glade.h:33
-#: glade/preferences.glade.h:32 glade/preferences.glade.h:32
+#: glade/preferences.glade.h:32 glade/preferences.glade.h:46
+#: glade/preferences.glade.h:46
 msgid "Invoice ending"
 msgstr ""
 
@@ -459,98 +478,99 @@ msgstr ""
 
 #: glade/preferences.glade.h:32 glade/preferences.glade.h:57
 #: glade/preferences.glade.h:55 glade/preferences.glade.h:35
-#: glade/preferences.glade.h:34 glade/preferences.glade.h:34
+#: glade/preferences.glade.h:34 glade/preferences.glade.h:48
+#: glade/preferences.glade.h:48
 msgid "Table columns"
 msgstr ""
 
 #: glade/preferences.glade.h:33 glade/preferences.glade.h:68
 #: glade/preferences.glade.h:66 glade/preferences.glade.h:44
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:45
-#: glade/preferences.glade.h:45
+#: glade/preferences.glade.h:59 glade/preferences.glade.h:59
 msgid "Cumulative columns"
 msgstr ""
 
 #: glade/preferences.glade.h:34 glade/preferences.glade.h:71
 #: glade/preferences.glade.h:69 glade/preferences.glade.h:47
 #: glade/preferences.glade.h:49 glade/preferences.glade.h:48
-#: glade/preferences.glade.h:48
+#: glade/preferences.glade.h:62 glade/preferences.glade.h:62
 msgid "Table configuration"
 msgstr ""
 
 #: glade/preferences.glade.h:35 glade/preferences.glade.h:72
 #: glade/preferences.glade.h:70 glade/preferences.glade.h:48
 #: glade/preferences.glade.h:50 glade/preferences.glade.h:49
-#: glade/preferences.glade.h:49
+#: glade/preferences.glade.h:63 glade/preferences.glade.h:63
 msgid "Counters"
 msgstr ""
 
 #: glade/preferences.glade.h:36 glade/preferences.glade.h:73
 #: glade/preferences.glade.h:71 glade/preferences.glade.h:49
 #: glade/preferences.glade.h:51 glade/preferences.glade.h:50
-#: glade/preferences.glade.h:50
+#: glade/preferences.glade.h:64 glade/preferences.glade.h:64
 msgid "Invoice counter:"
 msgstr ""
 
 #: glade/preferences.glade.h:37 glade/preferences.glade.h:74
 #: glade/preferences.glade.h:72 glade/preferences.glade.h:50
 #: glade/preferences.glade.h:52 glade/preferences.glade.h:51
-#: glade/preferences.glade.h:51
+#: glade/preferences.glade.h:65 glade/preferences.glade.h:65
 msgid "Customer counter:"
 msgstr ""
 
 #: glade/preferences.glade.h:38 glade/preferences.glade.h:75
 #: glade/preferences.glade.h:73 glade/preferences.glade.h:51
 #: glade/preferences.glade.h:55 glade/preferences.glade.h:54
-#: glade/preferences.glade.h:54
+#: glade/preferences.glade.h:70 glade/preferences.glade.h:70
 msgid "Removal Confirmations"
 msgstr ""
 
 #: glade/preferences.glade.h:40 glade/preferences.glade.h:77
 #: glade/preferences.glade.h:75 glade/preferences.glade.h:53
 #: glade/preferences.glade.h:56 glade/preferences.glade.h:55
-#: glade/preferences.glade.h:55
+#: glade/preferences.glade.h:71 glade/preferences.glade.h:71
 msgid "Customer removal"
 msgstr ""
 
 #: glade/preferences.glade.h:41 glade/preferences.glade.h:78
 #: glade/preferences.glade.h:76 glade/preferences.glade.h:54
 #: glade/preferences.glade.h:57 glade/preferences.glade.h:56
-#: glade/preferences.glade.h:56
+#: glade/preferences.glade.h:72 glade/preferences.glade.h:72
 msgid "Invoice removal"
 msgstr ""
 
 #: glade/preferences.glade.h:42 glade/preferences.glade.h:79
 #: glade/preferences.glade.h:77 glade/preferences.glade.h:55
 #: glade/preferences.glade.h:58 glade/preferences.glade.h:57
-#: glade/preferences.glade.h:57
+#: glade/preferences.glade.h:73 glade/preferences.glade.h:73
 msgid "Record removal"
 msgstr ""
 
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:80
 #: glade/preferences.glade.h:78 glade/preferences.glade.h:56
 #: glade/preferences.glade.h:59 glade/preferences.glade.h:58
-#: glade/preferences.glade.h:58
+#: glade/preferences.glade.h:74 glade/preferences.glade.h:74
 msgid "Dialogs"
 msgstr ""
 
 #: glade/preferences.glade.h:44 glade/preferences.glade.h:81
 #: glade/preferences.glade.h:79 glade/preferences.glade.h:57
 #: glade/preferences.glade.h:60 glade/preferences.glade.h:59
-#: glade/preferences.glade.h:59
+#: glade/preferences.glade.h:75 glade/preferences.glade.h:75
 msgid "Language & Currency"
 msgstr ""
 
 #: glade/preferences.glade.h:45 glade/preferences.glade.h:82
 #: glade/preferences.glade.h:80 glade/preferences.glade.h:58
 #: glade/preferences.glade.h:61 glade/preferences.glade.h:60
-#: glade/preferences.glade.h:60
+#: glade/preferences.glade.h:76 glade/preferences.glade.h:76
 msgid "Default locale:"
 msgstr ""
 
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:83
 #: glade/preferences.glade.h:81 glade/preferences.glade.h:59
 #: glade/preferences.glade.h:62 glade/preferences.glade.h:61
-#: glade/preferences.glade.h:61
+#: glade/preferences.glade.h:78 glade/preferences.glade.h:78
 msgid "LaTeX Babel language:"
 msgstr ""
 
@@ -560,7 +580,8 @@ msgstr ""
 
 #: glade/preferences.glade.h:31 glade/preferences.glade.h:56
 #: glade/preferences.glade.h:54 glade/preferences.glade.h:34
-#: glade/preferences.glade.h:33 glade/preferences.glade.h:33
+#: glade/preferences.glade.h:33 glade/preferences.glade.h:47
+#: glade/preferences.glade.h:47
 msgid "General information"
 msgstr ""
 
@@ -579,25 +600,26 @@ msgstr ""
 #: glade/preferences.glade.h:7 ../ginvoice/ui/invoice.py:102
 #: ../ginvoice/ui/invoice.py:220 glade/variable.glade.h:2
 #: ../ginvoice/ui/invoice.py:100 ../ginvoice/ui/invoice.py:218
+#: ../ginvoice/ui/invoice.py:98 ../ginvoice/ui/invoice.py:216
 #: glade/variable.glade.h:2
 msgid "invoice_nr"
 msgstr ""
 
 #: glade/preferences.glade.h:9 ../ginvoice/ui/invoice.py:103
 #: glade/variable.glade.h:4 ../ginvoice/ui/invoice.py:101
-#: glade/variable.glade.h:4
+#: ../ginvoice/ui/invoice.py:99 glade/variable.glade.h:4
 msgid "today"
 msgstr ""
 
 #: glade/preferences.glade.h:11 ../ginvoice/ui/invoice.py:129
 #: glade/variable.glade.h:6 ../ginvoice/ui/invoice.py:127
-#: glade/variable.glade.h:6
+#: ../ginvoice/ui/invoice.py:125 glade/variable.glade.h:6
 msgid "customer_nr"
 msgstr ""
 
 #: glade/preferences.glade.h:13 ../ginvoice/ui/invoice.py:130
 #: glade/variable.glade.h:8 ../ginvoice/ui/invoice.py:128
-#: glade/variable.glade.h:8
+#: ../ginvoice/ui/invoice.py:126 glade/variable.glade.h:8
 msgid "customer_name"
 msgstr ""
 
@@ -608,25 +630,25 @@ msgstr ""
 
 #: glade/preferences.glade.h:17 ../ginvoice/ui/invoice.py:213
 #: glade/variable.glade.h:12 ../ginvoice/ui/invoice.py:211
-#: glade/variable.glade.h:12
+#: ../ginvoice/ui/invoice.py:209 glade/variable.glade.h:12
 msgid "grandtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:19 ../ginvoice/ui/invoice.py:214
 #: glade/variable.glade.h:14 ../ginvoice/ui/invoice.py:212
-#: glade/variable.glade.h:14
+#: ../ginvoice/ui/invoice.py:210 glade/variable.glade.h:14
 msgid "subtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:21 ../ginvoice/ui/invoice.py:215
 #: glade/variable.glade.h:16 ../ginvoice/ui/invoice.py:213
-#: glade/variable.glade.h:16
+#: ../ginvoice/ui/invoice.py:211 glade/variable.glade.h:16
 msgid "total_vat"
 msgstr ""
 
 #: glade/preferences.glade.h:23 ../ginvoice/ui/invoice.py:216
 #: glade/variable.glade.h:18 ../ginvoice/ui/invoice.py:214
-#: glade/variable.glade.h:18
+#: ../ginvoice/ui/invoice.py:212 glade/variable.glade.h:18
 msgid "total_discount"
 msgstr ""
 
@@ -640,13 +662,13 @@ msgstr ""
 
 #: glade/preferences.glade.h:52 glade/preferences.glade.h:50
 #: glade/preferences.glade.h:30 glade/preferences.glade.h:29
-#: glade/preferences.glade.h:29
+#: glade/preferences.glade.h:40 glade/preferences.glade.h:40
 msgid "Key"
 msgstr ""
 
 #: glade/preferences.glade.h:59 glade/preferences.glade.h:57
 #: glade/preferences.glade.h:37 glade/preferences.glade.h:36
-#: glade/preferences.glade.h:36
+#: glade/preferences.glade.h:50 glade/preferences.glade.h:50
 msgid "Size of text"
 msgstr ""
 
@@ -656,25 +678,28 @@ msgstr ""
 
 #: glade/preferences.glade.h:67 glade/preferences.glade.h:65
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:42
-#: glade/preferences.glade.h:42
+#: glade/preferences.glade.h:56 glade/preferences.glade.h:56
 msgid "10000"
 msgstr ""
 
 #: glade/preferences.glade.h:69 glade/preferences.glade.h:67
 #: glade/preferences.glade.h:45 glade/preferences.glade.h:47
-#: glade/preferences.glade.h:46 glade/preferences.glade.h:46
+#: glade/preferences.glade.h:46 glade/preferences.glade.h:60
+#: glade/preferences.glade.h:60
 msgid "Total (ex.)"
 msgstr ""
 
 #: glade/preferences.glade.h:70 glade/preferences.glade.h:68
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:48
-#: glade/preferences.glade.h:47 glade/preferences.glade.h:47
+#: glade/preferences.glade.h:47 glade/preferences.glade.h:61
+#: glade/preferences.glade.h:61
 msgid "Total (incl.)"
 msgstr ""
 
 #: glade/preferences.glade.h:84 glade/preferences.glade.h:82
 #: glade/preferences.glade.h:60 glade/preferences.glade.h:63
-#: glade/preferences.glade.h:62 glade/preferences.glade.h:62
+#: glade/preferences.glade.h:62 glade/preferences.glade.h:80
+#: glade/preferences.glade.h:80
 msgid "Currency:"
 msgstr ""
 
@@ -687,106 +712,122 @@ msgid "Invoice {grandtotal}"
 msgstr ""
 
 #: ../ginvoice/ui/preferences.py:258 ../ginvoice/ui/preferences.py:264
-#: ../ginvoice/ui/preferences.py:266
+#: ../ginvoice/ui/preferences.py:266 ../ginvoice/ui/preferences.py:263
 msgid "Add customer record"
 msgstr ""
 
 #: ../ginvoice/ui/preferences.py:264 ../ginvoice/ui/preferences.py:270
-#: ../ginvoice/ui/preferences.py:272
+#: ../ginvoice/ui/preferences.py:272 ../ginvoice/ui/preferences.py:269
 msgid "Add supplier record"
 msgstr ""
 
 #: ../ginvoice/ui/preferences.py:270 ../ginvoice/ui/preferences.py:276
-#: ../ginvoice/ui/preferences.py:278
+#: ../ginvoice/ui/preferences.py:278 ../ginvoice/ui/preferences.py:275
 msgid "Edit customer record"
 msgstr ""
 
 #: ../ginvoice/ui/preferences.py:277 ../ginvoice/ui/preferences.py:283
-#: ../ginvoice/ui/preferences.py:285
+#: ../ginvoice/ui/preferences.py:285 ../ginvoice/ui/preferences.py:282
 msgid "Edit supplier record"
 msgstr ""
 
 #: ../ginvoice/model/pdf.py:154 ../ginvoice/model/document.py:154
+#: ../ginvoice/model/document.py:145
 msgid "See next page"
 msgstr ""
 
 #: ../ginvoice/model/preference.py:144 ../ginvoice/model/preference.py:105
 #: ../ginvoice/ui/invoice.py:294 ../ginvoice/ui/invoice.py:292
+#: ../ginvoice/ui/invoice.py:290
 #, python-brace-format
 msgid "Invoice {invoice_nr} - {customer_name}.pdf"
 msgstr ""
 
 #: ../ginvoice/ui/app.py:112 ../ginvoice/ui/app.py:114
+#: ../ginvoice/ui/app.py:111 ../ginvoice/ui/app.py:109
+#: ../ginvoice/ui/app.py:117
 msgid "Delete Customer Confirmation"
 msgstr ""
 
 #: ../ginvoice/ui/app.py:118 ../ginvoice/ui/app.py:120
+#: ../ginvoice/ui/app.py:117 ../ginvoice/ui/app.py:115
+#: ../ginvoice/ui/app.py:123
 msgid "Are you sure you want to delete the customer?"
 msgstr ""
 
 #: ../ginvoice/ui/invoice.py:136 ../ginvoice/ui/invoice.py:134
+#: ../ginvoice/ui/invoice.py:132
 msgid "title"
 msgstr ""
 
 #: ../ginvoice/ui/invoice.py:140 ../ginvoice/ui/invoice.py:138
+#: ../ginvoice/ui/invoice.py:136
 msgid "subtitle"
 msgstr ""
 
 #: ../ginvoice/ui/invoice.py:154 ../ginvoice/ui/invoice.py:152
+#: ../ginvoice/ui/invoice.py:150
 msgid "Delete Invoice Confirmation"
 msgstr ""
 
 #: ../ginvoice/ui/invoice.py:160 ../ginvoice/ui/invoice.py:158
+#: ../ginvoice/ui/invoice.py:156
 msgid "Are you sure you want to delete the invoice?"
 msgstr ""
 
 #: ../ginvoice/ui/preferences.py:135 ../ginvoice/ui/preferences.py:137
+#: ../ginvoice/ui/preferences.py:134
 msgid "Default "
 msgstr ""
 
 #: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:121
+#: ../ginvoice/ui/record.py:63 ../ginvoice/ui/record.py:117
 msgid "x"
 msgstr ""
 
 #: ../ginvoice/ui/record.py:69 ../ginvoice/ui/record.py:121
+#: ../ginvoice/ui/record.py:65 ../ginvoice/ui/record.py:117
 msgid "h"
 msgstr ""
 
 #: ../ginvoice/ui/record.py:71 ../ginvoice/ui/record.py:121
+#: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:117
 msgid "m"
 msgstr ""
 
-#: ../ginvoice/ui/record.py:112
+#: ../ginvoice/ui/record.py:112 ../ginvoice/ui/record.py:108
 msgid "Edit Invoice Record"
 msgstr ""
 
-#: glade/info.glade.h:3 glade/record.glade.h:22 glade/info.glade.h:3
-#: glade/record.glade.h:22
+#: glade/info.glade.h:3 glade/record.glade.h:22 glade/info.glade.h:5
+#: glade/record.glade.h:33 glade/info.glade.h:5 glade/record.glade.h:33
 msgid "Add another one"
 msgstr ""
 
 #: glade/info.glade.h:4 glade/record.glade.h:23 glade/target.glade.h:2
-#: glade/info.glade.h:4 glade/record.glade.h:23 glade/target.glade.h:2
+#: glade/info.glade.h:7 glade/record.glade.h:35 glade/info.glade.h:7
+#: glade/record.glade.h:35 glade/target.glade.h:2
 msgid "Close"
 msgstr ""
 
-#: glade/invoice.glade.h:9 glade/invoice.glade.h:9
+#: glade/invoice.glade.h:9 glade/invoice.glade.h:11 glade/invoice.glade.h:11
 msgid "column"
 msgstr ""
 
 #: glade/invoice.glade.h:16 glade/preferences.glade.h:42
-#: glade/preferences.glade.h:41 glade/invoice.glade.h:16
-#: glade/preferences.glade.h:41
+#: glade/preferences.glade.h:41 glade/invoice.glade.h:21
+#: glade/preferences.glade.h:55 glade/invoice.glade.h:21
+#: glade/preferences.glade.h:55
 msgid "Subtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:53 glade/preferences.glade.h:52
-#: glade/preferences.glade.h:52
+#: glade/preferences.glade.h:67 glade/preferences.glade.h:67
 msgid "PDF Viewer"
 msgstr ""
 
 #: glade/preferences.glade.h:54 glade/preferences.glade.h:53
-#: glade/preferences.glade.h:53
+#: glade/preferences.glade.h:68 glade/preferences.glade.h:68
 msgid "Executable"
 msgstr ""
 
@@ -809,34 +850,282 @@ msgstr ""
 msgid "Create Invoice Record"
 msgstr ""
 
-#: glade/record.glade.h:11 glade/record.glade.h:11
+#: glade/record.glade.h:11 glade/record.glade.h:14 glade/record.glade.h:14
 msgid "0"
 msgstr ""
 
-#: glade/record.glade.h:12 glade/record.glade.h:12
+#: glade/record.glade.h:12 glade/record.glade.h:15 glade/record.glade.h:15
 msgid "Quantity type"
 msgstr ""
 
-#: glade/record.glade.h:13 glade/record.glade.h:13
+#: glade/record.glade.h:13 glade/record.glade.h:16 glade/record.glade.h:16
 msgid "In units"
 msgstr ""
 
-#: glade/record.glade.h:14 glade/record.glade.h:14
+#: glade/record.glade.h:14 glade/record.glade.h:18 glade/record.glade.h:18
 msgid "In minutes"
 msgstr ""
 
-#: glade/record.glade.h:15 glade/record.glade.h:15
+#: glade/record.glade.h:15 glade/record.glade.h:20 glade/record.glade.h:20
 msgid "In hours"
 msgstr ""
 
-#: glade/record.glade.h:18 glade/record.glade.h:18
+#: glade/record.glade.h:18 glade/record.glade.h:26 glade/record.glade.h:26
 msgid "Discount type"
 msgstr ""
 
-#: glade/record.glade.h:19 glade/record.glade.h:19
+#: glade/record.glade.h:19 glade/record.glade.h:27 glade/record.glade.h:27
 msgid "Fixed discount"
 msgstr ""
 
-#: glade/record.glade.h:20 glade/record.glade.h:20
+#: glade/record.glade.h:20 glade/record.glade.h:29 glade/record.glade.h:29
 msgid "In percentages"
+msgstr ""
+
+#: glade/app.glade.h:4 glade/app.glade.h:4
+msgid "Add customer"
+msgstr ""
+
+#: glade/app.glade.h:5 glade/app.glade.h:5
+msgid "Remove selected customer"
+msgstr ""
+
+#: glade/app.glade.h:6 glade/app.glade.h:6
+msgid "Edit selected customer"
+msgstr ""
+
+#: glade/app.glade.h:7 glade/app.glade.h:7
+msgid "Search in customers"
+msgstr ""
+
+#: glade/customer.glade.h:2 glade/customer.glade.h:2
+msgid "Optional variable"
+msgstr ""
+
+#: glade/customer.glade.h:4 glade/customer.glade.h:4
+msgid "Customer reference name"
+msgstr ""
+
+#: glade/customer.glade.h:6 glade/customer.glade.h:6
+msgid "For most cases this is the first address line"
+msgstr ""
+
+#: glade/customer.glade.h:8 glade/customer.glade.h:8
+msgid "Second address line"
+msgstr ""
+
+#: glade/customer.glade.h:10 glade/customer.glade.h:10
+msgid "Third address line"
+msgstr ""
+
+#: glade/info.glade.h:3 glade/info.glade.h:3
+msgid "Title describing the information field"
+msgstr ""
+
+#: glade/info.glade.h:4 glade/info.glade.h:4
+msgid "The actual information (can have variables)"
+msgstr ""
+
+#: glade/info.glade.h:6 glade/info.glade.h:6
+msgid "Let this dialog open to create another one, or close this dialog"
+msgstr ""
+
+#: glade/info.glade.h:9 glade/info.glade.h:9
+msgid "Save information line"
+msgstr ""
+
+#: glade/invoice.glade.h:6 glade/invoice.glade.h:6
+msgid "Change header presentation"
+msgstr ""
+
+#: glade/invoice.glade.h:10 glade/invoice.glade.h:10
+msgid "Change customer and supplier info"
+msgstr ""
+
+#: glade/invoice.glade.h:13 glade/invoice.glade.h:13
+msgid "Add invoice record"
+msgstr ""
+
+#: glade/invoice.glade.h:14 glade/invoice.glade.h:14
+msgid "Remove invoice record"
+msgstr ""
+
+#: glade/invoice.glade.h:15 glade/invoice.glade.h:15
+msgid "Change column presentation"
+msgstr ""
+
+#: glade/invoice.glade.h:28 glade/invoice.glade.h:28
+msgid "Remove current invoice"
+msgstr ""
+
+#: glade/invoice.glade.h:30 glade/invoice.glade.h:30
+msgid "Preview the PDF result"
+msgstr ""
+
+#: glade/invoice.glade.h:32 glade/invoice.glade.h:32
+msgid "Save this invoice"
+msgstr ""
+
+#: glade/preferences.glade.h:11 glade/preferences.glade.h:11
+msgid "The title of the paper"
+msgstr ""
+
+#: glade/preferences.glade.h:14 glade/preferences.glade.h:14
+msgid "Only used in the document properties"
+msgstr ""
+
+#: glade/preferences.glade.h:17 glade/preferences.glade.h:17
+msgid "The subtitle of the paper"
+msgstr ""
+
+#: glade/preferences.glade.h:22 glade/preferences.glade.h:22
+msgid "Sets the font for texts and titles"
+msgstr ""
+
+#: glade/preferences.glade.h:24 glade/preferences.glade.h:24
+msgid "Foreground color for the header"
+msgstr ""
+
+#: glade/preferences.glade.h:27 glade/preferences.glade.h:27
+msgid "Sets the font for financial numbers"
+msgstr ""
+
+#: glade/preferences.glade.h:29 glade/preferences.glade.h:29
+msgid "Background color for the header"
+msgstr ""
+
+#: glade/preferences.glade.h:30 glade/preferences.glade.h:30
+msgid "Optional images to display at the bottom of the invoice"
+msgstr ""
+
+#: glade/preferences.glade.h:37 glade/preferences.glade.h:37
+msgid "Add a customer information line"
+msgstr ""
+
+#: glade/preferences.glade.h:38 glade/preferences.glade.h:38
+msgid "Remove the selected customer information line"
+msgstr ""
+
+#: glade/preferences.glade.h:39 glade/preferences.glade.h:39
+msgid "Edit the selected customer information line"
+msgstr ""
+
+#: glade/preferences.glade.h:43 glade/preferences.glade.h:43
+msgid "Add supplier information line"
+msgstr ""
+
+#: glade/preferences.glade.h:44 glade/preferences.glade.h:44
+msgid "Remove the selected supplier information line"
+msgstr ""
+
+#: glade/preferences.glade.h:45 glade/preferences.glade.h:45
+msgid "Edit the selected supplier information line"
+msgstr ""
+
+#: glade/preferences.glade.h:66 glade/preferences.glade.h:66
+msgid "Current value of the customer counter"
+msgstr ""
+
+#: glade/preferences.glade.h:69 glade/preferences.glade.h:69
+msgid "Application used to preview the PDF invoice"
+msgstr ""
+
+#: glade/preferences.glade.h:77 glade/preferences.glade.h:77
+msgid "Select locale for this application"
+msgstr ""
+
+#: glade/preferences.glade.h:79 glade/preferences.glade.h:79
+msgid "Select the babel language, which is useful for hyphenation"
+msgstr ""
+
+#: glade/preferences.glade.h:81 glade/preferences.glade.h:81
+msgid "Select the currency used in the invoices"
+msgstr ""
+
+#: glade/record.glade.h:9 glade/record.glade.h:9
+msgid "Describe the invoice record"
+msgstr ""
+
+#: glade/record.glade.h:11 glade/record.glade.h:11
+msgid "Optional date of work (be sure to display the column as well)"
+msgstr ""
+
+#: glade/record.glade.h:13 glade/record.glade.h:13
+msgid "Specify the quantity (numbers only)"
+msgstr ""
+
+#: glade/record.glade.h:17 glade/record.glade.h:17
+msgid "Show quantity with <b>x</b> as postfix"
+msgstr ""
+
+#: glade/record.glade.h:19 glade/record.glade.h:19
+msgid "Show quantity with <b>m</b> as postfix"
+msgstr ""
+
+#: glade/record.glade.h:21 glade/record.glade.h:21
+msgid "Show quantity with <b>h</b> as postfix"
+msgstr ""
+
+#: glade/record.glade.h:23 glade/record.glade.h:23
+msgid "Fill in the price based on the quantity type"
+msgstr ""
+
+#: glade/record.glade.h:25 glade/record.glade.h:25
+msgid "Specify the discount (only numbers)"
+msgstr ""
+
+#: glade/record.glade.h:28 glade/record.glade.h:28
+msgid "Shows the discount as amount"
+msgstr ""
+
+#: glade/record.glade.h:30 glade/record.glade.h:30
+msgid "Shows the discount as percentage"
+msgstr ""
+
+#: glade/record.glade.h:32 glade/record.glade.h:32
+msgid "Select VAT percentage"
+msgstr ""
+
+#: glade/record.glade.h:34 glade/record.glade.h:34
+msgid "Keep adding records, or close this dialog afterwards"
+msgstr ""
+
+#: glade/record.glade.h:37 glade/record.glade.h:37
+msgid "Save the invoice record"
+msgstr ""
+
+#: glade/variable.glade.h:19 glade/variable.glade.h:19
+msgid "Use accolades <b>{</b>/<b>}</b> to insert variables"
+msgstr ""
+
+#: glade/about.glade.h:1
+msgid "Erik Nijenhuis <erik@xerdi.com>"
+msgstr ""
+
+#: glade/about.glade.h:2 glade/about.glade.h:2
+msgid "Creating LaTeX invoices with a GTK GUI."
+msgstr ""
+
+#: glade/about.glade.h:3 glade/about.glade.h:3
+msgid "GNOME GitLab"
+msgstr ""
+
+#: glade/app.glade.h:8 glade/app.glade.h:8
+msgid "Settings"
+msgstr ""
+
+#: glade/app.glade.h:9 glade/app.glade.h:9
+msgid "Create a new invoice"
+msgstr ""
+
+#: glade/app.glade.h:10 glade/app.glade.h:10
+msgid "Search in the invoice"
+msgstr ""
+
+#: ../ginvoice/ui/about.py:31
+msgid "Creating LaTeX invoices with a GTK GUI"
+msgstr ""
+
+#: glade/about.glade.h:1
+msgid "Copyright Xerdi"
 msgstr ""

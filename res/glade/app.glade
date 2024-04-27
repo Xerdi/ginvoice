@@ -56,6 +56,7 @@ Author: Erik Nijenhuis
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="text" translatable="yes">About</property>
+            <signal name="clicked" handler="open_about" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -377,6 +378,7 @@ Author: Erik Nijenhuis
                   <object class="GtkImage">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="tooltip-text" translatable="yes">Settings</property>
                     <property name="icon-name">open-menu-symbolic</property>
                   </object>
                 </child>
@@ -414,6 +416,7 @@ Author: Erik Nijenhuis
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Create a new invoice</property>
                 <property name="icon-name">document-new</property>
                 <property name="icon_size">1</property>
               </object>
@@ -438,6 +441,7 @@ Author: Erik Nijenhuis
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Search in the invoice</property>
                 <property name="icon-name">edit-find-symbolic</property>
                 <property name="icon_size">1</property>
               </object>

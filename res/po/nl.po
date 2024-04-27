@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GinVoice 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 02:31+0100\n"
-"PO-Revision-Date: 2021-11-18 20:16+0100\n"
+"POT-Creation-Date: 2024-04-27 10:42+0200\n"
+"PO-Revision-Date: 2024-04-27 10:43+0200\n"
 "Last-Translator: Erik Nijenhuis <erik@xerdi.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: ginvoice/app.py:35
 msgid "Invoicing"
@@ -32,7 +33,8 @@ msgstr "Klant"
 #: glade/invoice.glade.h:13 glade/invoice.glade.h:11
 #: glade/preferences.glade.h:60 glade/preferences.glade.h:58
 #: glade/preferences.glade.h:38 glade/invoice.glade.h:12 glade/record.glade.h:9
-#: glade/preferences.glade.h:37
+#: glade/preferences.glade.h:37 glade/invoice.glade.h:17
+#: glade/preferences.glade.h:51 glade/record.glade.h:10
 msgid "Date"
 msgstr "Datum"
 
@@ -42,7 +44,8 @@ msgstr "Datum"
 #: glade/invoice.glade.h:12 glade/invoice.glade.h:10
 #: glade/preferences.glade.h:58 glade/preferences.glade.h:56
 #: glade/preferences.glade.h:36 glade/invoice.glade.h:11 glade/record.glade.h:8
-#: glade/preferences.glade.h:35
+#: glade/preferences.glade.h:35 glade/invoice.glade.h:16
+#: glade/preferences.glade.h:49
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -50,6 +53,7 @@ msgstr "Beschrijving"
 #: ginvoice/widgets/table.py:23 glade/preferences.glade.h:53
 #: glade/preferences.glade.h:51 glade/preferences.glade.h:31
 #: glade/info.glade.h:2 glade/preferences.glade.h:30
+#: glade/preferences.glade.h:41
 msgid "Value"
 msgstr "Waarde"
 
@@ -59,7 +63,7 @@ msgstr "Minuten"
 
 #: ginvoice/app.py:106
 msgid "An error occurred when creating the PDF file"
-msgstr "Een foutmelding trad op bij het maken van het PDF bestand."
+msgstr "Een foutmelding trad op bij het maken van het PDF bestand"
 
 #: ginvoice/app.py:117 ginvoice/app.py:122 glade/customer.glade.h:7
 #: glade/invoice.glade.h:56 glade/preferences.glade.h:48
@@ -68,19 +72,25 @@ msgstr "Een foutmelding trad op bij het maken van het PDF bestand."
 #: glade/preferences.glade.h:85 glade/preferences.glade.h:83
 #: glade/preferences.glade.h:61 glade/info.glade.h:5
 #: glade/preferences.glade.h:64 glade/record.glade.h:24 glade/target.glade.h:1
-#: glade/preferences.glade.h:63
+#: glade/preferences.glade.h:63 glade/customer.glade.h:12 glade/info.glade.h:8
+#: glade/invoice.glade.h:31 glade/preferences.glade.h:82
+#: glade/record.glade.h:36
 msgid "Save"
 msgstr "Opslaan"
 
 #: ginvoice/app.py:123 glade/customer.glade.h:8 glade/preferences.glade.h:49
 #: glade/preferences.glade.h:86 glade/preferences.glade.h:84
 #: glade/preferences.glade.h:62 glade/preferences.glade.h:65
-#: glade/preferences.glade.h:64
+#: glade/preferences.glade.h:64 glade/customer.glade.h:13
+#: glade/preferences.glade.h:83
 msgid "Cancel"
 msgstr "Annuleren"
 
 #: ginvoice/app.py:124 ../ginvoice/ui/app.py:153 ../ginvoice/ui/target.py:31
 #: ../ginvoice/ui/app.py:155 glade/preferences.glade.h:15
+#: ../ginvoice/ui/app.py:152 ../ginvoice/ui/target.py:29
+#: glade/preferences.glade.h:18 ../ginvoice/ui/app.py:150
+#: ../ginvoice/ui/app.py:158
 msgid "Invoice"
 msgstr "Factuur"
 
@@ -153,23 +163,23 @@ msgstr "Nog geen klanten."
 msgid "Customer info"
 msgstr "Klantgegevens"
 
-#: glade/customer.glade.h:2
+#: glade/customer.glade.h:2 glade/customer.glade.h:3
 msgid "Customer number:"
 msgstr "Klantnummer:"
 
-#: glade/customer.glade.h:3
+#: glade/customer.glade.h:3 glade/customer.glade.h:5
 msgid "Customer name:"
 msgstr "Klantnaam:"
 
-#: glade/customer.glade.h:4
+#: glade/customer.glade.h:4 glade/customer.glade.h:7
 msgid "Customer salutation:"
 msgstr "Klant aanhef:"
 
-#: glade/customer.glade.h:5
+#: glade/customer.glade.h:5 glade/customer.glade.h:9
 msgid "Street name and number:"
 msgstr "Straatnaam en nummer:"
 
-#: glade/customer.glade.h:6
+#: glade/customer.glade.h:6 glade/customer.glade.h:11
 msgid "Postal and city:"
 msgstr "Postcode en plaats:"
 
@@ -204,7 +214,7 @@ msgstr "Titel"
 #: glade/invoice.glade.h:19 glade/preferences.glade.h:11
 #: glade/invoice.glade.h:18 glade/invoice.glade.h:15 glade/invoice.glade.h:8
 #: glade/invoice.glade.h:7 glade/preferences.glade.h:34
-#: glade/preferences.glade.h:14
+#: glade/preferences.glade.h:14 glade/preferences.glade.h:16
 msgid "Subtitle"
 msgstr "Ondertitel"
 
@@ -215,6 +225,7 @@ msgstr "Klant- & leveranciergegevens"
 
 #: glade/invoice.glade.h:41 glade/invoice.glade.h:40 glade/invoice.glade.h:37
 #: glade/invoice.glade.h:11 glade/invoice.glade.h:9 glade/invoice.glade.h:10
+#: glade/invoice.glade.h:12
 msgid "Invoice Records"
 msgstr "Factuurregels"
 
@@ -233,6 +244,8 @@ msgstr ""
 #: glade/preferences.glade.h:61 glade/preferences.glade.h:59
 #: glade/preferences.glade.h:39 glade/invoice.glade.h:13
 #: glade/record.glade.h:10 glade/preferences.glade.h:38
+#: glade/invoice.glade.h:18 glade/preferences.glade.h:52
+#: glade/record.glade.h:12
 msgid "Quantity"
 msgstr "Hoeveelheid"
 
@@ -241,6 +254,8 @@ msgstr "Hoeveelheid"
 #: glade/preferences.glade.h:63 glade/preferences.glade.h:61
 #: glade/preferences.glade.h:40 glade/invoice.glade.h:14
 #: glade/record.glade.h:16 glade/preferences.glade.h:39
+#: glade/invoice.glade.h:19 glade/preferences.glade.h:53
+#: glade/record.glade.h:22
 msgid "Price"
 msgstr "Prijs"
 
@@ -249,6 +264,8 @@ msgstr "Prijs"
 #: glade/preferences.glade.h:64 glade/preferences.glade.h:62
 #: glade/preferences.glade.h:41 glade/invoice.glade.h:15
 #: glade/record.glade.h:17 glade/preferences.glade.h:40
+#: glade/invoice.glade.h:20 glade/preferences.glade.h:54
+#: glade/record.glade.h:24
 msgid "Discount"
 msgstr "Korting"
 
@@ -257,6 +274,8 @@ msgstr "Korting"
 #: glade/preferences.glade.h:65 glade/preferences.glade.h:63
 #: glade/preferences.glade.h:42 glade/preferences.glade.h:44
 #: glade/record.glade.h:21 glade/preferences.glade.h:43
+#: glade/invoice.glade.h:22 glade/preferences.glade.h:57
+#: glade/record.glade.h:31
 msgid "VAT"
 msgstr "BTW"
 
@@ -264,32 +283,38 @@ msgstr "BTW"
 #: glade/invoice.glade.h:20 glade/invoice.glade.h:18 glade/invoice.glade.h:16
 #: glade/preferences.glade.h:66 glade/preferences.glade.h:64
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:45
-#: glade/preferences.glade.h:44
+#: glade/preferences.glade.h:44 glade/invoice.glade.h:23
+#: glade/preferences.glade.h:58
 msgid "Total"
 msgstr "Totaal"
 
 #: glade/invoice.glade.h:51 glade/invoice.glade.h:50 glade/invoice.glade.h:47
 #: glade/invoice.glade.h:21 glade/invoice.glade.h:19 glade/invoice.glade.h:17
+#: glade/invoice.glade.h:24
 msgid "Cumulative Header"
 msgstr "Cumulatieve duiding"
 
 #: glade/invoice.glade.h:52 glade/invoice.glade.h:51 glade/invoice.glade.h:48
 #: glade/invoice.glade.h:22 glade/invoice.glade.h:20 glade/invoice.glade.h:18
+#: glade/invoice.glade.h:25
 msgid "Cumulative Value"
 msgstr "Cumulatieve waarde"
 
 #: glade/invoice.glade.h:53 glade/invoice.glade.h:52 glade/invoice.glade.h:49
 #: glade/invoice.glade.h:23 glade/invoice.glade.h:21 glade/invoice.glade.h:19
+#: glade/invoice.glade.h:26
 msgid "Invoice Ending Text"
 msgstr "Factuur voettekst"
 
 #: glade/invoice.glade.h:54 glade/invoice.glade.h:53 glade/invoice.glade.h:50
 #: glade/invoice.glade.h:24 glade/invoice.glade.h:22 glade/invoice.glade.h:20
+#: glade/invoice.glade.h:27
 msgid "Remove"
 msgstr "Verwijderen"
 
 #: glade/invoice.glade.h:55 glade/invoice.glade.h:54 glade/invoice.glade.h:51
 #: glade/invoice.glade.h:25 glade/invoice.glade.h:23 glade/invoice.glade.h:21
+#: glade/invoice.glade.h:29
 msgid "Preview"
 msgstr "Voorbeeld"
 
@@ -322,94 +347,107 @@ msgid "Document details"
 msgstr "Documentgegevens"
 
 #: glade/preferences.glade.h:8 glade/preferences.glade.h:31
-#: glade/preferences.glade.h:11
+#: glade/preferences.glade.h:11 glade/preferences.glade.h:12
 msgid "My Company"
 msgstr "Mijn bedrijf"
 
 #: glade/preferences.glade.h:9 glade/preferences.glade.h:32
-#: glade/preferences.glade.h:12
+#: glade/preferences.glade.h:12 glade/preferences.glade.h:13
 msgid "Author"
 msgstr "Auteur"
 
 #: glade/preferences.glade.h:10 glade/preferences.glade.h:33
-#: glade/preferences.glade.h:13
+#: glade/preferences.glade.h:13 glade/preferences.glade.h:15
 msgid "John Doe"
 msgstr "Jan Doe"
 
 #: glade/preferences.glade.h:14 glade/preferences.glade.h:37
 #: glade/preferences.glade.h:36 glade/preferences.glade.h:16
+#: glade/preferences.glade.h:19
 msgid "Keywords"
 msgstr "Sleutelwoorden"
 
 #: glade/preferences.glade.h:17 glade/preferences.glade.h:40
 #: glade/preferences.glade.h:38 glade/preferences.glade.h:18
+#: glade/preferences.glade.h:20
 msgid "Styling"
 msgstr "Opmaak"
 
 #: glade/preferences.glade.h:18 glade/preferences.glade.h:41
 #: glade/preferences.glade.h:39 glade/preferences.glade.h:19
+#: glade/preferences.glade.h:21
 msgid "Main font"
 msgstr "Standaard lettertype"
 
 #: glade/preferences.glade.h:19 glade/preferences.glade.h:42
 #: glade/preferences.glade.h:40 glade/preferences.glade.h:20
+#: glade/preferences.glade.h:23
 msgid "Foreground color"
 msgstr "Voorgrondkleur"
 
 #: glade/preferences.glade.h:20 glade/preferences.glade.h:43
 #: glade/preferences.glade.h:41 glade/preferences.glade.h:21
+#: glade/preferences.glade.h:25
 msgid "Used for financial representation"
 msgstr "Gebruikt voor financiële representatie"
 
 #: glade/preferences.glade.h:21 glade/preferences.glade.h:44
 #: glade/preferences.glade.h:42 glade/preferences.glade.h:22
+#: glade/preferences.glade.h:26
 msgid "Mono font"
 msgstr "Monospace lettertype"
 
 #: glade/preferences.glade.h:22 glade/preferences.glade.h:45
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:23
+#: glade/preferences.glade.h:28
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
 #: glade/preferences.glade.h:23 glade/preferences.glade.h:46
 #: glade/preferences.glade.h:44 glade/preferences.glade.h:24
+#: glade/preferences.glade.h:31
 msgid "Footer Images"
 msgstr "Onderstaande afbeeldingen"
 
 #: glade/preferences.glade.h:24 glade/preferences.glade.h:47
 #: glade/preferences.glade.h:45 glade/preferences.glade.h:25
+#: glade/preferences.glade.h:32
 msgid "Footer image 1"
 msgstr "Afbeelding 1"
 
 #: glade/preferences.glade.h:25 glade/preferences.glade.h:48
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:26
+#: glade/preferences.glade.h:33
 msgid "Footer image 2"
 msgstr "Afbeelding 2"
 
 #: glade/preferences.glade.h:26 glade/preferences.glade.h:49
 #: glade/preferences.glade.h:47 glade/preferences.glade.h:27
+#: glade/preferences.glade.h:34
 msgid "Footer image 3"
 msgstr "Afbeelding 3"
 
 #: glade/preferences.glade.h:27 glade/preferences.glade.h:50
 #: glade/preferences.glade.h:48 glade/preferences.glade.h:28
+#: glade/preferences.glade.h:35
 msgid "Document"
 msgstr "Document"
 
 #: glade/preferences.glade.h:28 glade/preferences.glade.h:51
 #: glade/preferences.glade.h:49 glade/preferences.glade.h:29
+#: glade/preferences.glade.h:36
 msgid "Customer Information"
 msgstr "Klantgegevens"
 
 #: glade/preferences.glade.h:29 glade/preferences.glade.h:54
 #: glade/preferences.glade.h:52 glade/preferences.glade.h:32
-#: glade/preferences.glade.h:31
+#: glade/preferences.glade.h:31 glade/preferences.glade.h:42
 msgid "Supplier Information"
 msgstr "Leveranciergegevens"
 
 #: glade/preferences.glade.h:30 glade/preferences.glade.h:55
 #: glade/preferences.glade.h:53 glade/preferences.glade.h:33
-#: glade/preferences.glade.h:32
+#: glade/preferences.glade.h:32 glade/preferences.glade.h:46
 msgid "Invoice ending"
 msgstr "Voettekst"
 
@@ -419,85 +457,98 @@ msgstr "Algemene gegevens"
 
 #: glade/preferences.glade.h:32 glade/preferences.glade.h:57
 #: glade/preferences.glade.h:55 glade/preferences.glade.h:35
-#: glade/preferences.glade.h:34
+#: glade/preferences.glade.h:34 glade/preferences.glade.h:48
 msgid "Table columns"
 msgstr "Tabelkolommen"
 
 #: glade/preferences.glade.h:33 glade/preferences.glade.h:68
 #: glade/preferences.glade.h:66 glade/preferences.glade.h:44
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:45
+#: glade/preferences.glade.h:59
 msgid "Cumulative columns"
 msgstr "Cumulatieve tabelkolommen"
 
 #: glade/preferences.glade.h:34 glade/preferences.glade.h:71
 #: glade/preferences.glade.h:69 glade/preferences.glade.h:47
 #: glade/preferences.glade.h:49 glade/preferences.glade.h:48
+#: glade/preferences.glade.h:62
 msgid "Table configuration"
 msgstr "Tabel configuratie"
 
 #: glade/preferences.glade.h:35 glade/preferences.glade.h:72
 #: glade/preferences.glade.h:70 glade/preferences.glade.h:48
 #: glade/preferences.glade.h:50 glade/preferences.glade.h:49
+#: glade/preferences.glade.h:63
 msgid "Counters"
 msgstr "Tellers"
 
 #: glade/preferences.glade.h:36 glade/preferences.glade.h:73
 #: glade/preferences.glade.h:71 glade/preferences.glade.h:49
 #: glade/preferences.glade.h:51 glade/preferences.glade.h:50
+#: glade/preferences.glade.h:64
 msgid "Invoice counter:"
-msgstr "Factuurteller"
+msgstr "Factuurteller:"
 
 #: glade/preferences.glade.h:37 glade/preferences.glade.h:74
 #: glade/preferences.glade.h:72 glade/preferences.glade.h:50
 #: glade/preferences.glade.h:52 glade/preferences.glade.h:51
+#: glade/preferences.glade.h:65
 msgid "Customer counter:"
-msgstr "Klantteller"
+msgstr "Klantteller:"
 
 #: glade/preferences.glade.h:38 glade/preferences.glade.h:75
 #: glade/preferences.glade.h:73 glade/preferences.glade.h:51
 #: glade/preferences.glade.h:55 glade/preferences.glade.h:54
+#: glade/preferences.glade.h:70
 msgid "Removal Confirmations"
 msgstr "Verwijder bevestigingen"
 
 #: glade/preferences.glade.h:40 glade/preferences.glade.h:77
 #: glade/preferences.glade.h:75 glade/preferences.glade.h:53
 #: glade/preferences.glade.h:56 glade/preferences.glade.h:55
+#: glade/preferences.glade.h:71
 msgid "Customer removal"
 msgstr "Tonen bij verwijderen klant"
 
 #: glade/preferences.glade.h:41 glade/preferences.glade.h:78
 #: glade/preferences.glade.h:76 glade/preferences.glade.h:54
 #: glade/preferences.glade.h:57 glade/preferences.glade.h:56
+#: glade/preferences.glade.h:72
 msgid "Invoice removal"
 msgstr "Tonen bij verwijderen factuur"
 
 #: glade/preferences.glade.h:42 glade/preferences.glade.h:79
 #: glade/preferences.glade.h:77 glade/preferences.glade.h:55
 #: glade/preferences.glade.h:58 glade/preferences.glade.h:57
+#: glade/preferences.glade.h:73
 msgid "Record removal"
 msgstr "Tonen bij verwijderen regel"
 
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:80
 #: glade/preferences.glade.h:78 glade/preferences.glade.h:56
 #: glade/preferences.glade.h:59 glade/preferences.glade.h:58
+#: glade/preferences.glade.h:74
 msgid "Dialogs"
 msgstr "Dialogen"
 
 #: glade/preferences.glade.h:44 glade/preferences.glade.h:81
 #: glade/preferences.glade.h:79 glade/preferences.glade.h:57
 #: glade/preferences.glade.h:60 glade/preferences.glade.h:59
+#: glade/preferences.glade.h:75
 msgid "Language & Currency"
 msgstr "Taal & munteenheid"
 
 #: glade/preferences.glade.h:45 glade/preferences.glade.h:82
 #: glade/preferences.glade.h:80 glade/preferences.glade.h:58
 #: glade/preferences.glade.h:61 glade/preferences.glade.h:60
+#: glade/preferences.glade.h:76
 msgid "Default locale:"
 msgstr "Standaard taal:"
 
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:83
 #: glade/preferences.glade.h:81 glade/preferences.glade.h:59
 #: glade/preferences.glade.h:62 glade/preferences.glade.h:61
+#: glade/preferences.glade.h:78
 msgid "LaTeX Babel language:"
 msgstr "LaTeX Babel taal:"
 
@@ -507,7 +558,7 @@ msgstr "Munteenheid:"
 
 #: glade/preferences.glade.h:31 glade/preferences.glade.h:56
 #: glade/preferences.glade.h:54 glade/preferences.glade.h:34
-#: glade/preferences.glade.h:33
+#: glade/preferences.glade.h:33 glade/preferences.glade.h:47
 msgid "General information"
 msgstr "Algemene gegevens"
 
@@ -526,21 +577,25 @@ msgstr "Tekstbreedte"
 #: glade/preferences.glade.h:7 ../ginvoice/ui/invoice.py:102
 #: ../ginvoice/ui/invoice.py:220 glade/variable.glade.h:2
 #: ../ginvoice/ui/invoice.py:100 ../ginvoice/ui/invoice.py:218
+#: ../ginvoice/ui/invoice.py:98 ../ginvoice/ui/invoice.py:216
 msgid "invoice_nr"
 msgstr "factuur_nr"
 
 #: glade/preferences.glade.h:9 ../ginvoice/ui/invoice.py:103
 #: glade/variable.glade.h:4 ../ginvoice/ui/invoice.py:101
+#: ../ginvoice/ui/invoice.py:99
 msgid "today"
 msgstr "vandaag"
 
 #: glade/preferences.glade.h:11 ../ginvoice/ui/invoice.py:129
 #: glade/variable.glade.h:6 ../ginvoice/ui/invoice.py:127
+#: ../ginvoice/ui/invoice.py:125
 msgid "customer_nr"
 msgstr "klant_nr"
 
 #: glade/preferences.glade.h:13 ../ginvoice/ui/invoice.py:130
 #: glade/variable.glade.h:8 ../ginvoice/ui/invoice.py:128
+#: ../ginvoice/ui/invoice.py:126
 msgid "customer_name"
 msgstr "klantnaam"
 
@@ -550,21 +605,25 @@ msgstr "klant_aanhef"
 
 #: glade/preferences.glade.h:17 ../ginvoice/ui/invoice.py:213
 #: glade/variable.glade.h:12 ../ginvoice/ui/invoice.py:211
+#: ../ginvoice/ui/invoice.py:209
 msgid "grandtotal"
 msgstr "eindtotaal"
 
 #: glade/preferences.glade.h:19 ../ginvoice/ui/invoice.py:214
 #: glade/variable.glade.h:14 ../ginvoice/ui/invoice.py:212
+#: ../ginvoice/ui/invoice.py:210
 msgid "subtotal"
 msgstr "subtotaal"
 
 #: glade/preferences.glade.h:21 ../ginvoice/ui/invoice.py:215
 #: glade/variable.glade.h:16 ../ginvoice/ui/invoice.py:213
+#: ../ginvoice/ui/invoice.py:211
 msgid "total_vat"
 msgstr "totaal_btw"
 
 #: glade/preferences.glade.h:23 ../ginvoice/ui/invoice.py:216
 #: glade/variable.glade.h:18 ../ginvoice/ui/invoice.py:214
+#: ../ginvoice/ui/invoice.py:212
 msgid "total_discount"
 msgstr "totaal_korting"
 
@@ -578,11 +637,13 @@ msgstr "{klantnaam}"
 
 #: glade/preferences.glade.h:52 glade/preferences.glade.h:50
 #: glade/preferences.glade.h:30 glade/preferences.glade.h:29
+#: glade/preferences.glade.h:40
 msgid "Key"
 msgstr "Aanduiding"
 
 #: glade/preferences.glade.h:59 glade/preferences.glade.h:57
 #: glade/preferences.glade.h:37 glade/preferences.glade.h:36
+#: glade/preferences.glade.h:50
 msgid "Size of text"
 msgstr "Grootte van tekst"
 
@@ -592,26 +653,27 @@ msgstr ""
 
 #: glade/preferences.glade.h:67 glade/preferences.glade.h:65
 #: glade/preferences.glade.h:43 glade/preferences.glade.h:42
+#: glade/preferences.glade.h:56
 msgid "10000"
 msgstr ""
 
 #: glade/preferences.glade.h:69 glade/preferences.glade.h:67
 #: glade/preferences.glade.h:45 glade/preferences.glade.h:47
-#: glade/preferences.glade.h:46
+#: glade/preferences.glade.h:46 glade/preferences.glade.h:60
 msgid "Total (ex.)"
 msgstr "Totaal (ex.)"
 
 #: glade/preferences.glade.h:70 glade/preferences.glade.h:68
 #: glade/preferences.glade.h:46 glade/preferences.glade.h:48
-#: glade/preferences.glade.h:47
+#: glade/preferences.glade.h:47 glade/preferences.glade.h:61
 msgid "Total (incl.)"
 msgstr "Totaal (incl.)"
 
 #: glade/preferences.glade.h:84 glade/preferences.glade.h:82
 #: glade/preferences.glade.h:60 glade/preferences.glade.h:63
-#: glade/preferences.glade.h:62
+#: glade/preferences.glade.h:62 glade/preferences.glade.h:80
 msgid "Currency:"
-msgstr "Munteenheid"
+msgstr "Munteenheid:"
 
 #: glade/preferences.glade.h:35 glade/preferences.glade.h:15
 msgid "Invoice {invoice_nr}"
@@ -622,101 +684,120 @@ msgid "Invoice {grandtotal}"
 msgstr "Factuur {eindtotaal}"
 
 #: ../ginvoice/ui/preferences.py:258 ../ginvoice/ui/preferences.py:264
-#: ../ginvoice/ui/preferences.py:266
+#: ../ginvoice/ui/preferences.py:266 ../ginvoice/ui/preferences.py:263
 msgid "Add customer record"
 msgstr "Klantregel toevoegen"
 
 #: ../ginvoice/ui/preferences.py:264 ../ginvoice/ui/preferences.py:270
-#: ../ginvoice/ui/preferences.py:272
+#: ../ginvoice/ui/preferences.py:272 ../ginvoice/ui/preferences.py:269
 msgid "Add supplier record"
 msgstr "Leveranciersregel toevoegen"
 
 #: ../ginvoice/ui/preferences.py:270 ../ginvoice/ui/preferences.py:276
-#: ../ginvoice/ui/preferences.py:278
+#: ../ginvoice/ui/preferences.py:278 ../ginvoice/ui/preferences.py:275
 msgid "Edit customer record"
 msgstr "Klantregel wijzigen"
 
 #: ../ginvoice/ui/preferences.py:277 ../ginvoice/ui/preferences.py:283
-#: ../ginvoice/ui/preferences.py:285
+#: ../ginvoice/ui/preferences.py:285 ../ginvoice/ui/preferences.py:282
 msgid "Edit supplier record"
 msgstr "Leveranciersregel wijzigen"
 
 #: ../ginvoice/model/pdf.py:154 ../ginvoice/model/document.py:154
+#: ../ginvoice/model/document.py:145
 msgid "See next page"
 msgstr "Zie ommezijde"
 
 #: ../ginvoice/model/preference.py:144 ../ginvoice/model/preference.py:105
 #: ../ginvoice/ui/invoice.py:294 ../ginvoice/ui/invoice.py:292
+#: ../ginvoice/ui/invoice.py:290
 #, python-brace-format
 msgid "Invoice {invoice_nr} - {customer_name}.pdf"
 msgstr "Factuur {factuur_nr} - {klantnaam}.pdf"
 
 #: ../ginvoice/ui/app.py:112 ../ginvoice/ui/app.py:114
+#: ../ginvoice/ui/app.py:111 ../ginvoice/ui/app.py:109
+#: ../ginvoice/ui/app.py:117
 msgid "Delete Customer Confirmation"
 msgstr "Verwijdering klant bevestigen"
 
 #: ../ginvoice/ui/app.py:118 ../ginvoice/ui/app.py:120
+#: ../ginvoice/ui/app.py:117 ../ginvoice/ui/app.py:115
+#: ../ginvoice/ui/app.py:123
 msgid "Are you sure you want to delete the customer?"
 msgstr "Weet je zeker dat je de klant wilt verwijderen?"
 
 #: ../ginvoice/ui/invoice.py:136 ../ginvoice/ui/invoice.py:134
+#: ../ginvoice/ui/invoice.py:132
 msgid "title"
 msgstr "titel"
 
 #: ../ginvoice/ui/invoice.py:140 ../ginvoice/ui/invoice.py:138
+#: ../ginvoice/ui/invoice.py:136
 msgid "subtitle"
 msgstr "ondertitel"
 
 #: ../ginvoice/ui/invoice.py:154 ../ginvoice/ui/invoice.py:152
+#: ../ginvoice/ui/invoice.py:150
 msgid "Delete Invoice Confirmation"
 msgstr "Verwijdering factuur bevestigingen"
 
 #: ../ginvoice/ui/invoice.py:160 ../ginvoice/ui/invoice.py:158
+#: ../ginvoice/ui/invoice.py:156
 msgid "Are you sure you want to delete the invoice?"
 msgstr "Weet je zeker dat je de factuur wilt verwijderen?"
 
 #: ../ginvoice/ui/preferences.py:135 ../ginvoice/ui/preferences.py:137
+#: ../ginvoice/ui/preferences.py:134
 msgid "Default "
-msgstr "Standaard taal:"
+msgstr "Standaard "
 
 #: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:121
+#: ../ginvoice/ui/record.py:63 ../ginvoice/ui/record.py:117
 msgid "x"
 msgstr "x"
 
 #: ../ginvoice/ui/record.py:69 ../ginvoice/ui/record.py:121
+#: ../ginvoice/ui/record.py:65 ../ginvoice/ui/record.py:117
 msgid "h"
 msgstr "u"
 
 #: ../ginvoice/ui/record.py:71 ../ginvoice/ui/record.py:121
+#: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:117
 msgid "m"
 msgstr "m"
 
-#: ../ginvoice/ui/record.py:112
+#: ../ginvoice/ui/record.py:112 ../ginvoice/ui/record.py:108
 msgid "Edit Invoice Record"
 msgstr "Factuurregel aanpassen"
 
-#: glade/info.glade.h:3 glade/record.glade.h:22
+#: glade/info.glade.h:3 glade/record.glade.h:22 glade/info.glade.h:5
+#: glade/record.glade.h:33
 msgid "Add another one"
 msgstr "Nog één aanmaken"
 
 #: glade/info.glade.h:4 glade/record.glade.h:23 glade/target.glade.h:2
+#: glade/info.glade.h:7 glade/record.glade.h:35
 msgid "Close"
 msgstr "Sluiten"
 
-#: glade/invoice.glade.h:9
+#: glade/invoice.glade.h:9 glade/invoice.glade.h:11
 msgid "column"
 msgstr ""
 
 #: glade/invoice.glade.h:16 glade/preferences.glade.h:42
-#: glade/preferences.glade.h:41
+#: glade/preferences.glade.h:41 glade/invoice.glade.h:21
+#: glade/preferences.glade.h:55
 msgid "Subtotal"
-msgstr "subtotaal"
+msgstr "Subtotaal"
 
 #: glade/preferences.glade.h:53 glade/preferences.glade.h:52
+#: glade/preferences.glade.h:67
 msgid "PDF Viewer"
 msgstr "PDF Weergave"
 
 #: glade/preferences.glade.h:54 glade/preferences.glade.h:53
+#: glade/preferences.glade.h:68
 msgid "Executable"
 msgstr "Uitvoerbaar bestand"
 
@@ -739,34 +820,285 @@ msgstr ""
 msgid "Create Invoice Record"
 msgstr "Factuurregel maken"
 
-#: glade/record.glade.h:11
+#: glade/record.glade.h:11 glade/record.glade.h:14
 msgid "0"
 msgstr ""
 
-#: glade/record.glade.h:12
+#: glade/record.glade.h:12 glade/record.glade.h:15
 msgid "Quantity type"
 msgstr "Hoeveelheid"
 
-#: glade/record.glade.h:13
+#: glade/record.glade.h:13 glade/record.glade.h:16
 msgid "In units"
 msgstr "In stuks"
 
-#: glade/record.glade.h:14
+#: glade/record.glade.h:14 glade/record.glade.h:18
 msgid "In minutes"
 msgstr "In minuten"
 
-#: glade/record.glade.h:15
+#: glade/record.glade.h:15 glade/record.glade.h:20
 msgid "In hours"
 msgstr "In uren"
 
-#: glade/record.glade.h:18
+#: glade/record.glade.h:18 glade/record.glade.h:26
 msgid "Discount type"
 msgstr "Kortingstype"
 
-#: glade/record.glade.h:19
+#: glade/record.glade.h:19 glade/record.glade.h:27
 msgid "Fixed discount"
 msgstr "Vast bedrag"
 
-#: glade/record.glade.h:20
+#: glade/record.glade.h:20 glade/record.glade.h:29
 msgid "In percentages"
+msgstr ""
+
+#: glade/app.glade.h:4
+msgid "Add customer"
+msgstr "Klant toevoegen"
+
+#: glade/app.glade.h:5
+msgid "Remove selected customer"
+msgstr "Geselecteerde klant verwijderen"
+
+#: glade/app.glade.h:6
+msgid "Edit selected customer"
+msgstr "Geselecteerde klant wijzigen"
+
+#: glade/app.glade.h:7
+msgid "Search in customers"
+msgstr "Zoeken in klanten"
+
+#: glade/customer.glade.h:2
+msgid "Optional variable"
+msgstr "Optionele variabele"
+
+#: glade/customer.glade.h:4
+msgid "Customer reference name"
+msgstr "Klantnaam (ter referentie)"
+
+#: glade/customer.glade.h:6
+msgid "For most cases this is the first address line"
+msgstr "In de meeste gevallen de eerste adresregel"
+
+#: glade/customer.glade.h:8
+msgid "Second address line"
+msgstr "Tweede adresregel"
+
+#: glade/customer.glade.h:10
+msgid "Third address line"
+msgstr "Derde adresregel"
+
+#: glade/info.glade.h:3
+msgid "Title describing the information field"
+msgstr "De titel die de informatieregel beschrijft"
+
+#: glade/info.glade.h:4
+msgid "The actual information (can have variables)"
+msgstr "De daadwerkelijke informatieregel (kan variabelen hebben)"
+
+#: glade/info.glade.h:6
+msgid "Let this dialog open to create another one, or close this dialog"
+msgstr "Laat het venster open om een nog één te maken, of sluit dit venster"
+
+#: glade/info.glade.h:9
+msgid "Save information line"
+msgstr "Informatieregel opslaan"
+
+#: glade/invoice.glade.h:6
+msgid "Change header presentation"
+msgstr "Verander de header"
+
+#: glade/invoice.glade.h:10
+msgid "Change customer and supplier info"
+msgstr "Klant- & leveranciersgegevens wijzigen"
+
+#: glade/invoice.glade.h:13
+msgid "Add invoice record"
+msgstr "Factuurregel toevoegen"
+
+#: glade/invoice.glade.h:14
+msgid "Remove invoice record"
+msgstr "Factuurregel verwijderen"
+
+#: glade/invoice.glade.h:15
+msgid "Change column presentation"
+msgstr "Verander de kolomuitlijning"
+
+#: glade/invoice.glade.h:28
+msgid "Remove current invoice"
+msgstr "Verwijder de factuur"
+
+#: glade/invoice.glade.h:30
+msgid "Preview the PDF result"
+msgstr "Toon PDF-voorvertoning"
+
+#: glade/invoice.glade.h:32
+msgid "Save this invoice"
+msgstr "Sla de factuur op"
+
+#: glade/preferences.glade.h:11
+msgid "The title of the paper"
+msgstr "De titel van het document"
+
+#: glade/preferences.glade.h:14
+msgid "Only used in the document properties"
+msgstr "Alleen gebruikt in de documenteigenschappen"
+
+#: glade/preferences.glade.h:17
+msgid "The subtitle of the paper"
+msgstr "De subtitel van het document"
+
+#: glade/preferences.glade.h:22
+msgid "Sets the font for texts and titles"
+msgstr "Zet het lettertype foor de tekst en titels"
+
+#: glade/preferences.glade.h:24
+msgid "Foreground color for the header"
+msgstr "Voorgrondkleur voor de header"
+
+#: glade/preferences.glade.h:27
+msgid "Sets the font for financial numbers"
+msgstr "Zet het lettertype voor financiële getallen"
+
+#: glade/preferences.glade.h:29
+msgid "Background color for the header"
+msgstr "Achtergrondkleur voor de header"
+
+#: glade/preferences.glade.h:30
+msgid "Optional images to display at the bottom of the invoice"
+msgstr "Optionele figuren om onderaan te factuur weer te geven"
+
+#: glade/preferences.glade.h:37
+msgid "Add a customer information line"
+msgstr "Voeg een klantinformatieregel toe"
+
+#: glade/preferences.glade.h:38
+msgid "Remove the selected customer information line"
+msgstr "Verwijder de geselecteerde klantinformatieregel"
+
+#: glade/preferences.glade.h:39
+msgid "Edit the selected customer information line"
+msgstr "Wijzig de geselecteerde klantinformatieregel"
+
+#: glade/preferences.glade.h:43
+msgid "Add supplier information line"
+msgstr "Voeg een leveranciersinformatieregel toe"
+
+#: glade/preferences.glade.h:44
+msgid "Remove the selected supplier information line"
+msgstr "Verwijder de geselecteerde leveranciersinformatieregel"
+
+#: glade/preferences.glade.h:45
+msgid "Edit the selected supplier information line"
+msgstr "Wijzig de geselecteerde leveranciersinformatieregel"
+
+#: glade/preferences.glade.h:66
+msgid "Current value of the customer counter"
+msgstr "Huidige waarde voor de klantenteller"
+
+#: glade/preferences.glade.h:69
+msgid "Application used to preview the PDF invoice"
+msgstr "De applicatie voor het weergeven van het PDF-bestand"
+
+#: glade/preferences.glade.h:77
+msgid "Select locale for this application"
+msgstr "Selecteer de taal voor de applicatie"
+
+#: glade/preferences.glade.h:79
+msgid "Select the babel language, which is useful for hyphenation"
+msgstr ""
+"Selecteer de taal die gebruikt wordt voor babel. Handig voor koppeltekens"
+
+#: glade/preferences.glade.h:81
+msgid "Select the currency used in the invoices"
+msgstr "Selecteer de munteenheid voor alle facturen"
+
+#: glade/record.glade.h:9
+msgid "Describe the invoice record"
+msgstr "Beschrijving van de factuurregel"
+
+#: glade/record.glade.h:11
+msgid "Optional date of work (be sure to display the column as well)"
+msgstr ""
+"Optionele datum van het verrichte werk (controleer ook de kolomweergave "
+"instelling)"
+
+#: glade/record.glade.h:13
+msgid "Specify the quantity (numbers only)"
+msgstr "Specificeer de hoeveelheid (alleen getallen)"
+
+#: glade/record.glade.h:17
+msgid "Show quantity with <b>x</b> as postfix"
+msgstr "Toon de hoeveelheid met <b>x</b> aan het einde"
+
+#: glade/record.glade.h:19
+msgid "Show quantity with <b>m</b> as postfix"
+msgstr "Toon de hoeveelheid met <b>m</b> aan het einde"
+
+#: glade/record.glade.h:21
+msgid "Show quantity with <b>h</b> as postfix"
+msgstr "Toon de hoeveelheid met <b>u</b> aan het einde"
+
+#: glade/record.glade.h:23
+msgid "Fill in the price based on the quantity type"
+msgstr "Vul de prijs in gebaseerd op het hoeveelheidstype"
+
+#: glade/record.glade.h:25
+msgid "Specify the discount (only numbers)"
+msgstr "Specificeer de korting (alleen getallen)"
+
+#: glade/record.glade.h:28
+msgid "Shows the discount as amount"
+msgstr "Toont de korting als bedrag"
+
+#: glade/record.glade.h:30
+msgid "Shows the discount as percentage"
+msgstr "Toont de korting in percentages"
+
+#: glade/record.glade.h:32
+msgid "Select VAT percentage"
+msgstr "Selecteer BTW-percentage"
+
+#: glade/record.glade.h:34
+msgid "Keep adding records, or close this dialog afterwards"
+msgstr "Blijf rijen toevoegen, of sluit het venster naderhand"
+
+#: glade/record.glade.h:37
+msgid "Save the invoice record"
+msgstr "Factuurregel opslaan"
+
+#: glade/variable.glade.h:19
+msgid "Use accolades <b>{</b>/<b>}</b> to insert variables"
+msgstr "Gebruik accolades <b>{</b>/<b>}</b> om variabelen in te voeren"
+
+#: glade/about.glade.h:1
+msgid "Erik Nijenhuis <erik@xerdi.com>"
+msgstr ""
+
+#: glade/about.glade.h:2
+msgid "Creating LaTeX invoices with a GTK GUI."
+msgstr "LaTeX-facturen maken met een GTK app."
+
+#: glade/about.glade.h:3
+msgid "GNOME GitLab"
+msgstr ""
+
+#: glade/app.glade.h:8
+msgid "Settings"
+msgstr "Instellingen"
+
+#: glade/app.glade.h:9
+msgid "Create a new invoice"
+msgstr "Nieuwe factuur maken"
+
+#: glade/app.glade.h:10
+msgid "Search in the invoice"
+msgstr "Zoeken in de factuur"
+
+#: ../ginvoice/ui/about.py:31
+msgid "Creating LaTeX invoices with a GTK GUI"
+msgstr "LaTeX-facturen maken met een GTK app"
+
+#: glade/about.glade.h:1
+msgid "Copyright Xerdi"
 msgstr ""
