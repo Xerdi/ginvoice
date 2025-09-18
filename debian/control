@@ -8,6 +8,6 @@ X-Python3-Version: >= 3.6
 
 Package: ginvoice
 Architecture: all
-Depends: python3-gi, python3-cairo, python3-distutils, python3-xdg, texlive-full | miktex
+Depends: python3-gi, python3-cairo, python3-distutils-extra, python3-xdg, texlive-full | miktex
 Recommends: ttf-mscorefonts-installer
 Description: Creating LaTeX invoices with a GTK GUI
