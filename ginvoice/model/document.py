@@ -32,12 +32,14 @@ class Document(GObject.GObject):
                  table_col: TableColumnStore,
                  cum_col: CumulativeColumnStore,
                  record_store: Gtk.ListStore,
+                 ending: Gtk.Entry,
                  totals: list, working_dir: str):
         GObject.GObject.__init__(self)
         self.customer = customer
         self.table_col = table_col
         self.cum_col = cum_col
         self.record_store = record_store
+        self.ending = ending
         self.totals = totals
         self.working_dir = working_dir
 
@@ -118,7 +120,7 @@ class Document(GObject.GObject):
             "records": self.parse_records()
         })
         self.set_data('footer', {
-            "ending": ps['invoice_ending'].value.format_map(_vars),
+            "ending": self.ending.get_text().format_map(_vars),
             "images": [x for x in
                        [
                            ps['footer_image_1'].value,

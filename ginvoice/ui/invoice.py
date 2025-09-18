@@ -32,6 +32,9 @@ from ginvoice.ui.record import RecordDialog
 from ginvoice.ui.target import TargetChooserDialog
 from ginvoice.util import find_ui_file
 
+class VariableKeyValues(dict):
+    def __missing__(self, key):
+        return "{%s}" % key
 
 class RecordBinding:
 
@@ -85,6 +88,7 @@ class InvoiceForm(Gtk.Box):
                             self.table_column_store,
                             self.cumulative_column_store,
                             self.invoice_row_store,
+                            self.invoice_ending,
                             self.grand_totals,
                             self.tex_project.working_directory)
         self.event = event
@@ -94,10 +98,10 @@ class InvoiceForm(Gtk.Box):
         self.event.connect('saved', self.invalidate)
         self.address_store = Gtk.ListStore(str)
 
-        self.vars = {
-            _('invoice_nr'): str(int(preference_store['invoice_counter'].value) + idx),
-            _('today'): "\\today"
-        }
+        self.vars = VariableKeyValues()
+        self.vars[_('invoice_nr')] = str(int(preference_store['invoice_counter'].value) + idx)
+        self.vars[_('today')] = "\\today"
+
         self.reload_cumulatives()
         self.parent = parent
         self.invoice_stack = invoice_stack
@@ -115,7 +119,7 @@ class InvoiceForm(Gtk.Box):
         self.supplier_info.set_model(self.supplier_info_store)
         self.update_customer(customer)
         preference_store['invoice_ending'].connect('changed', self.set_invoice_ending)
-        self.invoice_ending.set_text(preference_store['invoice_ending'].value.format_map(self.vars))
+        self.invoice_ending.set_text(preference_store['invoice_ending'].value)
         self.dialog = None
 
     def pdfviewer_closed(self, *args):
@@ -193,6 +197,10 @@ class InvoiceForm(Gtk.Box):
             self.dialog.set_transient_for(self.parent)
             self.dialog.show_all()
 
+    @Gtk.Template.Callback()
+    def ending_changed(self, entry):
+        self.pdf.reload(self.vars)
+
     def reload_cumulatives(self):
         discount = 0.0
         subtotal = 0.0
@@ -240,8 +248,8 @@ class InvoiceForm(Gtk.Box):
         window.set_transient_for(self.parent)
         window.show_all()
 
-    def set_invoice_ending(self, preference, invoice_ending):
-        self.invoice_ending.set_text(invoice_ending.format_map(self.vars))
+    def set_invoice_ending(self, invoice_ending):
+        self.invoice_ending.set_text(invoice_ending)
 
     @Gtk.Template.Callback()
     def toggle_preview(self, btn):
@@ -280,7 +288,7 @@ class InvoiceForm(Gtk.Box):
                 self.cumulative_records.get_model().append((column.title,
                                                             str(self.grand_totals[col_idx]),
                                                             1))
-        self.set_invoice_ending(None, preference_store['invoice_ending'].value)
+        self.set_invoice_ending(preference_store['invoice_ending'].value)
         if self.preview_toggle.get_active():
             self.pdf.totals = self.grand_totals
             self.pdf.reload(self.vars)

@@ -52,8 +52,8 @@ pre_escape_chars = {
     '$': r'\$',
     '#': r'\#',
     '_': r'\_',
-    # '{': r'\{',
-    # '}': r'\}',
+    # '{': r'\textbraceleft{}',
+    # '}': r'\textbraceright{}',
     '~': r'\textasciitilde{}',
     '^': r'\^{}',
     '\\\\': r'\textbackslash{}'
