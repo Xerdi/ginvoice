@@ -1,10 +1,21 @@
 #!/usr/bin/make -f
+
 export DH_VIRTUALENV_ARGUMENTS := --system-site-packages
 export PYBUILD_NAME=ginvoice
+export PIP_NO_BUILD_ISOLATION=1
+export GINVOICE_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/-.*//')
+
 %:
-	dh $@ --with python-virtualenv -S
+	dh $@ --with python-virtualenv
+
+override_dh_virtualenv:
+	GINVOICE_VERSION=$(GINVOICE_VERSION) \
+	dh_virtualenv \
+	  --extra-pip-arg=--no-build-isolation
+
 override_dh_install:
 	scripts/packres.sh
 	dh_install
+
 override_dh_auto_test:
 	:

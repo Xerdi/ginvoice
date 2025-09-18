@@ -14,15 +14,33 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from setuptools import setup
-from subprocess import check_output
+import os
+import subprocess
 
-setup(name="GinVoice",
-      version=check_output("git describe --tags", shell=True).decode('utf-8').split('-')[0],
-      description="Creating LaTeX invoices with a GTK GUI",
-      author="Erik Nijenhuis",
-      author_email="erik@xerdi.com",
-      license="GPLv3",
-      packages=["ginvoice", "ginvoice.ui", "ginvoice.model"],
-      entry_points={
-          'console_scripts': ['ginvoice=ginvoice.main:main', 'gingen=ginvoice.generator:main']
-      })
+
+def get_version():
+    # Prefer explicit version passed from packaging environment
+    v = os.getenv("GINVOICE_VERSION")
+    if v:
+        return v
+    # Try to infer from git tags if available
+    try:
+        out = subprocess.check_output(["git", "describe", "--tags"])  # nosec - local meta query
+        return out.decode("utf-8").split("-")[0]
+    except Exception:
+        # Fallback to a sane default when no git metadata is present
+        return "0.0.0"
+
+
+setup(
+    name="GinVoice",
+    version=get_version(),
+    description="Creating LaTeX invoices with a GTK GUI",
+    author="Erik Nijenhuis",
+    author_email="erik@xerdi.com",
+    license="GPLv3",
+    packages=["ginvoice", "ginvoice.ui", "ginvoice.model"],
+    entry_points={
+        'console_scripts': ['ginvoice=ginvoice.main:main', 'gingen=ginvoice.generator:main']
+    }
+)
