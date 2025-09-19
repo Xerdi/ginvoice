@@ -266,7 +266,7 @@ class InvoiceForm(Gtk.Box):
         window.set_transient_for(self.parent)
         window.show_all()
 
-    def set_invoice_ending(self, invoice_ending):
+    def set_invoice_ending(self, widget, invoice_ending):
         self.invoice_ending.set_text(invoice_ending)
 
     @Gtk.Template.Callback()
