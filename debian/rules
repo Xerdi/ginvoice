@@ -12,6 +12,9 @@ override_dh_virtualenv:
 	GINVOICE_VERSION=$(GINVOICE_VERSION) \
 	dh_virtualenv \
 	  --use-system-packages \
+	  --preinstall setuptools \
+	  --preinstall wheel \
+	  --extra-pip-arg=--no-use-pep517 \
 	  --extra-pip-arg=--no-build-isolation
 
 override_dh_install:
