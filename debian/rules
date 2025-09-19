@@ -9,12 +9,19 @@ export GINVOICE_VERSION := $(shell dpkg-parsechangelog -S Version | sed 's/-.*//
 	dh $@ --with python-virtualenv
 
 override_dh_virtualenv:
+	# Ensure writable HOME/CACHE/TMP inside the build env
+	mkdir -p debian/.home debian/.cache/pip debian/.cache/python-eggs debian/tmp
+	HOME=$(CURDIR)/debian/.home \
+	XDG_CACHE_HOME=$(CURDIR)/debian/.cache \
+	PIP_CACHE_DIR=$(CURDIR)/debian/.cache/pip \
+	PYTHON_EGG_CACHE=$(CURDIR)/debian/.cache/python-eggs \
+	PIP_CONFIG_FILE=/dev/null \
+	TMPDIR=$(CURDIR)/debian/tmp \
 	GINVOICE_VERSION=$(GINVOICE_VERSION) \
 	dh_virtualenv \
 	  --use-system-packages \
 	  --preinstall setuptools \
 	  --preinstall wheel \
-	  --extra-pip-arg=--no-use-pep517 \
 	  --extra-pip-arg=--no-build-isolation
 
 override_dh_install:
