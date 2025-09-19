@@ -35,6 +35,15 @@
       <row>
         <col id="0" translatable="yes" comments="Template variable">total_discount</col>
       </row>
+      <row>
+        <col id="0" translatable="yes">total_hours</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">total_minutes</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">total_units</col>
+      </row>
     </data>
   </object>
   <object class="GtkEntryCompletion" id="variable_completion">

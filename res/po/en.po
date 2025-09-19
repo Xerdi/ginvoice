@@ -1,14 +1,14 @@
 # GinVoice - Creating LaTeX invoices with a GTK GUI
-# Copyright (C) 2024 Xerdi
+# Copyright (C) 2025 Xerdi
 # This file is distributed under the same license as the GinVoice package.
-# Automatically generated, 2024.
+# Automatically generated, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GinVoice 1.0.5\n"
+"Project-Id-Version: GinVoice 1.0.5-9-g45d16fe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-27 10:42+0200\n"
-"PO-Revision-Date: 2024-04-27 10:42+0200\n"
+"POT-Creation-Date: 2025-09-19 12:50+0200\n"
+"PO-Revision-Date: 2025-09-19 12:50+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_US\n"
@@ -577,6 +577,7 @@ msgstr "Text width"
 #: ../ginvoice/ui/invoice.py:220 glade/variable.glade.h:2
 #: ../ginvoice/ui/invoice.py:100 ../ginvoice/ui/invoice.py:218
 #: ../ginvoice/ui/invoice.py:98 ../ginvoice/ui/invoice.py:216
+#: ../ginvoice/ui/invoice.py:242
 msgid "invoice_nr"
 msgstr "invoice_nr"
 
@@ -604,25 +605,25 @@ msgstr "customer_salutation"
 
 #: glade/preferences.glade.h:17 ../ginvoice/ui/invoice.py:213
 #: glade/variable.glade.h:12 ../ginvoice/ui/invoice.py:211
-#: ../ginvoice/ui/invoice.py:209
+#: ../ginvoice/ui/invoice.py:209 ../ginvoice/ui/invoice.py:229
 msgid "grandtotal"
 msgstr "grandtotal"
 
 #: glade/preferences.glade.h:19 ../ginvoice/ui/invoice.py:214
 #: glade/variable.glade.h:14 ../ginvoice/ui/invoice.py:212
-#: ../ginvoice/ui/invoice.py:210
+#: ../ginvoice/ui/invoice.py:210 ../ginvoice/ui/invoice.py:230
 msgid "subtotal"
 msgstr "subtotal"
 
 #: glade/preferences.glade.h:21 ../ginvoice/ui/invoice.py:215
 #: glade/variable.glade.h:16 ../ginvoice/ui/invoice.py:213
-#: ../ginvoice/ui/invoice.py:211
+#: ../ginvoice/ui/invoice.py:211 ../ginvoice/ui/invoice.py:231
 msgid "total_vat"
 msgstr "total_vat"
 
 #: glade/preferences.glade.h:23 ../ginvoice/ui/invoice.py:216
 #: glade/variable.glade.h:18 ../ginvoice/ui/invoice.py:214
-#: ../ginvoice/ui/invoice.py:212
+#: ../ginvoice/ui/invoice.py:212 ../ginvoice/ui/invoice.py:232
 msgid "total_discount"
 msgstr "total_discount"
 
@@ -703,13 +704,13 @@ msgid "Edit supplier record"
 msgstr "Edit supplier record"
 
 #: ../ginvoice/model/pdf.py:154 ../ginvoice/model/document.py:154
-#: ../ginvoice/model/document.py:145
+#: ../ginvoice/model/document.py:145 ../ginvoice/model/document.py:151
 msgid "See next page"
 msgstr "See next page"
 
 #: ../ginvoice/model/preference.py:144 ../ginvoice/model/preference.py:105
 #: ../ginvoice/ui/invoice.py:294 ../ginvoice/ui/invoice.py:292
-#: ../ginvoice/ui/invoice.py:290
+#: ../ginvoice/ui/invoice.py:290 ../ginvoice/ui/invoice.py:315
 #, python-brace-format
 msgid "Invoice {invoice_nr} - {customer_name}.pdf"
 msgstr "Invoice {invoice_nr} - {customer_name}.pdf"
@@ -753,16 +754,19 @@ msgstr "Default "
 
 #: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:121
 #: ../ginvoice/ui/record.py:63 ../ginvoice/ui/record.py:117
+#: ../ginvoice/ui/invoice.py:225
 msgid "x"
 msgstr "x"
 
 #: ../ginvoice/ui/record.py:69 ../ginvoice/ui/record.py:121
 #: ../ginvoice/ui/record.py:65 ../ginvoice/ui/record.py:117
+#: ../ginvoice/ui/invoice.py:222
 msgid "h"
 msgstr "h"
 
 #: ../ginvoice/ui/record.py:71 ../ginvoice/ui/record.py:121
 #: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:117
+#: ../ginvoice/ui/invoice.py:219
 msgid "m"
 msgstr "m"
 
@@ -1063,7 +1067,7 @@ msgstr "Keep adding records, or close this dialog afterwards"
 msgid "Save the invoice record"
 msgstr "Save the invoice record"
 
-#: glade/variable.glade.h:19
+#: glade/variable.glade.h:19 glade/variable.glade.h:22
 msgid "Use accolades <b>{</b>/<b>}</b> to insert variables"
 msgstr "Use accolades <b>{</b>/<b>}</b> to insert variables"
 
@@ -1098,3 +1102,15 @@ msgstr "Creating LaTeX invoices with a GTK GUI"
 #: glade/about.glade.h:1
 msgid "Copyright Xerdi"
 msgstr "Copyright Xerdi"
+
+#: ../ginvoice/ui/invoice.py:236 glade/variable.glade.h:19
+msgid "total_hours"
+msgstr "total_hours"
+
+#: ../ginvoice/ui/invoice.py:237 glade/variable.glade.h:20
+msgid "total_minutes"
+msgstr "total_minutes"
+
+#: ../ginvoice/ui/invoice.py:238 glade/variable.glade.h:21
+msgid "total_units"
+msgstr "total_units"

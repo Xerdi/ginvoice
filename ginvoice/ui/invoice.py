@@ -202,6 +202,10 @@ class InvoiceForm(Gtk.Box):
         self.pdf.reload(self.vars)
 
     def reload_cumulatives(self):
+        hours = 0.0
+        units = 0.0
+        minutes = 0.0
+
         discount = 0.0
         subtotal = 0.0
         vat = 0.0
@@ -212,12 +216,26 @@ class InvoiceForm(Gtk.Box):
             subtotal = round(subtotal + record.subtotal, 2)
             vat = round(vat + record.vat, 2)
             total = round(total + record.total, 2)
+            if record.quantity_postfix == _('m'):
+                hours = hours + (record.quantity / 60)
+                minutes = minutes + record.quantity
+            elif record.quantity_postfix == _('h'):
+                hours = hours + record.quantity
+                minutes = minutes + (record.quantity * 60)
+            elif record.quantity_postfix == _('x'):
+                units = units + record.quantity
         self.grand_totals = self.pdf.totals = [discount, subtotal, vat, total]
         the_format = "\\financial{%.2f}"
         self.vars[_('grandtotal')] = the_format % total
         self.vars[_('subtotal')] = the_format % subtotal
         self.vars[_('total_vat')] = the_format % vat
         self.vars[_('total_discount')] = the_format % discount
+        hours = round(hours, 2)
+        minutes = round(minutes)
+        units = round(units)
+        self.vars[_('total_hours')] = f'{hours:n}'
+        self.vars[_('total_minutes')] = f'{minutes:n}'
+        self.vars[_('total_units')] = f'{units:n}'
 
     def set_idx(self, idx: int):
         self.idx = idx
@@ -288,7 +306,6 @@ class InvoiceForm(Gtk.Box):
                 self.cumulative_records.get_model().append((column.title,
                                                             str(self.grand_totals[col_idx]),
                                                             1))
-        self.set_invoice_ending(preference_store['invoice_ending'].value)
         if self.preview_toggle.get_active():
             self.pdf.totals = self.grand_totals
             self.pdf.reload(self.vars)

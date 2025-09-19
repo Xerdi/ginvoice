@@ -119,8 +119,12 @@ class Document(GObject.GObject):
             "cumulative": self.parse_cumulatives(),
             "records": self.parse_records()
         })
+        try:
+            invoice_ending = self.ending.get_text().format_map(_vars)
+        except ValueError:
+            invoice_ending = "Error: Invalid invoice ending!"
         self.set_data('footer', {
-            "ending": self.ending.get_text().format_map(_vars),
+            "ending": invoice_ending,
             "images": [x for x in
                        [
                            ps['footer_image_1'].value,

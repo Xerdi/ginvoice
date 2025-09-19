@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GinVoice 1.0.5\n"
+"Project-Id-Version: GinVoice 1.0.5-9-g45d16fe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-27 10:42+0200\n"
+"POT-Creation-Date: 2025-09-19 12:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -601,7 +601,7 @@ msgstr ""
 #: ../ginvoice/ui/invoice.py:220 glade/variable.glade.h:2
 #: ../ginvoice/ui/invoice.py:100 ../ginvoice/ui/invoice.py:218
 #: ../ginvoice/ui/invoice.py:98 ../ginvoice/ui/invoice.py:216
-#: glade/variable.glade.h:2
+#: ../ginvoice/ui/invoice.py:242 glade/variable.glade.h:2
 msgid "invoice_nr"
 msgstr ""
 
@@ -630,25 +630,29 @@ msgstr ""
 
 #: glade/preferences.glade.h:17 ../ginvoice/ui/invoice.py:213
 #: glade/variable.glade.h:12 ../ginvoice/ui/invoice.py:211
-#: ../ginvoice/ui/invoice.py:209 glade/variable.glade.h:12
+#: ../ginvoice/ui/invoice.py:209 ../ginvoice/ui/invoice.py:229
+#: glade/variable.glade.h:12
 msgid "grandtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:19 ../ginvoice/ui/invoice.py:214
 #: glade/variable.glade.h:14 ../ginvoice/ui/invoice.py:212
-#: ../ginvoice/ui/invoice.py:210 glade/variable.glade.h:14
+#: ../ginvoice/ui/invoice.py:210 ../ginvoice/ui/invoice.py:230
+#: glade/variable.glade.h:14
 msgid "subtotal"
 msgstr ""
 
 #: glade/preferences.glade.h:21 ../ginvoice/ui/invoice.py:215
 #: glade/variable.glade.h:16 ../ginvoice/ui/invoice.py:213
-#: ../ginvoice/ui/invoice.py:211 glade/variable.glade.h:16
+#: ../ginvoice/ui/invoice.py:211 ../ginvoice/ui/invoice.py:231
+#: glade/variable.glade.h:16
 msgid "total_vat"
 msgstr ""
 
 #: glade/preferences.glade.h:23 ../ginvoice/ui/invoice.py:216
 #: glade/variable.glade.h:18 ../ginvoice/ui/invoice.py:214
-#: ../ginvoice/ui/invoice.py:212 glade/variable.glade.h:18
+#: ../ginvoice/ui/invoice.py:212 ../ginvoice/ui/invoice.py:232
+#: glade/variable.glade.h:18
 msgid "total_discount"
 msgstr ""
 
@@ -732,13 +736,13 @@ msgid "Edit supplier record"
 msgstr ""
 
 #: ../ginvoice/model/pdf.py:154 ../ginvoice/model/document.py:154
-#: ../ginvoice/model/document.py:145
+#: ../ginvoice/model/document.py:145 ../ginvoice/model/document.py:151
 msgid "See next page"
 msgstr ""
 
 #: ../ginvoice/model/preference.py:144 ../ginvoice/model/preference.py:105
 #: ../ginvoice/ui/invoice.py:294 ../ginvoice/ui/invoice.py:292
-#: ../ginvoice/ui/invoice.py:290
+#: ../ginvoice/ui/invoice.py:290 ../ginvoice/ui/invoice.py:315
 #, python-brace-format
 msgid "Invoice {invoice_nr} - {customer_name}.pdf"
 msgstr ""
@@ -782,16 +786,19 @@ msgstr ""
 
 #: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:121
 #: ../ginvoice/ui/record.py:63 ../ginvoice/ui/record.py:117
+#: ../ginvoice/ui/invoice.py:225
 msgid "x"
 msgstr ""
 
 #: ../ginvoice/ui/record.py:69 ../ginvoice/ui/record.py:121
 #: ../ginvoice/ui/record.py:65 ../ginvoice/ui/record.py:117
+#: ../ginvoice/ui/invoice.py:222
 msgid "h"
 msgstr ""
 
 #: ../ginvoice/ui/record.py:71 ../ginvoice/ui/record.py:121
 #: ../ginvoice/ui/record.py:67 ../ginvoice/ui/record.py:117
+#: ../ginvoice/ui/invoice.py:219
 msgid "m"
 msgstr ""
 
@@ -1094,7 +1101,7 @@ msgstr ""
 msgid "Save the invoice record"
 msgstr ""
 
-#: glade/variable.glade.h:19 glade/variable.glade.h:19
+#: glade/variable.glade.h:19 glade/variable.glade.h:22
 msgid "Use accolades <b>{</b>/<b>}</b> to insert variables"
 msgstr ""
 
@@ -1102,11 +1109,11 @@ msgstr ""
 msgid "Erik Nijenhuis <erik@xerdi.com>"
 msgstr ""
 
-#: glade/about.glade.h:2 glade/about.glade.h:2
+#: glade/about.glade.h:2
 msgid "Creating LaTeX invoices with a GTK GUI."
 msgstr ""
 
-#: glade/about.glade.h:3 glade/about.glade.h:3
+#: glade/about.glade.h:3
 msgid "GNOME GitLab"
 msgstr ""
 
@@ -1128,4 +1135,16 @@ msgstr ""
 
 #: glade/about.glade.h:1
 msgid "Copyright Xerdi"
+msgstr ""
+
+#: ../ginvoice/ui/invoice.py:236 glade/variable.glade.h:19
+msgid "total_hours"
+msgstr ""
+
+#: ../ginvoice/ui/invoice.py:237 glade/variable.glade.h:20
+msgid "total_minutes"
+msgstr ""
+
+#: ../ginvoice/ui/invoice.py:238 glade/variable.glade.h:21
+msgid "total_units"
 msgstr ""
