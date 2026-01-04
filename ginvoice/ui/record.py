@@ -15,6 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from ginvoice.model.record import Record
+from ginvoice.model.preference import preference_store
 from ginvoice.gtk import Gtk
 from ginvoice.util import find_ui_file
 from ginvoice.i18n import _
@@ -107,6 +108,12 @@ class RecordDialog(Gtk.Window):
         if self.record is not None:
             self.set_title(_('Edit Invoice Record'))
             self.repeat.set_visible(False)
+            self.repeat.set_sensitive(False)
+        else:
+            self.price.set_text(preference_store['default_rate'].value)
+            self.repeat.set_active(bool(preference_store['keep_editing'].value))
+            self.vat.set_active(int(preference_store['default_vat'].value))
+            [self.units_radio, self.hours_radio, self.minutes_radio][int(preference_store['default_record_type'].value)].set_active(True)
 
     def reload_record(self):
         if self.record:

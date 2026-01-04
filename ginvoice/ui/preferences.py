@@ -48,6 +48,11 @@ class PreferencesWindow(Gtk.Window):
     author = Gtk.Template.Child()
     keywords = Gtk.Template.Child()
 
+    default_rate = Gtk.Template.Child()
+    default_vat = Gtk.Template.Child()
+    default_record_type = Gtk.Template.Child()
+    keep_editing_checkbox = Gtk.Template.Child()
+
     main_font = Gtk.Template.Child()
     mono_font = Gtk.Template.Child()
     fg_color = Gtk.Template.Child('foreground_color')
@@ -94,6 +99,11 @@ class PreferencesWindow(Gtk.Window):
         self.author.set_text(preference_store['author'].value)
         self.keywords.set_text(preference_store['keywords'].value)
         self.event = form_registry
+
+        self.default_rate.set_text(preference_store['default_rate'].value)
+        self.default_vat.set_active(int(preference_store['default_vat'].value))
+        self.default_record_type.set_active(int(preference_store['default_record_type'].value))
+        self.keep_editing_checkbox.set_active(bool(preference_store['keep_editing'].value))
 
         if section:
             self.settings_stack.set_visible_child_name(section)
@@ -196,6 +206,22 @@ class PreferencesWindow(Gtk.Window):
     @Gtk.Template.Callback()
     def change_keywords(self, widget):
         preference_store['keywords'] = widget.get_text()
+
+    @Gtk.Template.Callback()
+    def change_default_rate(self, widget):
+        preference_store['default_rate'] = widget.get_text()
+
+    @Gtk.Template.Callback()
+    def change_default_vat(self, widget):
+        preference_store['default_vat'] = str(widget.get_active())
+
+    @Gtk.Template.Callback()
+    def change_default_record_type(self, widget):
+        preference_store['default_record_type'] = str(widget.get_active())
+
+    @Gtk.Template.Callback()
+    def toggle_keep_editing(self, widget):
+        preference_store['keep_editing'] = widget.get_active()
 
     @Gtk.Template.Callback()
     def change_main_font(self, widget):

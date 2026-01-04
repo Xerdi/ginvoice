@@ -105,6 +105,12 @@ preference_store += Preference('subtitle', default='')
 preference_store += Preference('author', default=getpass.getuser())
 preference_store += Preference('keywords', default='')
 
+# Invoice Defaults
+preference_store += Preference('default_rate', default='0')
+preference_store += Preference('default_vat', default='2')
+preference_store += Preference('default_record_type', default='0')
+preference_store += Preference('keep_editing', default=True)
+
 # Document styling
 preference_store += Preference('main_font')
 preference_store += Preference('mono_font')
