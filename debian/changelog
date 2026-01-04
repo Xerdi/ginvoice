@@ -1,3 +1,31 @@
+ginvoice (1.1.0) jammy; urgency=medium
+
+  * Add invoice default preferences
+  * Fix invoice ending update through settings change
+  * fix Launchpad build by setting writable HOME/cache and dropping --no-use-pep517
+  * Use no pep 517 for dh virtualenv
+  * Add total hours, minutes and units as variable
+  * Use system packages for dh_virtualenv
+  * Fix bug with invoice ending not being responsive
+  * Remove deprecated debian/compat file
+  * Set no specific version for dh-virtualenv
+  * Fix build dependencies/config
+  * Fix dependencies for Ubuntu 24.04
+  * Fix locale setting
+  * Cleanup
+  * Add about dialog and set copyright holder
+ --    
+
+ginvoice (1.0.5) jammy; urgency=medium
+
+  * Add video link for screenshot
+  * Replace screenshots with video
+  * Simplify preference_store
+  * Simplify preference_store
+  * Add tooltips
+  * Fix Windows 10 specific issues (mostly working now)
+ -- Erik Nijenhuis <erik@xerdi.com>  Tue, 5 Mar 2024 16:49:46 +0100
+
 ginvoice (1.0.4) jammy; urgency=medium
 
   * Add miktex as optional replacement for texlive
