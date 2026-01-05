@@ -1,5 +1,6 @@
-ginvoice (1.1.0) jammy; urgency=medium
+ginvoice (1.1.0) noble; urgency=medium
 
+  * Release 1.1.0
   * Add invoice default preferences
   * Fix invoice ending update through settings change
   * fix Launchpad build by setting writable HOME/cache and dropping --no-use-pep517
@@ -16,7 +17,7 @@ ginvoice (1.1.0) jammy; urgency=medium
   * Add about dialog and set copyright holder
  --    
 
-ginvoice (1.0.5) jammy; urgency=medium
+ginvoice (1.0.5) noble; urgency=medium
 
   * Add video link for screenshot
   * Replace screenshots with video
@@ -26,7 +27,7 @@ ginvoice (1.0.5) jammy; urgency=medium
   * Fix Windows 10 specific issues (mostly working now)
  -- Erik Nijenhuis <erik@xerdi.com>  Tue, 5 Mar 2024 16:49:46 +0100
 
-ginvoice (1.0.4) jammy; urgency=medium
+ginvoice (1.0.4) noble; urgency=medium
 
   * Add miktex as optional replacement for texlive
   * Update README and add screenshots
@@ -35,7 +36,7 @@ ginvoice (1.0.4) jammy; urgency=medium
   * Move dependencies GObject and Cairo to apt dependencies
  -- Erik Nijenhuis <erik@xerdi.com>  Sat, 11 Mar 2023 13:49:03 +0100
 
-ginvoice (1.0.3) jammy; urgency=medium
+ginvoice (1.0.3) noble; urgency=medium
 
   * Version 1.0.3
   * Remove git build dependency
@@ -44,12 +45,12 @@ ginvoice (1.0.3) jammy; urgency=medium
   * Update changelog
  -- Erik Nijenhuis <erik@xerdi.com>  Fri, 18 Nov 2022 21:01:06 +0100
 
-ginvoice (1.0.2) jammy; urgency=medium
+ginvoice (1.0.2) noble; urgency=medium
 
   * Fix dist for ubuntu 22.04
  -- Erik Nijenhuis <erik@xerdi.com>  Fri, 18 Nov 2022 17:48:33 +0100
 
-ginvoice (1.0.1) jammy; urgency=medium
+ginvoice (1.0.1) noble; urgency=medium
 
   * Rework distribution
   * Increment invoice counter after invoice creation
@@ -57,7 +58,7 @@ ginvoice (1.0.1) jammy; urgency=medium
   * Update README.md
  -- Erik Nijenhuis <erik@xerdi.com>  Sun, 23 Jan 2022 20:22:56 +0100
 
-ginvoice (1.0.0) jammy; urgency=medium
+ginvoice (1.0.0) noble; urgency=medium
 
   * Add initial README
   * Update locale. Use utf8 for config files.
