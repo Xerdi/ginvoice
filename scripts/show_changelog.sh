@@ -35,7 +35,7 @@ list_changes () {
       git log --no-merges --pretty=format:"  * %s" "$cur...$tag"
       echo ""
 #      git show -1 -s --tags 0.0.1 --format=' -- %an <%ae>  %aD'
-      git for-each-ref --format="%(refname:short) -- %(authorname) %(authoremail)  %(authordate:rfc)" refs/tags \
+      git for-each-ref --format="%(refname:short) -- %(if)%(taggername)%(then)%(taggername) %(taggeremail)%(else)%(authorname) %(authoremail)%(end)  %(creatordate:rfc)" refs/tags \
           | grep -e "^$cur" | sed "s/^$cur//"
       echo ""
     fi
